@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DataPulse | AI Engineering &amp; Data Strategy Agency</title>
+<meta name="description" content="DataPulse builds production-grade machine learning models, FastAPI backends and data pipelines for growing businesses. Churn prediction, fraud detection, AI automation and data strategy.">
+<meta name="keywords" content="AI engineering, machine learning, churn prediction, fraud detection, FastAPI, data pipelines, AI consulting, Pakistan">
+<meta name="author" content="DataPulse">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta name="geo.region" content="PK-IS"><meta name="geo.placename" content="Islamabad"><meta name="ai-summary" content="DataPulse is an AI engineering and data strategy agency in Islamabad, Pakistan. Services: predictive ML, FastAPI backend architecture, and AI automation consulting. Book a strategy call on the website.">
+<meta property="og:type" content="website"><meta property="og:title" content="DataPulse | AI Engineering &amp; Data Strategy"><meta property="og:description" content="Automate. Scale. Grow with AI."><meta property="og:site_name" content="DataPulse">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="DataPulse | AI Engineering &amp; Data Strategy"><meta name="twitter:description" content="Production-grade ML models, FastAPI backends and data pipelines.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"ProfessionalService","name":"DataPulse","description":"AI engineering and data strategy agency","areaServed":"Worldwide","address":{"@type":"PostalAddress","addressLocality":"Islamabad","addressCountry":"PK"},"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Predictive Machine Learning"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Enterprise API & Backend Architecture"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Business AI & Automation Consulting"}}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What does DataPulse build?","acceptedAnswer":{"@type":"Answer","text":"Production ML models such as churn and fraud detection, FastAPI backends with Pydantic and Docker, and data pipelines tied to business goals."}},
+{"@type":"Question","name":"How do I book a strategy call?","acceptedAnswer":{"@type":"Answer","text":"Use the Book Strategy Call button on the website and submit the booking form."}}]}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+:root{--bg:#0F172A;--bg2:#020617;--card:#111b33;--line:#1e2d4d;--text:#e2e8f0;--mute:#94a3b8;--blue:#3B82F6;--cyan:#06B6D4;--ok:#34d399;--bad:#f87171;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{color-scheme:dark;scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+body{margin:0;background:radial-gradient(900px 500px at 80% -10%,rgba(59,130,246,.18),transparent),radial-gradient(700px 400px at 0% 20%,rgba(6,182,212,.10),transparent),linear-gradient(var(--bg),var(--bg2));background-attachment:fixed;color:var(--text);font-family:'Plus Jakarta Sans',system-ui,sans-serif;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:rgba(2,6,23,.85);backdrop-filter:blur(14px);z-index:60}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.glass{background:rgba(15,23,42,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(148,163,184,.15)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50}
+.card{background:var(--card);border:1px solid var(--line);border-radius:1rem;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:var(--blue);box-shadow:0 0 28px rgba(59,130,246,.22)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.2rem;border-radius:.6rem;font-weight:700;cursor:pointer;border:1px solid transparent;transition:transform .15s,box-shadow .15s}
+.btn-p{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#02101f;box-shadow:0 0 22px rgba(6,182,212,.35)}.btn-p:hover{transform:translateY(-1px);box-shadow:0 0 32px rgba(6,182,212,.55)}
+.btn-g{border-color:rgba(148,163,184,.3);color:var(--text)}.btn-g:hover{background:rgba(59,130,246,.12)}
+.grad{background:linear-gradient(90deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.field{width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--text);border-radius:.6rem;padding:.6rem .8rem;font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.sx{overflow-x:auto;max-width:100%}
+.k{color:#7dd3fc}.s{color:#86efac}.n{color:#fbbf24}
+.pulse-dot{animation:pd 1.8s infinite}@keyframes pd{0%,100%{box-shadow:0 0 0 0 rgba(6,182,212,.6)}50%{box-shadow:0 0 0 8px rgba(6,182,212,0)}}
+@media (prefers-reduced-motion:reduce){.pulse-dot{animation:none}html{scroll-behavior:auto}}
+.ov{display:none}.ov.open{display:flex}
+.bub{max-width:85%;padding:.5rem .75rem;border-radius:.8rem;font-size:.9rem;white-space:pre-line}
+.bot{background:#16233f}.me{background:var(--blue);color:#fff;margin-left:auto}
+</style>
+</head>
+<body>
+
+<header class="glass">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+    <a href="#home" class="flex items-center gap-2 shrink-0">
+      <i data-lucide="activity" class="w-6 h-6" style="color:var(--cyan)"></i>
+      <span class="font-extrabold text-lg">DataPulse</span>
+      <span class="hidden xl:inline text-xs" style="color:var(--mute)">| AI Engineering &amp; Data Strategy</span>
+    </a>
+    <nav class="hidden lg:flex gap-5 text-sm" style="color:var(--mute)" aria-label="Main">
+      <a href="#home" class="hover:text-white">Home</a><a href="#services" class="hover:text-white">Services</a><a href="#solutions" class="hover:text-white">Solutions</a><a href="#portfolio" class="hover:text-white">Portfolio</a><a href="#sandbox" class="hover:text-white">API Sandbox</a><a href="#about" class="hover:text-white">About</a><a href="#contact" class="hover:text-white">Contact</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button class="btn btn-p text-sm" data-book><span class="hidden sm:inline">Book Strategy Call</span><span class="sm:hidden">Get Started</span></button>
+      <button id="burger" class="lg:hidden p-2" aria-label="Menu" aria-expanded="false"><i data-lucide="menu" class="w-6 h-6"></i></button>
+    </div>
+  </div>
+  <nav id="mnav" class="hidden lg:hidden px-4 pb-3 flex-col gap-2 text-sm" style="color:var(--mute)">
+    <a href="#home">Home</a><a href="#services">Services</a><a href="#solutions">Solutions</a><a href="#portfolio">Portfolio</a><a href="#sandbox">API Sandbox</a><a href="#about">About</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="max-w-6xl mx-auto px-4 pt-20 pb-16">
+  <div class="inline-flex items-center gap-2 text-xs mono px-3 py-1 rounded-full" style="border:1px solid var(--line);color:var(--cyan)"><span class="w-2 h-2 rounded-full pulse-dot" style="background:var(--cyan)"></span>Accepting new projects</div>
+  <h1 class="mt-5 text-4xl md:text-6xl font-extrabold leading-tight max-w-4xl">AI Solutions for Growing Businesses<br><span class="grad">Automate. Scale. Grow with AI.</span></h1>
+  <p class="mt-5 text-lg max-w-2xl" style="color:var(--mute)">Building production-grade Machine Learning models, FastAPI backends, and data pipelines that connect raw data to measurable business growth.</p>
+  <div class="mt-8 flex flex-wrap gap-3">
+    <button class="btn btn-p" data-book>Get Started <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+    <a href="#sandbox" class="btn btn-g"><i data-lucide="terminal" class="w-4 h-4"></i>Test Live API</a>
+  </div>
+</section>
+
+<section id="services" class="max-w-6xl mx-auto px-4 py-14">
+  <h2 class="text-3xl font-extrabold">Core services</h2>
+  <p class="mt-2 max-w-xl" style="color:var(--mute)">Three capabilities that take you from raw data to a system running in production.</p>
+  <div class="grid md:grid-cols-3 gap-5 mt-8">
+    <article class="card p-6"><i data-lucide="brain-circuit" class="w-8 h-8" style="color:var(--blue)"></i><h3 class="font-bold text-xl mt-4">Predictive Machine Learning</h3><p class="mt-2 text-sm" style="color:var(--mute)">Customer churn models, fraud detection and demand forecasting, validated on your data and explained in plain language.</p></article>
+    <article class="card p-6"><i data-lucide="server-cog" class="w-8 h-8" style="color:var(--cyan)"></i><h3 class="font-bold text-xl mt-4">Enterprise API &amp; Backend Architecture</h3><p class="mt-2 text-sm" style="color:var(--mute)">FastAPI services with Pydantic validation, packaged in Docker containers and ready for cloud deployment.</p></article>
+    <article class="card p-6"><i data-lucide="workflow" class="w-8 h-8" style="color:var(--blue)"></i><h3 class="font-bold text-xl mt-4">Business AI &amp; Automation Consulting</h3><p class="mt-2 text-sm" style="color:var(--mute)">Data pipelines and an AI strategy that picks the right problems first and measures the return.</p></article>
+  </div>
+</section>
+
+<section id="solutions" class="max-w-6xl mx-auto px-4 py-14">
+  <h2 class="text-3xl font-extrabold">Solutions by outcome</h2>
+  <div class="grid sm:grid-cols-3 gap-5 mt-8 text-sm">
+    <div class="card p-5"><i data-lucide="user-minus" class="w-6 h-6" style="color:var(--cyan)"></i><h3 class="font-bold mt-3">Keep more customers</h3><p class="mt-1" style="color:var(--mute)">Score every account for churn risk and trigger retention actions automatically.</p></div>
+    <div class="card p-5"><i data-lucide="shield-alert" class="w-6 h-6" style="color:var(--cyan)"></i><h3 class="font-bold mt-3">Stop fraud earlier</h3><p class="mt-1" style="color:var(--mute)">Flag suspicious transactions in real time through a low-latency API.</p></div>
+    <div class="card p-5"><i data-lucide="gauge" class="w-6 h-6" style="color:var(--cyan)"></i><h3 class="font-bold mt-3">Save team hours</h3><p class="mt-1" style="color:var(--mute)">Replace manual reporting with scheduled pipelines and dashboards.</p></div>
+  </div>
+</section>
+
+<section id="portfolio" class="max-w-6xl mx-auto px-4 py-14">
+  <h2 class="text-3xl font-extrabold">Portfolio</h2>
+  <p class="mt-2 text-sm" style="color:var(--mute)">Sample project briefs. Replace with your real case studies.</p>
+  <div class="grid md:grid-cols-3 gap-5 mt-8">
+    <article class="card p-6"><span class="mono text-xs" style="color:var(--cyan)">Telecom</span><h3 class="font-bold mt-2">Churn prediction engine</h3><p class="mt-2 text-sm" style="color:var(--mute)">Gradient boosting model served through FastAPI, scored nightly for 200k subscribers.</p></article>
+    <article class="card p-6"><span class="mono text-xs" style="color:var(--cyan)">Fintech</span><h3 class="font-bold mt-2">Transaction fraud scoring</h3><p class="mt-2 text-sm" style="color:var(--mute)">Real-time anomaly detection with a response under 100 ms.</p></article>
+    <article class="card p-6"><span class="mono text-xs" style="color:var(--cyan)">Retail</span><h3 class="font-bold mt-2">Sales data pipeline</h3><p class="mt-2 text-sm" style="color:var(--mute)">Automated ingestion and cleaning feeding one trusted reporting dashboard.</p></article>
+  </div>
+</section>
+
+<section id="sandbox" class="max-w-6xl mx-auto px-4 py-14">
+  <h2 class="text-3xl font-extrabold">Live API sandbox</h2>
+  <p class="mt-2 max-w-xl" style="color:var(--mute)">Edit the JSON and send a request. Responses are simulated in your browser to show the real response shape.</p>
+  <div class="grid lg:grid-cols-2 gap-5 mt-8">
+    <div class="card p-4">
+      <div class="flex gap-2 mb-3" role="tablist">
+        <button class="btn btn-p text-sm ep" data-ep="churn" role="tab">POST /v1/predict/churn</button>
+        <button class="btn btn-g text-sm ep" data-ep="fraud" role="tab">POST /v1/predict/fraud</button>
+      </div>
+      <label for="body" class="text-sm" style="color:var(--mute)">Request body (JSON)</label>
+      <textarea id="body" rows="10" class="field mono text-sm mt-1" spellcheck="false"></textarea>
+      <div class="flex gap-3 mt-3"><button id="send" class="btn btn-p"><i data-lucide="send" class="w-4 h-4"></i>Send Request</button><button id="rst" class="btn btn-g">Reset</button></div>
+    </div>
+    <div class="card p-4">
+      <div class="flex items-center justify-between mb-3 text-sm">
+        <span id="badge" class="mono px-2 py-1 rounded" style="background:#16233f;color:var(--mute)">Idle</span>
+        <span id="lat" class="mono" style="color:var(--mute)">Latency: –</span>
+      </div>
+      <pre id="out" class="mono text-sm sx whitespace-pre" style="min-height:15rem">{ }</pre>
+    </div>
+  </div>
+</section>
+
+<section id="hub" class="max-w-6xl mx-auto px-4 py-14">
+  <h2 class="text-3xl font-extrabold">Knowledge Hub</h2>
+  <div class="card mt-8 p-6 md:p-8 grid md:grid-cols-[14rem_1fr] gap-8 items-center">
+    <div class="rounded-xl p-5 aspect-[3/4] flex flex-col justify-between" style="background:linear-gradient(160deg,#1d4ed8,#0e7490 70%,#020617);box-shadow:0 0 36px rgba(59,130,246,.35)">
+      <span class="mono text-xs">eBook · Technical</span><span class="text-2xl font-extrabold leading-tight">The Machine Learning Blueprint</span><span class="text-xs">DataPulse</span>
+    </div>
+    <div>
+      <h3 class="text-2xl font-bold">The Machine Learning Blueprint</h3>
+      <p class="mt-2" style="color:var(--mute)">A hands-on guide to taking a model from a notebook to a deployed API: data prep, training, evaluation, FastAPI serving and monitoring.</p>
+      <div class="flex flex-wrap gap-3 mt-6">
+        <button id="prev" class="btn btn-g"><i data-lucide="list" class="w-4 h-4"></i>Preview chapters</button>
+        <a href="#" class="btn btn-p" id="buy"><i data-lucide="shopping-cart" class="w-4 h-4"></i>Buy for $19</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="max-w-6xl mx-auto px-4 py-14">
+  <h2 class="text-3xl font-extrabold">About DataPulse</h2>
+  <p class="mt-3 max-w-2xl" style="color:var(--mute)">DataPulse is an Islamabad-based AI engineering studio. We combine business training with hands-on Python, data science and deep learning, so every build starts from a business question and ends in something you can measure.</p>
+  <div class="flex flex-wrap gap-2 mt-5 mono text-xs">
+    <span class="px-3 py-1 rounded-full card">Python</span><span class="px-3 py-1 rounded-full card">scikit-learn</span><span class="px-3 py-1 rounded-full card">PyTorch</span><span class="px-3 py-1 rounded-full card">FastAPI</span><span class="px-3 py-1 rounded-full card">Pydantic</span><span class="px-3 py-1 rounded-full card">Docker</span>
+  </div>
+</section>
+
+<section id="contact" class="max-w-6xl mx-auto px-4 py-16">
+  <div class="card p-8 text-center">
+    <h2 class="text-3xl font-extrabold">Ready to put your data to work?</h2>
+    <p class="mt-2" style="color:var(--mute)">Tell us about your project and we’ll reply within one business day.</p>
+    <button class="btn btn-p mt-6" data-book>Book Strategy Call</button>
+  </div>
+</section>
+</main>
+
+<footer class="max-w-6xl mx-auto px-4 py-8 text-sm" style="color:var(--mute);border-top:1px solid var(--line)">© 2026 DataPulse · Islamabad, Pakistan</footer>
+
+<!-- Chatbot -->
+<button id="cbtn" class="btn btn-p fixed rounded-full" style="right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:40" aria-expanded="false" aria-controls="cwin"><i data-lucide="message-circle" class="w-5 h-5"></i>Ask DataPulse</button>
+<div id="cwin" class="ov fixed card flex-col" style="right:1rem;bottom:calc(4.6rem + env(safe-area-inset-bottom,0px));width:min(22rem,calc(100vw - 2rem));height:27rem;z-index:40">
+  <div class="p-3 font-bold flex items-center gap-2" style="border-bottom:1px solid var(--line)"><i data-lucide="bot" class="w-5 h-5" style="color:var(--cyan)"></i>DataPulse Assistant</div>
+  <div id="msgs" class="flex-1 overflow-y-auto p-3 flex flex-col gap-2" aria-live="polite"></div>
+  <div id="chips" class="px-2 pb-1 flex flex-wrap gap-1 text-xs"></div>
+  <div class="p-2 flex gap-2" style="border-top:1px solid var(--line)"><input id="cin" class="field" placeholder="Ask about services, stack, booking" aria-label="Message"><button id="csend" class="btn btn-p" aria-label="Send"><i data-lucide="send" class="w-4 h-4"></i></button></div>
+</div>
+
+<!-- Booking modal -->
+<div id="bm" class="ov fixed inset-0 items-center justify-center p-4" style="background:rgba(2,6,23,.8);z-index:70" role="dialog" aria-modal="true" aria-labelledby="bt">
+  <div class="card p-6 w-full max-w-lg" style="max-height:92%;overflow:auto">
+    <div id="bf">
+      <div class="flex justify-between"><h2 id="bt" class="text-2xl font-extrabold">Book a strategy call</h2><button class="x" aria-label="Close"><i data-lucide="x" class="w-6 h-6"></i></button></div>
+      <div class="grid sm:grid-cols-2 gap-3 mt-4">
+        <div><label for="fn" class="text-sm">Name</label><input id="fn" class="field" autocomplete="name"></div>
+        <div><label for="fe" class="text-sm">Email</label><input id="fe" type="email" class="field" autocomplete="email"></div>
+        <div><label for="fs" class="text-sm">Service selected</label><select id="fs" class="field"><option>Predictive Machine Learning</option><option>API &amp; Backend Architecture</option><option>AI &amp; Automation Consulting</option><option>Not sure yet</option></select></div>
+        <div><label for="fb" class="text-sm">Budget range</label><select id="fb" class="field"><option>Under $1,000</option><option>$1,000 – $5,000</option><option>$5,000 – $15,000</option><option>$15,000+</option></select></div>
+      </div>
+      <label for="fd" class="text-sm block mt-3">Project details</label><textarea id="fd" rows="4" class="field"></textarea>
+      <p id="ferr" class="text-sm mt-2" style="color:var(--bad)" role="alert"></p>
+      <button id="fsub" class="btn btn-p w-full mt-3 justify-center">Request Strategy Call</button>
+    </div>
+    <div id="bd" class="hidden text-center py-8"><i data-lucide="check-circle" class="w-12 h-12 mx-auto" style="color:var(--ok)"></i><h2 class="text-2xl font-extrabold mt-3">Request received</h2><p id="bdt" class="mt-2" style="color:var(--mute)"></p><button class="btn btn-g mt-5 x">Close</button></div>
+  </div>
+</div>
+
+<!-- eBook modal -->
+<div id="em" class="ov fixed inset-0 items-center justify-center p-4" style="background:rgba(2,6,23,.8);z-index:70" role="dialog" aria-modal="true" aria-labelledby="et">
+  <div class="card p-6 w-full max-w-md" style="max-height:92%;overflow:auto">
+    <div class="flex justify-between"><h2 id="et" class="text-xl font-extrabold">Chapter preview</h2><button class="x" aria-label="Close"><i data-lucide="x" class="w-6 h-6"></i></button></div>
+    <ol class="mt-4 space-y-2 text-sm list-decimal pl-5" style="color:var(--mute)">
+      <li>Framing the business problem</li><li>Data collection and cleaning</li><li>Feature engineering</li><li>Training and tuning models</li><li>Evaluating with the right metrics</li><li>Serving models with FastAPI and Pydantic</li><li>Containerizing with Docker</li><li>Monitoring and retraining</li>
+    </ol>
+    <a href="#" class="btn btn-p mt-6 w-full justify-center buyl">Buy for $19</a>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+lucide.createIcons();
+
+/* Nav */
+$('#burger').onclick=()=>{const m=$('#mnav'),o=m.classList.toggle('hidden');m.classList.toggle('flex',!o);$('#burger').setAttribute('aria-expanded',!o)};
+$$('#mnav a').forEach(a=>a.onclick=()=>{$('#mnav').classList.add('hidden');$('#mnav').classList.remove('flex')});
+
+/* Sandbox */
+const samples={churn:{customer_id:"C-1042",tenure_months:7,monthly_charges:78.5,support_tickets:4,contract:"month-to-month"},
+fraud:{transaction_id:"T-90311",amount:4850,currency:"USD",merchant_category:"electronics",country:"NG",hour:3,card_present:false}};
+let ep='churn';const body=$('#body');
+const fill=()=>body.value=JSON.stringify(samples[ep],null,2);fill();
+$$('.ep').forEach(b=>b.onclick=()=>{ep=b.dataset.ep;$$('.ep').forEach(x=>{x.className='btn text-sm ep '+(x===b?'btn-p':'btn-g')});fill()});
+$('#rst').onclick=fill;
+const hl=j=>JSON.stringify(j,null,2).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/("[^"]+")(:)|("[^"]*")|(\b-?\d+\.?\d*\b)/g,(m,k,c,s,n)=>k?`<span class="k">${k}</span>:`:s?`<span class="s">${s}</span>`:`<span class="n">${n}</span>`);
+function model(d){
+ if(ep==='churn'){let p=.1+Math.min(+d.support_tickets||0,8)*.07+Math.max(0,12-(+d.tenure_months||0))*.02+(d.contract==="month-to-month"?.12:0);p=Math.min(.98,p);
+  return{customer_id:d.customer_id,churn_probability:+p.toFixed(3),risk_band:p>.65?"high":p>.4?"medium":"low",top_factors:["support_tickets","tenure_months","contract"],model_version:"churn-gbm-1.3.0"}}
+ let s=.05;if(+d.amount>2000)s+=.3;if(+d.hour<5)s+=.2;if(d.card_present===false)s+=.15;if(["NG","RU","KP"].includes(d.country))s+=.2;s=Math.min(.99,s);
+ return{transaction_id:d.transaction_id,fraud_score:+s.toFixed(3),decision:s>.7?"block":s>.4?"review":"approve",reasons:["amount","hour","card_present","country"],model_version:"fraud-xgb-2.1.0"}}
+$('#send').onclick=()=>{
+ const b=$('#badge'),o=$('#out');b.textContent='Sending…';b.style.cssText='background:#16233f;color:var(--mute)';const t0=performance.now();
+ setTimeout(()=>{let ok=true,r;
+  try{const d=JSON.parse(body.value);const need=ep==='churn'?'customer_id':'transaction_id';if(!d[need])throw new Error('Field required: '+need);r=model(d)}
+  catch(e){ok=false;r={detail:[{loc:["body"],msg:e.message,type:"value_error"}]}}
+  b.textContent=ok?'200 OK':'422 Unprocessable Entity';b.style.cssText=ok?'background:rgba(52,211,153,.15);color:var(--ok)':'background:rgba(248,113,113,.15);color:var(--bad)';
+  $('#lat').textContent='Latency: '+Math.round(performance.now()-t0)+' ms';o.innerHTML=hl(r)},260+Math.random()*200)};
+
+/* Modals */
+let last;const open=(id)=>{last=document.activeElement;$(id).classList.add('open');const f=$(id).querySelector('input,a,button');f&&f.focus()};
+const closeAll=()=>{$$('.ov.open').forEach(m=>{if(m.id!=='cwin')m.classList.remove('open')});last&&last.focus&&last.focus()};
+$$('[data-book]').forEach(b=>b.onclick=()=>{$('#bf').classList.remove('hidden');$('#bd').classList.add('hidden');$('#ferr').textContent='';open('#bm')});
+$('#prev').onclick=()=>open('#em');
+$$('.x').forEach(x=>x.onclick=closeAll);
+$$('#bm,#em').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeAll()}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+const buy=e=>{e.preventDefault();alert('Add your Gumroad, Payhip or Stripe link to the Buy buttons.')};
+$('#buy').onclick=buy;$('.buyl').onclick=buy;
+$('#fsub').onclick=()=>{const n=$('#fn').value.trim(),e=$('#fe').value.trim();
+ if(!n||!/^\S+@\S+\.\S+$/.test(e)||!$('#fd').value.trim()){$('#ferr').textContent='Add your name, a valid email and a few project details.';return}
+ $('#bdt').textContent='Thanks '+n+'. We’ll email '+e+' about '+$('#fs').value+' within one business day.';$('#bf').classList.add('hidden');$('#bd').classList.remove('hidden');lucide.createIcons()};
+
+/* Chatbot */
+const kb=[
+[/stack|tech|tool|python|fastapi|docker|pydantic/,"Our stack: Python, scikit-learn and PyTorch for modeling, FastAPI with Pydantic for APIs, and Docker for deployment."],
+[/churn|fraud|predict|model|ml|machine/,"Predictive ML is our core service: churn prediction, fraud detection and forecasting. Try both on the API Sandbox."],
+[/api|backend|architecture/,"We build FastAPI backends with Pydantic validation, containerized with Docker. See the API Sandbox for the response format."],
+[/consult|strategy|automation|pipeline|data/,"Our consulting service covers data pipelines, automation and an AI roadmap focused on measurable return."],
+[/book|call|meeting|schedule|start|hire|contact/,"You can book a free strategy call with the Book Strategy Call button. Tell us your service, budget range and project details."],
+[/price|cost|budget|rate/,"Budgets start under $1,000 for small builds. Pick a range in the booking form and we’ll scope it with you."],
+[/ebook|book|blueprint|guide/,"“The Machine Learning Blueprint” is our technical eBook. Open the Knowledge Hub to preview the chapters."]];
+const msgs=$('#msgs');
+const add=(t,c)=>{const d=document.createElement('div');d.className='bub '+c;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight};
+add("Hi, I’m the DataPulse assistant. Ask me about our services, tech stack or booking a call.","bot");
+["Services","Tech stack","Book a call"].forEach(c=>{const b=document.createElement('button');b.className='px-2 py-1 rounded-full card';b.textContent=c;b.onclick=()=>say(c);$('#chips').appendChild(b)});
+function say(v){add(v,'me');setTimeout(()=>{const m=kb.find(k=>k[0].test(v.toLowerCase()));
+ add(m?m[1]:"I can answer questions about services, tech stack, pricing or booking. Which would you like?","bot");
+ if(m&&/book a call|book|call/.test(v.toLowerCase()))setTimeout(()=>$('[data-book]').click(),500)},350)}
+$('#cbtn').onclick=()=>{const o=$('#cwin').classList.toggle('open');$('#cbtn').setAttribute('aria-expanded',o);if(o)$('#cin').focus()};
+const go=()=>{const v=$('#cin').value.trim();if(v){$('#cin').value='';say(v)}};
+$('#csend').onclick=go;$('#cin').addEventListener('keydown',e=>{if(e.key==='Enter')go()});
+</script>
+</body>
+</html>
