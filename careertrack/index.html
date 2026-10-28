@@ -1,1 +1,56 @@
-
+html<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerTrack - Free JobReady Tracker</title><script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>body{font-family:Inter,sans-serif}</style></head>
+<body class="bg-[#0a0a0a] text-white min-h-screen">
+<div class="flex"><div class="w-64 bg-[#111] min-h-screen p-6 hidden md:block border-r border-zinc-800">
+<h1 class="text-xl font-bold">CareerTrack<span class="text-purple-500">.</span></h1><p class="text-xs text-zinc-500">Free for Students • No Fees</p>
+<nav class="mt-8 space-y-2">
+<button onclick="showTab('dashboard')" class="w-full text-left px-4 py-2 rounded-lg bg-purple-600">📊 Dashboard</button>
+<button onclick="showTab('skills')" class="w-full text-left px-4 py-2 rounded-lg hover:bg-zinc-800">🧠 Skills</button>
+<button onclick="showTab('interview')" class="w-full text-left px-4 py-2 rounded-lg hover:bg-zinc-800">💼 Interview Prep</button>
+<button onclick="showTab('jobs')" class="w-full text-left px-4 py-2 rounded-lg hover:bg-zinc-800">🎯 Job Roles</button>
+</nav>
+<div class="mt-8 p-4 bg-zinc-900 rounded-xl border border-zinc-800"><p class="text-xs text-zinc-400">JOB READY SCORE</p>
+<div class="mt-2 relative w-24 h-24 mx-auto"><svg class="w-24 h-24 -rotate-90"><circle cx="48" cy="48" r="40" stroke="#27272a" stroke-width="8" fill="none"/><circle id="readyCircle" cx="48" cy="48" r="40" stroke="#8b5cf6" stroke-width="8" fill="none" stroke-dasharray="251" stroke-dashoffset="120" stroke-linecap="round"/></svg>
+<span id="readyText" class="absolute inset-0 flex items-center justify-center text-2xl font-bold">0%</span></div><p id="readyMsg" class="text-xs text-center mt-2 text-yellow-400"></p></div></div>
+<div class="flex-1 p-4 md:p-8"><div class="flex justify-between items-center mb-6"><div><h2 class="text-2xl font-bold">My Courses</h2><p class="text-xs text-zinc-500">Track YouTube, Udemy, Coursera in one place</p></div>
+<button onclick="openModal()" class="bg-purple-600 px-5 py-2 rounded-full font-semibold hover:bg-purple-700">+ Add Course</button></div>
+<div id="dashboard" class="tab-content"><div id="coursesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div></div>
+<div id="skills" class="tab-content hidden"><h3 class="text-xl font-bold mb-4">Your Unlocked Skills</h3><div id="skillsList" class="space-y-4"></div></div>
+<div id="interview" class="tab-content hidden"><h3 class="text-xl font-bold mb-4">Interview Questions</h3><div id="questionsList" class="space-y-3"></div></div>
+<div id="jobs" class="tab-content hidden"><h3 class="text-xl font-bold mb-4">Career Paths - No Fees, Just Skills</h3><div id="jobsList" class="grid md:grid-cols-2 gap-4"></div></div></div></div>
+<div id="modal" class="fixed inset-0 bg-black/70 hidden items-center justify-center p-4 z-50 flex"><div class="bg-zinc-900 p-6 rounded-2xl w-full max-w-md border border-zinc-800">
+<h3 class="font-bold text-lg mb-4">Add New Course</h3><input id="cName" placeholder="Course Name" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 mb-3">
+<select id="cSource" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 mb-3"><option>YouTube</option><option>Udemy</option><option>Coursera</option><option>Custom</option></select>
+<input id="cTotal" type="number" placeholder="Total Videos" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 mb-4">
+<div class="flex gap-3"><button onclick="closeModal()" class="flex-1 py-2 rounded-lg bg-zinc-800">Cancel</button><button onclick="addCourse()" class="flex-1 py-2 rounded-lg bg-purple-600">Add</button></div></div></div>
+<script>
+let courses = JSON.parse(localStorage.getItem('ct_courses_clean')) || [
+{name:"Python for Beginners", source:"YouTube", total:15, done:9, videos:Array.from({length:15},(_,i)=>({title:`Video ${i+1}`, checked:i<9}))},
+{name:"SQL Mastery", source:"Udemy", total:20, done:6, videos:Array.from({length:20},(_,i)=>({title:`SQL Lecture ${i+1}`, checked:i<6}))},
+{name:"Power BI", source:"Custom", total:10, done:0, videos:Array.from({length:10},(_,i)=>({title:`Power BI Part ${i+1}`, checked:false}))},
+{name:"Machine Learning", source:"YouTube", total:25, done:4, videos:Array.from({length:25},(_,i)=>({title:`ML Lecture ${i+1}`, checked:i<4}))},
+{name:"Data Science Fundamentals", source:"Coursera", total:18, done:2, videos:Array.from({length:18},(_,i)=>({title:`DS Module ${i+1}`, checked:i<2}))}
+];
+const skillMap={"Python for Beginners":["Python"],"SQL Mastery":["SQL"],"Power BI":["Power BI"],"Machine Learning":["Machine Learning"],"Data Science Fundamentals":["Data Science"]};
+const jobs=[{name:"Data Analyst", needs:{Python:70, SQL:70, "Power BI":60}, loc:"Islamabad / Remote"},
+{name:"Data Scientist", needs:{"Machine Learning":70, Python:80, "Data Science":70}, loc:"Remote / Islamabad"},
+{name:"Python Developer", needs:{Python:80}, loc:"Remote"},
+{name:"ML Engineer", needs:{"Machine Learning":80, Python:85, "Data Science":65}, loc:"Remote / Lahore"}];
+const questionsBank={Python:["What is difference between list and tuple?"],SQL:["Difference WHERE vs HAVING?"],"Power BI":["What is DAX?"],"Machine Learning":["What is overfitting?"],"Data Science":["Explain EDA process"]};
+function save(){localStorage.setItem('ct_courses_clean', JSON.stringify(courses)); render();}
+function showTab(t){document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));document.getElementById(t).classList.remove('hidden');}
+function openModal(){document.getElementById('modal').classList.remove('hidden');}
+function closeModal(){document.getElementById('modal').classList.add('hidden');}
+function addCourse(){const name=document.getElementById('cName').value;const source=document.getElementById('cSource').value;const total=parseInt(document.getElementById('cTotal').value)||10;if(!name)return;courses.push({name, source, total, done:0, videos:Array.from({length:total},(_,i)=>({title:`${name} - Part ${i+1}`, checked:false}))});save();closeModal();}
+function toggleVideo(ci,vi){courses[ci].videos[vi].checked=!courses[ci].videos[vi].checked;courses[ci].done=courses[ci].videos.filter(v=>v.checked).length;save();}
+function render(){const grid=document.getElementById('coursesGrid');grid.innerHTML='';let totalSkills={};
+courses.forEach((c,ci)=>{const pct=Math.round((c.done/c.total)*100);if(pct>=70){(skillMap[c.name]||[c.name]).forEach(s=>totalSkills[s]=Math.max(totalSkills[s]||0,pct));}
+grid.innerHTML+=`<div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5"><div class="flex justify-between"><span class="text-xs px-2 py-1 bg-zinc-800 rounded-full">${c.source}</span><span class="text-xs text-purple-400">${pct}%</span></div><h4 class="font-bold mt-3">${c.name}</h4><div class="w-full h-2 bg-zinc-800 rounded-full mt-3"><div class="h-2 bg-purple-600 rounded-full" style="width:${pct}%"></div></div><p class="text-xs text-zinc-500 mt-2">${c.done}/${c.total} videos</p><div class="mt-4 space-y-1 max-h-32 overflow-y-auto">${c.videos.map((v,vi)=>`<label class="flex gap-2 text-xs"><input type="checkbox" ${v.checked?'checked':''} onchange="toggleVideo(${ci},${vi})"><span class="${v.checked?'line-through text-zinc-500':''}">${v.title}</span></label>`).join('')}</div></div>`;});
+let avgReady=Object.keys(totalSkills).length>0?Math.round(Object.values(totalSkills).reduce((a,b)=>a+b,0)/Object.values(totalSkills).length):25;
+const circle=document.getElementById('readyCircle');const offset=251-(251*avgReady/100);circle.style.strokeDashoffset=offset;circle.setAttribute('stroke', avgReady<40?'#ef4444':avgReady<70?'#eab308':'#22c55e');document.getElementById('readyText').textContent=avgReady+'%';document.getElementById('readyMsg').textContent=avgReady<40?'Keep learning!':avgReady<70?'Junior roles ready!':'Apply now - Ready!';
+const jobsDiv=document.getElementById('jobsList');jobsDiv.innerHTML='';jobs.forEach(job=>{let score=0,count=0;Object.entries(job.needs).forEach(([need,req])=>{const have=totalSkills[need]||0;score+=Math.min(have,req)/req*100;count++;});const jobPct=Math.round(score/count);jobsDiv.innerHTML+=`<div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800"><div class="flex justify-between"><h4 class="font-bold">${job.name}</h4><span class="text-sm ${jobPct>70?'text-green-400':'text-yellow-400'}">${jobPct}% Ready</span></div><p class="text-xs text-zinc-500 mt-1">${job.loc} • Free Path</p><div class="w-full h-2 bg-zinc-800 rounded-full mt-3"><div class="h-2 ${jobPct>70?'bg-green-500':'bg-yellow-500'} rounded-full" style="width:${jobPct}%"></div></div></div>`;});
+const qDiv=document.getElementById('questionsList');qDiv.innerHTML='';Object.entries(totalSkills).forEach(([skill])=>{(questionsBank[skill]||[]).forEach(q=>{qDiv.innerHTML+=`<div class="bg-zinc-900 p-4 rounded-xl border border-zinc-800"><span class="text-xs px-2 py-1 bg-purple-900/30 text-purple-300 rounded-full">${skill}</span><p class="mt-2 text-sm">${q}</p></div>`;});});}
+render();</script></body></html>
