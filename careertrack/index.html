@@ -1,227 +1,225 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CareerTrack – JobReady Pulse</title>
+<title>CareerTrack v4 – Student Operating System</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0f;--card:rgba(255,255,255,.05);--bd:rgba(255,255,255,.12);--tx:#f4f4f8;--mut:#a8a8bd;--in:#12121a;--acc:#8b5cf6}
-html.light{--bg:#f4f4fa;--card:rgba(255,255,255,.85);--bd:rgba(20,20,40,.14);--tx:#14141f;--mut:#51516a;--in:#fff;--acc:#6d28d9}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--tx)}
-.glass{background:var(--card);backdrop-filter:blur(10px);border:1px solid var(--bd);border-radius:16px}
-.mut{color:var(--mut)}.trk{background:var(--bd)}.pf{background:linear-gradient(90deg,#8b5cf6,#ec4899)}
-.nav a{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;cursor:pointer;font-weight:600;font-size:14px;color:var(--mut);white-space:nowrap}
-.nav a:hover{background:var(--bd)}.nav a.on{background:#7c3aed;color:#fff}
-input,select,textarea{background:var(--in);border:1px solid var(--bd);border-radius:10px;padding:9px 11px;width:100%;color:var(--tx);font-size:14px}
-input[type=checkbox]{width:16px;height:16px;padding:0;accent-color:#8b5cf6}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#0a0a0f;color:#f4f4f8}
+.glass{background:rgba(255,255,255,.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:16px}
+.mut{color:#a8a8bd}.trk{background:rgba(255,255,255,.12)}.pf{background:linear-gradient(90deg,#8b5cf6,#ec4899)}
+.nav a{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;cursor:pointer;font-weight:600;font-size:14px;color:#a8a8bd;white-space:nowrap}
+.nav a:hover{background:rgba(255,255,255,.1)}.nav a.on{background:#7c3aed;color:#fff}
+input{background:#12121a;border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:9px 11px;width:100%;color:#fff;font-size:14px}
+select{background:#12121a;border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:6px 10px;color:#fff;font-size:14px}
 :focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
-.btn{background:#7c3aed;color:#fff;border-radius:10px;padding:9px 14px;font-size:14px;font-weight:700;white-space:nowrap}.btn:hover{background:#6d28d9}
-.sec{background:var(--bd);color:var(--tx)}.chip{padding:5px 12px;border-radius:99px;font-size:12px;font-weight:600;background:var(--bd);cursor:pointer}.chip.on{background:#7c3aed;color:#fff}
-.chk{max-height:11rem;overflow-y:auto}
-@media(max-width:767px){#side{position:fixed;inset:auto 0 0 0;z-index:30;padding:4px;background:var(--bg);border-top:1px solid var(--bd)}
+.btn{background:#7c3aed;color:#fff;border-radius:10px;padding:9px 14px;font-size:14px;font-weight:700}.btn:hover{background:#6d28d9}
+.sec{background:rgba(255,255,255,.12)}.chip{padding:5px 12px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(255,255,255,.12);cursor:pointer}.chip.on{background:#7c3aed}
+.opt{display:block;width:100%;text-align:left;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.07);margin-top:6px;font-size:14px}.opt:hover{background:rgba(255,255,255,.14)}
+.ok{background:rgba(34,197,94,.25)!important}.bad{background:rgba(239,68,68,.25)!important}
+a.lk{color:#a78bfa;text-decoration:underline}
+@media(max-width:767px){#side{position:fixed;inset:auto 0 0 0;z-index:30;padding:4px;background:#0a0a0f;border-top:1px solid rgba(255,255,255,.12)}
 #side .brand{display:none}#side .nav{display:flex;overflow-x:auto;gap:2px}#side .nav a span{display:none}main{padding-bottom:90px}}
 </style>
 </head>
 <body class="min-h-screen">
 <div class="md:flex">
- <div id="side" class="md:w-60 md:min-h-screen md:fixed md:p-5 md:border-r" style="border-color:var(--bd)">
-  <div class="brand mb-6"><h1 class="text-xl font-extrabold">CareerTrack<span class="text-violet-400">.</span></h1><p class="text-xs mut">JobReady Pulse · Free for students</p></div>
+ <div id="side" class="md:w-60 md:min-h-screen md:fixed md:p-5 md:border-r border-white/10">
+  <div class="brand mb-6"><h1 class="text-xl font-extrabold">CareerTrack<span class="text-violet-400">.</span></h1><p class="text-xs mut">v4 · Student Operating System</p></div>
   <nav class="nav md:space-y-1" id="nav" aria-label="Main"></nav>
  </div>
  <div class="flex-1 md:ml-60 min-w-0">
-  <header class="sticky top-0 z-20 px-4 md:px-8 py-3 flex items-center gap-3 flex-wrap border-b backdrop-blur" style="background:var(--bg);border-color:var(--bd)">
+  <header class="sticky top-0 z-20 px-4 md:px-8 py-3 flex items-center gap-3 border-b border-white/10 bg-[#0a0a0f]/95 backdrop-blur">
    <div id="topMeter"></div>
-   <div class="flex-1 min-w-[160px]"><div class="text-[11px] mut">Target role readiness</div><select id="roleSel" class="!w-auto !py-1 mt-1" aria-label="Target role"></select></div>
-   <button class="btn sec" onclick="toggleTheme()" aria-label="Toggle theme"><i class="fas fa-circle-half-stroke"></i></button>
-   <button class="btn" onclick="openAdd()"><i class="fas fa-plus mr-1"></i>Add Course</button>
+   <div class="flex-1"><div class="text-[11px] mut">Target role readiness</div><select id="roleSel" class="mt-1" aria-label="Target role"></select></div>
   </header>
   <main id="main" class="p-4 md:p-8 max-w-6xl"></main>
  </div>
 </div>
-<div id="modal" class="hidden fixed inset-0 z-50 bg-black/70 grid place-items-center p-4">
- <div class="glass !bg-[var(--in)] w-full max-w-md p-5 max-h-[92vh] overflow-auto" role="dialog" aria-label="Add custom course">
-  <div class="flex justify-between items-center mb-4"><h3 class="font-bold text-lg">Add custom course</h3><button onclick="closeAdd()" class="text-2xl leading-none mut" aria-label="Close">×</button></div>
-  <div class="space-y-3">
-   <div><label class="text-xs mut" for="fName">Course name</label><input id="fName" placeholder="e.g. Pandas Crash Course"></div>
-   <div><label class="text-xs mut" for="fLink">YouTube playlist URL</label><input id="fLink" placeholder="https://youtube.com/playlist?list=..."></div>
-   <div class="grid grid-cols-2 gap-3"><div><label class="text-xs mut" for="fTot">Videos</label><input id="fTot" type="number" min="1" max="60" value="12"></div>
-   <div><label class="text-xs mut" for="fSk">Unlocks skills of</label><select id="fSk"></select></div></div>
-   <button class="btn w-full" onclick="addCourse()">Generate modules</button>
-  </div></div></div>
-<input type="file" id="imp" accept="application/json" class="hidden">
+<div id="drawer" class="hidden fixed inset-0 z-50"></div>
 
 <script>
-/* ============ CONFIG: plug in your backend here ============ */
-const FIREBASE_CONFIG={apiKey:"YOUR_API_KEY",authDomain:"YOUR_PROJECT.firebaseapp.com",projectId:"YOUR_PROJECT_ID",appId:"YOUR_APP_ID"}; // paste from Firebase console
-const API_BASE=""; // e.g. "https://api.yourdomain.com" (FastAPI). Expected: GET/PUT {API_BASE}/api/progress
-const LS='jobready_pulse_v1';
 const $=i=>document.getElementById(i),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const cs=q=>'https://www.coursera.org/search?query='+encodeURIComponent(q),ed=q=>'https://www.edx.org/search?q='+encodeURIComponent(q),kg=q=>'https://www.kaggle.com/datasets?search='+encodeURIComponent(q),yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
 const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
 
-/* ============ STATIC CATALOG ============ */
-// id, name, icon, skills unlocked at 70%, lessons
-const CAT=[
-["py","Python Programming for AI/DS","fab fa-python",["Python","OOP","NumPy"],"Setup & syntax|Data types & control flow|Functions & modules|OOP & classes|NumPy arrays|File I/O & errors"],
-["sql","Data Analysis & SQL Mastery","fas fa-database",["SQL Joins","Pandas","Data Visualization"],"SELECT, WHERE, GROUP BY|JOINs & subqueries|Window functions|Pandas DataFrames|Cleaning messy data|Charts with Matplotlib"],
-["ml","Machine Learning & Scikit-Learn","fas fa-robot",["Scikit-Learn","Random Forest","Model Evaluation"],"Regression basics|Train/test split|Decision trees & Random Forest|Metrics: precision, recall, AUC|Cross-validation|Build a full pipeline"],
-["dl","Deep Learning & Neural Networks","fas fa-brain",["Neural Networks","PyTorch","CNN"],"Perceptron & backprop|Activation & loss|PyTorch tensors|Training loops|CNNs for images|Regularisation & tuning"],
-["api","API Development with FastAPI & Pydantic","fas fa-plug",["FastAPI","Pydantic","REST APIs"],"REST principles|First FastAPI app|Pydantic models|Auth & JWT|Serving an ML model|Testing with pytest"],
-["git","Git, Docker & Deployment Workflows","fab fa-docker",["Git","Docker","CI/CD"],"Git branching|Pull requests|Dockerfile basics|docker-compose|GitHub Actions CI|Deploy to cloud"],
-["fe","Frontend Basics (HTML/CSS/JS)","fab fa-js",["HTML/CSS","JavaScript"],"Semantic HTML|CSS layout (flex/grid)|JS fundamentals|DOM & events|Fetch API|Mini app"],
-["dsa","Advanced Data Structures & Algorithms","fas fa-sitemap",["Data Structures","Algorithms"],"Big-O|Arrays, stacks, queues|Hash maps|Trees & graphs|Sorting & searching|Dynamic programming"]];
-// id, name, icon, {skill:weight}, course ids, project ids
-const ROLES=[
-["da","Data Analyst","fa-chart-pie",{Python:2,"SQL Joins":3,Pandas:3,"Data Visualization":2},["py","sql"],["p2"]],
-["be","Python Backend Developer","fa-server",{Python:2,FastAPI:3,Pydantic:2,"REST APIs":2,Git:1,Docker:2},["py","api","git"],["p3"]],
-["ml","Machine Learning Engineer","fa-microchip",{Python:2,"Scikit-Learn":3,"Random Forest":2,"Model Evaluation":2,"Neural Networks":2,Docker:1},["py","ml","dl"],["p1"]],
-["auto","Data Entry / Admin Automation Specialist","fa-gears",{Python:2,Pandas:3,"REST APIs":1,Git:1},["py","sql"],["p4"]],
-["fs","Full-Stack AI Application Developer","fa-layer-group",{FastAPI:3,JavaScript:2,"HTML/CSS":1,"Scikit-Learn":2,Docker:2,"REST APIs":2},["api","fe","ml"],["p1","p5"]]];
-const PROJ=[
-["p1","Customer Churn Classifier with FastAPI & Streamlit","Advanced",["Clean the telco churn CSV with Pandas","Train a Random Forest and report AUC","Wrap the model in a FastAPI /predict endpoint with Pydantic","Build a Streamlit form that calls the API","Dockerise and deploy; write the README"]],
-["p2","Sales Analytics Dashboard (SQL + Pandas)","Intermediate",["Load a sales dataset into SQLite","Write JOIN and window-function queries","Clean and aggregate with Pandas","Plot monthly trends","Publish findings as a short case study"]],
-["p3","Task Manager REST API with Auth & Docker","Intermediate",["Design endpoints and Pydantic schemas","Implement CRUD with FastAPI","Add JWT login","Write pytest tests","Containerise and push to GitHub"]],
-["p4","CSV/Excel Automation Bot","Beginner",["Pick a repetitive office task","Read and validate files with Pandas","Generate a cleaned report automatically","Schedule it and log errors","Record a 2-minute demo"]],
-["p5","AI Chat Frontend + Model API","Advanced",["Build a chat UI in HTML/CSS/JS","Create a FastAPI model endpoint","Connect with fetch() and handle errors","Add history in localStorage","Deploy frontend on GitHub Pages"]]];
-const QB=[
-["Python","Beginner","What is the difference between a list and a tuple?","Lists are mutable, tuples immutable and hashable (usable as dict keys). Tuples are slightly faster and signal fixed data."],
-["Python","Intermediate","How do generators work and why use them?","They yield values lazily using yield, so large data streams use little memory. State is kept between calls."],
-["Python","Scenario-based","A script slows down on a 5 GB CSV. What do you do?","Profile first; read in chunks or use dtypes/usecols; vectorise instead of loops; consider Parquet or Polars/Dask."],
-["SQL","Beginner","WHERE vs HAVING?","WHERE filters rows before grouping; HAVING filters groups after aggregation."],
-["SQL","Intermediate","INNER vs LEFT JOIN, and when do rows go missing?","INNER keeps matches only; LEFT keeps all left rows with NULLs. Filtering right-table columns in WHERE turns a LEFT into an INNER."],
-["SQL","Scenario-based","Find the top 3 customers by revenue per month.","Aggregate by month and customer, then RANK()/ROW_NUMBER() OVER (PARTITION BY month ORDER BY revenue DESC) and keep rank <= 3."],
-["ML","Beginner","Overfitting vs underfitting?","Overfit: great on train, poor on test (high variance). Underfit: poor on both (high bias). Fix with regularisation, more data, simpler or richer models."],
-["ML","Intermediate","Why can accuracy be misleading?","With imbalanced classes a model predicting the majority class looks accurate. Use precision, recall, F1, PR-AUC."],
-["ML","Scenario-based","Your model performs well offline but badly in production. Why?","Data drift, train/serve skew, leakage, different preprocessing. Monitor inputs, version pipelines, validate with a holdout from recent data."],
-["APIs","Beginner","What makes an API RESTful?","Resource URLs, HTTP verbs, stateless requests, proper status codes, JSON representations."],
-["APIs","Intermediate","What does Pydantic do in FastAPI?","Validates and parses request/response data using type hints and generates the OpenAPI schema automatically."],
-["APIs","Scenario-based","Your /predict endpoint times out under load. Next steps?","Load model once at startup, use async/workers, batch requests, cache results, add a queue for slow jobs, scale horizontally."],
-["System Design","Beginner","What is a database index?","A data structure (often a B-tree) that speeds up reads at the cost of slower writes and extra storage."],
-["System Design","Intermediate","Design a URL shortener.","Key-value store of code to URL, base62 IDs, cache hot links, rate-limit, analytics via async queue."],
-["System Design","Scenario-based","Design an ML-powered recommendation service.","Offline training pipeline, feature store, model registry, low-latency serving API with cache, A/B tests and monitoring."]];
-const CATS=["Python","SQL","ML","APIs","System Design"],LVLS=["Beginner","Intermediate","Scenario-based"];
-const NAV=[["dash","Dashboard","fa-gauge-high"],["courses","My Courses","fa-book-open"],["matrix","Skill Matrix","fa-table-cells"],["careers","Career Paths & Jobs","fa-briefcase"],["prep","Interview Prep","fa-comments"],["projects","Guided Projects","fa-diagram-project"],["port","Portfolio Generator","fa-id-card"]];
+/* Course: id, name, icon, skills, search term, Kaggle Learn slug, books, dataset [name, task], deploy steps, modules [title, YouTube query, notes, quiz]
+   Quiz item: [question, options, correctIndex, explanation]  or fill-in: [question, null, answer, explanation] */
+const C=[
+{id:'py',n:'Python Programming & Data Structures',ic:'fab fa-python',sk:['Python','Data Structures','OOP'],q:'python for everybody',kl:'python',
+bk:['Python Crash Course – Eric Matthes (Ch. 1–11)','Automate the Boring Stuff – Al Sweigart (free online)'],ds:['Titanic','Count survivors by sex using a dict, then print survival % per group.'],
+dp:'Keep code in main.py|Add requirements.txt|Push to GitHub with a README|Share a runnable demo (Replit or GitHub Release)',
+m:[['Syntax, Types & Control Flow','python tutorial for beginners full course','Use f-strings. = assigns, == compares. for iterates; while repeats until its condition fails.',
+[['Which literal creates a list?',['(1,2)','[1,2]','{1,2}'],1,'[] is a list; () a tuple.'],['range(3) yields…',['1,2,3','0,1,2','0,1,2,3'],1,'range starts at 0, stops before 3.'],['Fill in: len("abc") returns ___',null,'3','len counts characters.']]],
+['Functions, Dicts & OOP','python functions classes dictionaries tutorial','Dicts/sets give O(1) lookups. __init__ builds objects; wrap risky code in try/except with specific errors.',
+[['Fastest membership test?',['list','set','string'],1,'Hashing makes sets O(1) on average.'],['Keyword that defines a class?',['def','class','object'],1,'class defines a class.'],['Fill in: safe dict read method is ___()',null,'get','dict.get avoids KeyError.']]]]},
+{id:'da',n:'Data Analysis, SQL & Pandas Mastery',ic:'fas fa-database',sk:['SQL','Pandas','Data Cleaning'],q:'data analysis sql pandas',kl:'pandas',
+bk:['Python for Data Analysis – Wes McKinney (Ch. 5–8)','Learning SQL – Alan Beaulieu (Ch. 3–5)'],ds:['Superstore Sales','Find top 5 products by profit per region with SQL, then repeat it in Pandas and compare.'],
+dp:'Export cleaned data to CSV|Write findings in a notebook|Publish the notebook on GitHub (nbviewer link)|Optional: Streamlit dashboard on Streamlit Community Cloud',
+m:[['SQL Queries & JOINs','sql tutorial for beginners joins','WHERE filters rows, HAVING filters groups. LEFT JOIN keeps every left-table row.',
+[['Filters groups after GROUP BY?',['WHERE','HAVING','ORDER BY'],1,'HAVING works on aggregates.'],['Keeps all left rows?',['INNER JOIN','LEFT JOIN','CROSS JOIN'],1,'Unmatched rows get NULLs.'],['Fill in: SELECT ___(*) FROM t counts rows',null,'count','COUNT(*) counts rows.']]],
+['Pandas & Data Cleaning','pandas tutorial data cleaning','df.head(), df.info(), df.describe(). Check df.isna().sum(); document every cleaning rule.',
+[['Show first rows?',['df.top()','df.head()','df.first()'],1,'head() shows the first 5 rows.'],['Count missing per column?',['df.isna().sum()','df.null()','df.gaps()'],0,'isna() flags NaNs; sum() counts.'],['Fill in: df.___(0) replaces NaN with 0',null,'fillna','fillna fills missing values.']]]]},
+{id:'ml',n:'Machine Learning & Scikit-Learn',ic:'fas fa-robot',sk:['Scikit-Learn','Model Evaluation','Random Forest'],q:'machine learning scikit-learn',kl:'intro-to-machine-learning',
+bk:['Hands-On Machine Learning – Aurélien Géron (Ch. 1–7)','An Introduction to Statistical Learning (free PDF)'],ds:['Telco Customer Churn','Train a RandomForestClassifier; report precision, recall and top 5 feature importances.'],
+dp:'Save the model with joblib|Wrap it in FastAPI /predict|Containerise with Docker|Deploy the API on Render or Hugging Face Spaces',
+m:[['Workflow, Splits & Overfitting','machine learning scikit-learn tutorial','Split first, fit on train only, evaluate on test. Deep trees overfit — limit max_depth.',
+[['Why split train/test?',['Speed','Honest evaluation','Less data'],1,'Test data must be unseen.'],['High train, low test score means…',['Underfit','Overfit','Perfect'],1,'The model memorised training data.'],['Fill in: train_test____(X, y)',null,'split','train_test_split is the function.']]],
+['Metrics & Random Forest','random forest classifier precision recall','Accuracy lies on imbalanced data; use F1, recall, ROC-AUC. Forests average many trees.',
+[['Best for imbalanced classes?',['Accuracy','F1 / recall','MSE'],1,'They focus on the minority class.'],['Recall = ?',['TP/(TP+FN)','TP/(TP+FP)','TN/(TN+FP)'],0,'Share of real positives found.'],['Fill in: cross_val_____ gives fold scores',null,'score','cross_val_score.']]]]},
+{id:'dl',n:'Deep Learning, PyTorch & Neural Networks',ic:'fas fa-brain',sk:['PyTorch','Neural Networks','CNN'],q:'deep learning pytorch',kl:'intro-to-deep-learning',
+bk:['Deep Learning with PyTorch – Stevens et al.','Dive into Deep Learning (d2l.ai, free)'],ds:['Fashion MNIST','Train a small CNN for 5 epochs, plot loss, aim for >85% test accuracy.'],
+dp:'Save weights with torch.save|Serve with FastAPI (load once at startup)|Add a Streamlit image-upload page|Deploy on Hugging Face Spaces',
+m:[['Neural Networks & Training Loops','pytorch tutorial neural network','Neuron = weighted sum + activation. Loop: zero_grad → forward → loss → backward → step.',
+[['Which is an activation?',['ReLU','SQL','Adam'],0,'ReLU adds non-linearity.'],['Clears gradients?',['optimizer.zero_grad()','loss.clear()','model.reset()'],0,'Gradients accumulate otherwise.'],['Fill in: call loss.___() for gradients',null,'backward','backward computes gradients.']]],
+['CNNs & Regularisation','cnn pytorch image classification','Conv layers learn local patterns. Dropout and augmentation reduce overfitting.',
+[['CNNs suit…',['Images','Joins','Spreadsheets'],0,'They exploit spatial structure.'],['Dropout helps with…',['Overfitting','Labels','Disk space'],0,'It randomly drops units in training.'],['Fill in: nn.Conv___d handles images',null,'2','Conv2d for 2D images.']]]]},
+{id:'ai',n:'AI Fundamentals & Prompt Engineering',ic:'fas fa-wand-magic-sparkles',sk:['Prompt Engineering','LLM Basics','AI Ethics'],q:'prompt engineering',kl:'',
+bk:['AI Engineering – Chip Huyen (Ch. 1–5)','Prompt Engineering Guide (promptingguide.ai, free)'],ds:['Customer Support Tickets','Write a prompt that classifies tickets as billing/technical/other and returns JSON; test on 20 rows.'],
+dp:'Store prompts in a prompts/ folder|Create a small eval set (20 examples)|Wrap in a FastAPI endpoint|Share a Streamlit demo',
+m:[['How LLMs Work','how large language models work','LLMs predict the next token. The context window limits input. They can hallucinate — verify facts.',
+[['LLMs predict the next…',['token','table','pixel'],0,'Text is split into tokens.'],['A hallucination is…',['Confident wrong output','A crash','A prompt'],0,'Fluent but false text.'],['Fill in: input limit is the ___ window',null,'context','Context window.']]],
+['Prompt Patterns & Safety','prompt engineering techniques','Give role, task, context, format. Use few-shot examples. Ask for strict JSON. Never paste private data.',
+[['Few-shot means…',['Giving examples','Short answers','Fast model'],0,'Examples steer the format.'],['Before shipping a prompt…',['Test on an eval set','Hope','Delete tests'],0,'Evals catch regressions.'],['Fill in: "You are a data analyst" is a ___ instruction',null,'role','Role prompting.']]]]},
+{id:'ag',n:'AI Agent Workflows & Automation (Zapier, LangChain, FastAPI)',ic:'fas fa-gears',sk:['LangChain','Agent Workflows','Zapier'],q:'langchain agents automation',kl:'',
+bk:['LangChain docs – Agents & Tools (python.langchain.com)','Zapier Learn – Zaps & Paths (zapier.com/learn)'],ds:['Customer Support Tickets','Build an agent or Zap that reads new rows, classifies priority and drafts a reply.'],
+dp:'Expose the agent as POST /run in FastAPI|Protect with an API-key header|Point a Zapier Webhook action at it|Host on Render and log every run',
+m:[['Agents, Tools & Loops','langchain agents tutorial','An agent loops: think → call tool → observe. Keep tools small, well described, and cap the steps.',
+[["An agent's tools are…",['Functions it can call','Datasets','Prompts only'],0,'Tools let it act.'],['Agent loop order?',['Think, act, observe','Train, test, ship','Parse, sort'],0,'Repeat until done.'],['Fill in: limit runaway agents with a max ___ count',null,'step','A max-step guard.']]],
+['Zapier & FastAPI Webhooks','zapier automation tutorial webhooks','Trigger → action. Test with sample data. A webhook is a POST endpoint; validate with Pydantic.',
+[['A Zap starts with a…',['Trigger','Dataset','Model'],0,'Every Zap has a trigger.'],['Webhooks usually use…',['POST','HEAD','TRACE'],0,'POST carries a JSON body.'],['Fill in: run FastAPI with uvicorn main:___',null,'app','The FastAPI object is app.']]]]},
+{id:'rag',n:'Conversational AI, Chatbots & RAG Pipelines',ic:'fas fa-comments',sk:['RAG','Vector DBs','OpenAI/Claude APIs'],q:'rag chatbot vector database',kl:'',
+bk:['AI Engineering – Chip Huyen (RAG chapter)','OpenAI & Anthropic API docs – quickstarts'],ds:['arXiv papers abstracts','Chunk 200 abstracts, embed, store in Chroma, answer 5 questions with sources.'],
+dp:'Keep API keys in env vars (server only)|Build ingestion script + FastAPI /ask|Persist the vector store (Chroma/Pinecone)|Frontend on GitHub Pages or Streamlit',
+m:[['Chat APIs & Memory','openai api chatbot python tutorial','LLM APIs are stateless: resend history each call. Keep a system prompt. Keys stay on the server.',
+[['Stateless API means you must…',['Resend history','Restart','Use SQL'],0,'The model remembers nothing.'],['API keys belong…',['In frontend JS','On the server','In README'],1,'Frontend keys leak.'],['Fill in: the ___ prompt sets chatbot behaviour',null,'system','System prompt.']]],
+['Embeddings, Vector DBs & RAG','rag pipeline langchain chroma','Load → chunk → embed → retrieve top-k → prompt with context → cite. Evaluate retrieval first.',
+[['RAG reduces hallucination by…',['Grounding in documents','Bigger font','More tokens'],0,'Answers use retrieved text.'],['Vector DBs do…',['Similarity search','Billing','Styling'],0,'Nearest-vector lookup.'],['Fill in: common metric: ___ similarity',null,'cosine','Cosine similarity.']]]]},
+{id:'fs',n:'Full-Stack AI App Deployment',ic:'fas fa-rocket',sk:['FastAPI','Streamlit','Deployment'],q:'fastapi streamlit deployment',kl:'',
+bk:['FastAPI tutorial (fastapi.tiangolo.com)','Streamlit docs (docs.streamlit.io)'],ds:['Telco Customer Churn','Serve your model at POST /predict and call it from a Streamlit form.'],
+dp:'Backend: push repo, create a Render/Railway web service, start command uvicorn main:app --host 0.0.0.0 --port $PORT|Enable CORS for your frontend domain|Streamlit: share.streamlit.io, select repo, set API_URL secret|Static frontend: GitHub Pages (Settings → Pages → main branch)',
+m:[['FastAPI Backend','fastapi tutorial for beginners','Pydantic models for bodies, auto docs at /docs, load the model once at startup.',
+[['Auto docs live at…',['/docs','/help','/swagger.txt'],0,'FastAPI serves Swagger at /docs.'],['Run the server with…',['uvicorn','pip','git'],0,'uvicorn is the ASGI server.'],['Fill in: request bodies use ___ models',null,'pydantic','Pydantic.']]],
+['Streamlit & Deploy','streamlit tutorial deploy','Widgets call your API via requests. Backend on Render, Streamlit on Community Cloud, static pages on GitHub Pages. Secrets in env vars.',
+[['GitHub Pages hosts…',['Static files','Python servers','Databases'],0,'Only static HTML/CSS/JS.'],['Secrets belong in…',['Env vars','Commits','README'],0,'Never commit secrets.'],['Fill in: st.___ draws a clickable button',null,'button','st.button.']]]]}];
 
-/* ============ STATE ============ */
-const mkCourse=(a,done=0)=>({id:a[0],name:a[1],icon:a[2],skills:a[3],custom:false,link:'',items:a[4].split('|').map((t,i)=>({t,d:i<done}))});
-const state={user:{name:'Your Name',role:'da',theme:'dark'},courses:[],skills:{},projects:{},readiness:{}};
-function defaults(){state.courses=CAT.map(c=>mkCourse(c,{py:5,sql:3,git:1}[c[0]]||0));state.projects={}}
-const pct=c=>c.items.length?Math.round(c.items.filter(i=>i.d).length/c.items.length*100):0;
-function recompute(){
- const sk={};state.courses.forEach(c=>{const p=pct(c);c.skills.forEach(s=>{if(!sk[s]||p>sk[s].p)sk[s]={p,from:c.name}})});state.skills=sk;
- const cp=id=>{const c=state.courses.find(x=>x.id===id);return c?pct(c):0};
- ROLES.forEach(([id,,,w,co,pj])=>{
-  const ws=Object.values(w).reduce((a,b)=>a+b,0);
-  const s=Object.entries(w).reduce((a,[k,x])=>a+x*Math.min((sk[k]?sk[k].p:0)/70,1)*100,0)/ws; // 70% = fully verified
-  const c=avg(co.map(cp)),p=avg(pj.map(i=>({done:100,prog:40}[state.projects[i]]||0)));
-  state.readiness[id]={skills:Math.round(s),courses:Math.round(c),projects:Math.round(p),total:Math.round(.6*s+.2*c+.2*p)}})}
-const unlocked=()=>Object.keys(state.skills).filter(s=>state.skills[s].p>=70);
+// Roles: id, name, icon, {skill:weight}, project ids
+const R=[['da','Data Analyst','fa-chart-pie',{Python:2,SQL:3,Pandas:3,'Data Cleaning':2},['pr1']],
+['ml','ML Engineer','fa-microchip',{Python:2,'Scikit-Learn':3,'Model Evaluation':2,PyTorch:2,FastAPI:2},['pr2']],
+['llm','LLM / Agent Developer','fa-robot',{'Prompt Engineering':2,LangChain:3,RAG:3,'Vector DBs':2,FastAPI:2,'OpenAI/Claude APIs':2},['pr3']],
+['auto','AI Automation Specialist','fa-bolt',{'Agent Workflows':3,Zapier:3,'Prompt Engineering':2,Python:1,FastAPI:1},['pr4']]];
+const P=[['pr1','Sales Insights Notebook (SQL + Pandas)',['Load data into SQLite','Write JOIN + window queries','Publish findings on GitHub']],
+['pr2','Churn Classifier API (FastAPI + Streamlit)',['Train a Random Forest','Serve /predict with FastAPI','Add a Streamlit form and deploy']],
+['pr3','Document Q&A Chatbot with RAG',['Chunk and embed PDFs','Retrieve top-k from a vector DB','Answer with cited sources']],
+['pr4','Lead-to-Sheet Automation Agent (Zapier + LangChain)',['Trigger on new form entry','Classify and extract fields with an LLM','Write to a sheet and log errors']]];
+// Interview: type, roles, question, model answer
+const IQ=[['Coding','da','Write SQL to find the 2nd highest salary per department.','DENSE_RANK() OVER (PARTITION BY dept ORDER BY salary DESC), keep rank = 2. Mention ties and NULLs.'],
+['Coding','da,auto','In Pandas, find the top 5 products by revenue per month.','groupby([month, product]).revenue.sum().reset_index(), sort descending, then groupby(month).head(5).'],
+['Coding','ml','Explain precision vs recall and compute both.','Precision = TP/(TP+FP); recall = TP/(TP+FN). Use sklearn.metrics; choose by the cost of each error type.'],
+['Coding','ml,llm,auto','Write a FastAPI endpoint that validates JSON and returns a prediction.','Pydantic BaseModel for input, @app.post("/predict"), load the model at startup, return a dict, add error handling and tests.'],
+['LLM / System Design','llm','Design a RAG support bot over 10,000 PDFs.','Ingest → chunk → embed → vector DB. Query: embed, retrieve top-k, rerank, prompt with citations. Evaluate retrieval and faithfulness; add caching and guardrails.'],
+['LLM / System Design','llm,auto','How do you stop an agent from looping or acting unsafely?','Max-step limits, tool allow-lists, human approval for risky actions, timeouts, tracing/logging, and regression evals.'],
+['LLM / System Design','auto','Design a pipeline turning incoming emails into CRM entries.','Trigger (webhook/Zapier) → LLM extracts JSON → Pydantic validation → write to CRM → retry queue and an error report.'],
+['LLM / System Design','ml','How do you monitor an ML model in production?','Track input drift, prediction distribution, latency and business KPIs; log requests; retrain on triggers; shadow-deploy new versions.'],
+['Behavioral (STAR)','da,ml,llm,auto','Tell me about a time you learned a new tool quickly.','S: project needed Pandas. T: deliver analysis in a week. A: followed docs, built daily mini-tasks. R: finished early and documented lessons.'],
+['Behavioral (STAR)','da,ml,auto','Describe a project where the data was messy.','Name the issues, your cleaning rules, how you validated, and the measurable improvement.'],
+['Behavioral (STAR)','da,ml,llm,auto','Tell me about a disagreement with a teammate.','Show listening, a data-driven compromise and the outcome. Do not blame.']];
+const TR=[['RAG','Grounding LLMs in company documents is a common requirement in LLM job posts.'],['Vector DBs','Chroma, FAISS and Pinecone show up in retrieval and search roles.'],['FastAPI','The usual way to serve ML and LLM features as APIs.'],['Agentic workflows','Tool-using agents and automation (LangChain, Zapier) are growing in AI roles.']];
+const NAV=[['dash','Dashboard','fa-gauge-high'],['courses','My Courses','fa-book-open'],['matrix','Skill Matrix','fa-table-cells'],['careers','Career Paths & Jobs','fa-briefcase'],['prep','Interview Prep','fa-comments'],['projects','Guided Projects','fa-diagram-project'],['port','Portfolio Generator','fa-id-card']];
+const TABS=[['vid','🎥 Video'],['bk','📖 Books'],['nt','📝 Notes'],['qz','🧪 Quiz'],['ds','📊 Dataset'],['dp','🚀 Deploy']];
 
-/* ============ PERSISTENCE: local -> Firebase -> REST ============ */
-let fb=null,pt;
-function apply(d){if(!d||!Array.isArray(d.courses)||typeof d.user!=='object')return false;
- state.user={...state.user,...d.user};state.courses=d.courses.filter(c=>c&&c.id&&Array.isArray(c.items)&&Array.isArray(c.skills));state.projects=d.projects||{};return true}
-function persist(){const d={user:state.user,courses:state.courses,projects:state.projects};
- try{localStorage.setItem(LS,JSON.stringify(d))}catch(e){}
- clearTimeout(pt);pt=setTimeout(async()=>{
-  if(fb)try{await fb.db.doc('users/'+fb.uid).set({state:d,updated:Date.now()})}catch(e){console.warn('Firestore save failed',e)}
-  if(API_BASE)try{await fetch(API_BASE+'/api/progress',{method:'PUT',headers:{'Content-Type':'application/json'/* ,Authorization:'Bearer '+token */},body:JSON.stringify(d)})}catch(e){console.warn('API save failed',e)}
- },600)}
-async function initBackends(){
- if(!FIREBASE_CONFIG.apiKey.startsWith('YOUR_'))try{
-  for(const f of['app','auth','firestore'])await new Promise((ok,no)=>{const s=document.createElement('script');s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-'+f+'-compat.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)});
-  firebase.initializeApp(FIREBASE_CONFIG);
-  const u=(await firebase.auth().signInAnonymously()).user; // swap for Google/email sign-in in production
-  fb={db:firebase.firestore(),uid:u.uid};const snap=await fb.db.doc('users/'+u.uid).get();if(snap.exists&&apply(snap.data().state)){recompute();render()}
- }catch(e){console.warn('Firebase unavailable; using local storage',e)}
- if(API_BASE)try{const r=await fetch(API_BASE+'/api/progress');if(r.ok&&apply(await r.json())){recompute();render()}}catch(e){console.warn('API unavailable',e)}}
-function exportData(){const b=new Blob([JSON.stringify({app:'jobready-pulse',v:1,data:{user:state.user,courses:state.courses,projects:state.projects}},null,2)],{type:'application/json'});dl(b,'jobready-backup.json')}
-function dl(b,n){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
-$('imp').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const j=JSON.parse(r.result);if(j.app==='jobready-pulse'&&apply(j.data)){recompute();persist();render();alert('Backup restored.')}else alert('This is not a valid JobReady backup file.')}catch(x){alert('Could not read file: invalid JSON.')}};r.readAsText(f);e.target.value=''};
-
-/* ============ UI HELPERS ============ */
+/* ---------- state (localStorage) ---------- */
+const LS='careertrack_v4';
+let S={name:'Your Name',role:'da',done:{},qa:{},vid:{},proj:{}};
+try{const d=JSON.parse(localStorage.getItem(LS));if(d&&typeof d==='object')S={...S,...d}}catch(e){}
+const save=()=>{try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}};
+const K=(c,i)=>c.id+':'+i;
+const okQ=(q,a)=>a==null?false:q[1]?a===q[2]:String(a).toLowerCase().trim().startsWith(q[2].toLowerCase());
+const score=(c,i)=>c.m[i][3].filter((q,j)=>okQ(q,(S.qa[K(c,i)]||[])[j])).length;
+const credit=(c,i)=>(S.done[K(c,i)]?.5:0)+(score(c,i)>=2?.5:0);
+const pct=c=>Math.round(avg(c.m.map((_,i)=>credit(c,i)))*100);
+function skills(){const o={};C.forEach(c=>{const p=pct(c);c.sk.forEach(s=>o[s]={p,from:c.n})});return o}
+function ready(r){const sk=skills(),w=r[3],ws=Object.values(w).reduce((a,b)=>a+b,0);
+ const s=Object.entries(w).reduce((a,[k,x])=>a+x*Math.min((sk[k]?sk[k].p:0)/70,1)*100,0)/ws;
+ const p=avg(r[4].map(i=>({done:100,prog:40}[S.proj[i]]||0)));return Math.round(.8*s+.2*p)}
+const unlocked=()=>{const sk=skills();return Object.keys(sk).filter(s=>sk[s].p>=70)};
 const col=p=>p<40?'#ef4444':p<70?'#eab308':'#22c55e';
 const msg=p=>p<40?'Abhi time hai, courses complete karo':p<=70?'Junior roles ke liye ready!':'Apply karo! Interview ready!';
 const bar=(p,c)=>`<div class="w-full h-2 trk rounded-full" role="progressbar" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><div class="h-2 rounded-full ${c?'':'pf'}" style="width:${p}%;${c?'background:'+c:''};transition:width .4s"></div></div>`;
-function meter(p,size=56,sw=6){const r=(size-sw)/2,L=2*Math.PI*r;return`<div class="relative shrink-0" style="width:${size}px;height:${size}px"><svg width="${size}" height="${size}" style="transform:rotate(-90deg)"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" class="trk" stroke="currentColor" style="color:var(--bd)" stroke-width="${sw}"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${col(p)}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${L}" stroke-dashoffset="${L*(1-p/100)}" style="transition:stroke-dashoffset .6s"/></svg><div class="absolute inset-0 grid place-items-center font-bold" style="font-size:${size/4.2}px">${p}%</div></div>`}
-const role=id=>ROLES.find(r=>r[0]===id)||ROLES[0];
+function meter(p,size=56,sw=6){const r=(size-sw)/2,L=2*Math.PI*r;return`<div class="relative shrink-0" style="width:${size}px;height:${size}px"><svg width="${size}" height="${size}" style="transform:rotate(-90deg)"><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="${sw}"/><circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${col(p)}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${L}" stroke-dashoffset="${L*(1-p/100)}" style="transition:stroke-dashoffset .6s"/></svg><div class="absolute inset-0 grid place-items-center font-bold" style="font-size:${size/4.2}px">${p}%</div></div>`}
 const head=(t,s)=>`<h2 class="text-2xl md:text-3xl font-extrabold">${t}</h2><p class="mut text-sm mb-6">${s}</p>`;
+const role=id=>R.find(r=>r[0]===id)||R[0];
 
-function courseCard(c){const p=pct(c);let rows='';
- c.items.forEach((v,i)=>{if(i%4===0)rows+=`<div class="text-[11px] mut pt-1">Module ${i/4+1}</div>`;
-  rows+=`<label class="flex items-center gap-2 text-[13px] p-1.5 rounded-lg cursor-pointer"><input type="checkbox" ${v.d?'checked':''} onchange="tick('${c.id}',${i},this.checked)"><span class="${v.d?'line-through mut':''}">${esc(v.t)}</span></label>`});
- return`<div class="glass overflow-hidden"><div class="h-1.5 pf"></div><div class="p-5"><div class="flex justify-between items-start mb-3"><div><h3 class="font-bold flex items-center gap-2"><i class="${esc(c.icon)}"></i>${esc(c.name)}</h3><div class="text-[11px] mut mt-1">${c.skills.map(s=>`<span class="${state.skills[s]&&state.skills[s].p>=70?'text-green-500 font-bold':''}">${esc(s)}</span>`).join(' · ')}</div></div><span class="text-sm font-bold ${p>=70?'text-green-500':'text-violet-400'}">${p}%</span></div>
- ${bar(p)}<div class="chk mt-3 space-y-0.5" data-id="${esc(c.id)}">${rows}</div>${c.custom?`<button class="text-[11px] text-red-400 mt-3" onclick="delCourse('${esc(c.id)}')"><i class="fas fa-trash mr-1"></i>Delete</button>`:''}</div></div>`}
+/* ---------- module drawer ---------- */
+let page=(location.hash||'#dash').slice(1),dr=null,ui={rf:'all',tf:'All',sim:null,show:new Set()};
+function embed(u){const m=u.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/),l=u.match(/list=([\w-]+)/);return m?'https://www.youtube-nocookie.com/embed/'+m[1]:l?'https://www.youtube-nocookie.com/embed/videoseries?list='+l[1]:''}
+function drawer(){if(!dr)return'';const c=C.find(x=>x.id===dr.c),i=dr.m,m=c.m[i],k=K(c,i),t=dr.t,qa=S.qa[k]||[];let b='';
+ if(t==='vid'){const e=S.vid[k]?embed(S.vid[k]):'';b=`${e?`<div class="aspect-video mb-3"><iframe class="w-full h-full rounded-xl" src="${esc(e)}" title="Lesson video" allowfullscreen loading="lazy"></iframe></div>`:'<p class="text-sm mut mb-3">Pehle top-rated video dhoondo, phir uska link neeche paste karke save karo — player yahin chalega.</p>'}
+ <a class="btn inline-block mb-3" href="${yt(m[1])}" target="_blank" rel="noopener"><i class="fab fa-youtube mr-1"></i>Find top-rated video</a>
+ <div class="flex gap-2"><input id="vurl" placeholder="Paste YouTube video/playlist link" value="${esc(S.vid[k]||'')}"><button class="btn" onclick="setVid('${k}')">Save</button></div>`}
+ if(t==='bk')b=`<h4 class="font-bold mb-2">Books & chapters</h4><ul class="list-disc pl-5 text-sm space-y-1 mb-4">${c.bk.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><h4 class="font-bold mb-2">Courses</h4><ul class="space-y-1 text-sm">${c.kl?`<li><a class="lk" target="_blank" rel="noopener" href="https://www.kaggle.com/learn/${c.kl}">Kaggle Learn: ${esc(c.kl)}</a></li>`:''}<li><a class="lk" target="_blank" rel="noopener" href="${cs(c.q)}">Coursera: ${esc(c.q)}</a></li><li><a class="lk" target="_blank" rel="noopener" href="${ed(c.q)}">edX: ${esc(c.q)}</a></li></ul>`;
+ if(t==='nt')b=`<p class="text-sm leading-relaxed p-4 rounded-xl trk">${esc(m[2])}</p><p class="text-xs mut mt-3">Real-world rule: write down one example of this idea from your own project.</p>`;
+ if(t==='qz')b=m[3].map((q,j)=>{const a=qa[j],done=a!=null;let h=`<div class="mb-5"><div class="font-semibold text-sm">${j+1}. ${esc(q[0])}</div>`;
+  if(q[1])h+=q[1].map((o,x)=>`<button class="opt ${done&&x===q[2]?'ok':''} ${done&&a===x&&x!==q[2]?'bad':''}" ${done?'disabled':''} onclick="ans('${k}',${j},${x})">${esc(o)}</button>`).join('');
+  else h+=`<div class="flex gap-2 mt-2"><input id="f${j}" ${done?'disabled':''} value="${done?esc(a):''}" placeholder="Type answer"><button class="btn" ${done?'disabled':''} onclick="ans('${k}',${j},$('f${j}').value)">Check</button></div>`;
+  if(done)h+=`<p class="text-xs mt-2 ${okQ(q,a)?'text-green-400':'text-red-400'}">${okQ(q,a)?'Correct.':'Not quite — answer: '+esc(q[1]?q[1][q[2]]:q[2])+'.'} ${esc(q[3])}</p>`;return h+'</div>'}).join('')+`<p class="text-sm font-bold">Score: ${score(c,i)}/3 ${score(c,i)>=2?'(passed: +50% module credit)':'(get 2/3 for credit)'}</p><button class="text-xs text-violet-400 mt-2" onclick="S.qa['${k}']=[];save();render()">Retry quiz</button>`;
+ if(t==='ds')b=`<p class="text-sm mb-3">Dataset: <a class="lk" target="_blank" rel="noopener" href="${kg(c.ds[0])}">${esc(c.ds[0])} on Kaggle</a></p><div class="p-4 rounded-xl trk text-sm"><b>Task:</b> ${esc(c.ds[1])}</div><ol class="list-decimal pl-5 text-sm space-y-1 mt-3"><li>Download the CSV and open it in a notebook.</li><li>Inspect shape, dtypes and missing values.</li><li>Complete the task above and write 3 sentences on what you found.</li><li>Push the notebook to GitHub.</li></ol>`;
+ if(t==='dp')b=`<ol class="list-decimal pl-5 text-sm space-y-2">${c.dp.split('|').map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`;
+ return`<div class="absolute inset-0 bg-black/70" onclick="closeDr()"></div><aside class="absolute right-0 top-0 h-full w-full md:w-[560px] bg-[#101018] border-l border-white/10 flex flex-col" role="dialog" aria-label="Module">
+ <div class="p-4 border-b border-white/10 flex justify-between items-start"><div><div class="text-xs mut">${esc(c.n)} · Module ${i+1}</div><h3 class="font-bold text-lg">${esc(m[0])}</h3></div><button onclick="closeDr()" class="text-2xl mut leading-none" aria-label="Close">×</button></div>
+ <div class="p-3 flex flex-wrap gap-2 border-b border-white/10">${TABS.map(x=>`<button class="chip ${t===x[0]?'on':''}" onclick="dr.t='${x[0]}';render()">${x[1]}</button>`).join('')}</div>
+ <div id="dbody" class="p-4 flex-1 overflow-y-auto">${b}</div>
+ <div class="p-4 border-t border-white/10"><button class="btn w-full" onclick="toggleDone('${k}')">${S.done[k]?'✓ Completed — tap to undo':'Mark module complete'}</button></div></aside>`}
 
-/* ============ VIEWS ============ */
-const ui={cat:'All',lvl:'All',show:new Set()};
+/* ---------- pages ---------- */
 const V={
-dash(){const r=state.readiness[state.user.role],R=role(state.user.role),sk=unlocked().length,pd=Object.values(state.projects).filter(x=>x==='done').length;
- let best=null;Object.entries(R[3]).forEach(([s,w])=>{const g=w*(1-Math.min((state.skills[s]?state.skills[s].p:0)/70,1));if(g>0&&(!best||g>best.g))best={s,g}});
- const nc=best&&state.courses.find(c=>c.skills.includes(best.s));
- return head('Dashboard','Tumhara career progress ek nazar mein.')+`<div class="glass p-5 flex items-center gap-5 mb-5">${meter(r.total,104,10)}<div><div class="text-xs mut">${esc(R[1])}</div><div class="text-lg font-bold" style="color:${col(r.total)}">${msg(r.total)}</div>${nc?`<div class="text-sm mut mt-1">Next best step: learn <b>${esc(best.s)}</b> in “${esc(nc.name)}”.</div>`:'<div class="text-sm mut mt-1">All required skills verified. Time to apply!</div>'}</div></div>
- <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">${[['Avg course progress',Math.round(avg(state.courses.map(pct)))+'%'],['Skills verified',sk+'/'+Object.keys(state.skills).length],['Projects done',pd+'/'+PROJ.length],['Best role match',Math.max(...Object.values(state.readiness).map(x=>x.total))+'%']].map(([a,b])=>`<div class="glass p-4"><div class="text-xs mut">${a}</div><div class="text-2xl font-extrabold mt-1">${b}</div></div>`).join('')}</div>
- <div class="glass p-5"><div class="font-bold mb-3">All roles</div><div class="space-y-3">${ROLES.map(x=>`<div><div class="flex justify-between text-sm mb-1"><span>${esc(x[1])}</span><span class="mut">${state.readiness[x[0]].total}%</span></div>${bar(state.readiness[x[0]].total,col(state.readiness[x[0]].total))}</div>`).join('')}</div></div>
- <div class="glass p-5 mt-5 flex flex-wrap gap-2 items-center"><span class="font-bold mr-2">Backup</span><button class="btn sec" onclick="exportData()"><i class="fas fa-download mr-1"></i>Export JSON</button><button class="btn sec" onclick="$('imp').click()"><i class="fas fa-upload mr-1"></i>Import JSON</button><span class="text-xs mut">${fb?'Synced with Firebase.':'Saved in this browser. Export regularly.'}</span></div>`},
-courses(){return head('My Courses 🚀','YouTube, Udemy, Coursera — sab ek jagah. 70% par skills unlock hoti hain.')+`<div class="grid md:grid-cols-2 gap-5">${state.courses.map(courseCard).join('')}</div>`},
-matrix(){const all=Object.keys(state.skills).sort();return head('Skill Matrix 💎','Verified badge = 70%+ in the course that teaches it.')+`<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">${all.map(s=>{const d=state.skills[s],ok=d.p>=70;return`<div class="glass p-4"><div class="flex justify-between text-sm font-bold mb-2"><span>${esc(s)}</span><span class="mut">${d.p}%</span></div>${bar(d.p,ok?'#22c55e':'')}<p class="text-[11px] mt-2 ${ok?'text-green-500 font-bold':'mut'}"><i class="fas ${ok?'fa-circle-check':'fa-lock'} mr-1"></i>${ok?'Verified':'Locked'} · ${esc(d.from)}</p></div>`}).join('')}</div>`},
-careers(){return head('Career Paths & Jobs 🎯','Readiness = 60% skills + 20% courses + 20% projects.')+`<div class="grid md:grid-cols-2 gap-5">${ROLES.map(R=>{const r=state.readiness[R[0]],miss=Object.keys(R[3]).filter(s=>!state.skills[s]||state.skills[s].p<70);return`<div class="glass p-5 ${R[0]===state.user.role?'ring-2 ring-violet-500':''}"><div class="flex items-center gap-4 mb-4">${meter(r.total,70,8)}<div><div class="font-bold"><i class="fas ${R[2]} mr-2 text-violet-400"></i>${esc(R[1])}</div><div class="text-xs" style="color:${col(r.total)}">${msg(r.total)}</div></div></div>
- ${[['Skills',r.skills],['Courses',r.courses],['Projects',r.projects]].map(([a,b])=>`<div class="mb-2"><div class="flex justify-between text-xs mb-1"><span>${a}</span><span class="mut">${b}%</span></div>${bar(b,col(b))}</div>`).join('')}
- <p class="text-xs mut mt-3">${miss.length?'Still needed: '+miss.map(esc).join(', '):'All required skills verified.'}</p><button class="btn sec w-full mt-3" onclick="setRole('${R[0]}')">${R[0]===state.user.role?'Current target':'Set as target'}</button></div>`}).join('')}</div>`},
-prep(){const list=QB.map((q,i)=>[q,i]).filter(([q])=>(ui.cat==='All'||q[0]===ui.cat)&&(ui.lvl==='All'||q[1]===ui.lvl));
- const chips=(a,k)=>['All',...a].map(x=>`<button class="chip ${ui[k]===x?'on':''}" onclick="ui.${k}='${x}';render()">${x}</button>`).join('');
- return head('Interview Prep 🎤','Topic aur difficulty se filter karo. Pehle khud jawab do, phir answer reveal karo.')+`<div class="flex flex-wrap gap-2 mb-2">${chips(CATS,'cat')}</div><div class="flex flex-wrap gap-2 mb-5">${chips(LVLS,'lvl')}</div><div class="space-y-3">${list.map(([q,i])=>`<div class="glass p-4"><div class="text-[11px] mut mb-1">${q[0]} · ${q[1]}</div><div class="font-semibold">${esc(q[2])}</div><button class="text-sm text-violet-400 mt-2" onclick="ui.show.has(${i})?ui.show.delete(${i}):ui.show.add(${i});render()" aria-expanded="${ui.show.has(i)}">${ui.show.has(i)?'Hide':'Reveal'} sample answer</button>${ui.show.has(i)?`<p class="text-sm mt-2 p-3 rounded-lg trk">${esc(q[3])}</p>`:''}</div>`).join('')||'<p class="mut">No questions match these filters.</p>'}</div>`},
-projects(){const L={none:'Not started',prog:'In progress',done:'Completed'};return head('Guided Projects 🛠️','Projects complete karo — readiness score barhta hai aur portfolio banta hai.')+`<div class="grid md:grid-cols-2 gap-5">${PROJ.map(p=>{const st=state.projects[p[0]]||'none';return`<div class="glass p-5"><div class="text-[11px] mut mb-1">${p[2]} · ${st==='done'?'<span class="text-green-500 font-bold">Completed</span>':L[st]}</div><h3 class="font-bold mb-3">${esc(p[1])}</h3><ol class="list-decimal pl-5 text-sm space-y-1 mb-4">${p[3].map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="flex gap-2">${['none','prog','done'].map(k=>`<button class="chip ${st===k?'on':''}" onclick="setProj('${p[0]}','${k}')">${L[k]}</button>`).join('')}</div></div>`}).join('')}</div>`},
-port(){const u=state.user,sk=unlocked(),dn=state.courses.filter(c=>pct(c)===100),pj=PROJ.filter(p=>state.projects[p[0]]==='done');
- return head('Portfolio Generator 🪪','Verified skills, projects aur certificates — download karo ya LinkedIn par paste karo.')+`<div class="glass p-5 mb-4 flex items-center gap-4"><div class="w-14 h-14 shrink-0 rounded-full pf grid place-items-center text-xl font-bold text-white">${esc((u.name[0]||'?').toUpperCase())}</div><div class="flex-1"><input value="${esc(u.name)}" onchange="state.user.name=this.value.trim()||'Your Name';persist();render()" class="!text-lg !font-bold" aria-label="Your name"><div class="text-sm mut mt-1">${esc(role(u.role)[1])} · ${state.readiness[u.role].total}% job ready</div></div></div>
- <div class="grid md:grid-cols-3 gap-4"><div class="glass p-5"><div class="font-bold mb-3">Verified skills</div>${sk.length?sk.map(s=>`<span class="inline-block m-1 px-3 py-1 rounded-full text-sm bg-green-500/15 text-green-500 font-semibold">${esc(s)}</span>`).join(''):'<p class="text-sm mut">Koi skill abhi verified nahi.</p>'}</div>
- <div class="glass p-5"><div class="font-bold mb-3">Projects</div>${pj.length?pj.map(p=>`<div class="text-sm py-1"><i class="fas fa-circle-check text-green-500 mr-2"></i>${esc(p[1])}</div>`).join(''):'<p class="text-sm mut">Koi project complete nahi.</p>'}</div>
- <div class="glass p-5"><div class="font-bold mb-3">Certificates</div>${dn.length?dn.map(c=>`<div class="text-sm py-1"><i class="fas fa-certificate text-yellow-500 mr-2"></i>${esc(c.name)}</div>`).join(''):'<p class="text-sm mut">100% course par certificate milega.</p>'}</div></div>
- <div class="flex flex-wrap gap-2 mt-5"><button class="btn" onclick="dlPortfolio()"><i class="fas fa-download mr-1"></i>Download portfolio page</button><button class="btn sec" onclick="copyLI()"><i class="fab fa-linkedin mr-1"></i>Copy LinkedIn About</button></div>`}
+dash(){const r=role(S.role),p=ready(r);let nx=null;C.some(c=>c.m.some((m,i)=>{if(credit(c,i)<1){nx=[c,i];return true}}));
+ return head('Dashboard','Tumhara career progress ek nazar mein.')+`<div class="glass p-5 flex items-center gap-5 mb-5">${meter(p,104,10)}<div><div class="text-xs mut">${esc(r[1])}</div><div class="text-lg font-bold" style="color:${col(p)}">${msg(p)}</div>${nx?`<button class="btn mt-3" onclick="openDr('${nx[0].id}',${nx[1]})">Continue: ${esc(nx[0].m[nx[1]][0])}</button>`:''}</div></div>
+ <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5">${[['Avg course progress',Math.round(avg(C.map(pct)))+'%'],['Skills verified',unlocked().length+'/'+Object.keys(skills()).length],['Projects done',Object.values(S.proj).filter(x=>x==='done').length+'/'+P.length],['Modules done',Object.values(S.done).filter(Boolean).length+'/'+C.length*2]].map(([a,b])=>`<div class="glass p-4"><div class="text-xs mut">${a}</div><div class="text-2xl font-extrabold mt-1">${b}</div></div>`).join('')}</div>
+ <div class="glass p-5"><div class="font-bold mb-3">All roles</div><div class="space-y-3">${R.map(x=>{const v=ready(x);return`<div><div class="flex justify-between text-sm mb-1"><span>${esc(x[1])}</span><span class="mut">${v}%</span></div>${bar(v,col(v))}</div>`}).join('')}</div></div>
+ <button class="text-xs text-red-400 mt-5" onclick="if(confirm('Saara progress reset karna hai?')){S={name:S.name,role:S.role,done:{},qa:{},vid:{},proj:{}};save();render()}">Reset all progress</button>`},
+courses(){return head('My Courses 🚀','Har module mein 6 tabs: video, books, notes, quiz, dataset, deploy.')+`<div class="grid md:grid-cols-2 gap-5">${C.map(c=>{const p=pct(c);return`<div class="glass overflow-hidden"><div class="h-1.5 pf"></div><div class="p-5"><div class="flex justify-between items-start mb-3"><div><h3 class="font-bold"><i class="${c.ic} mr-2"></i>${esc(c.n)}</h3><div class="text-[11px] mut mt-1">${c.sk.map(s=>`<span class="${skills()[s].p>=70?'text-green-400 font-bold':''}">${s}</span>`).join(' · ')}</div></div><span class="text-sm font-bold ${p>=70?'text-green-400':'text-violet-400'}">${p}%</span></div>${bar(p)}<div class="mt-3 space-y-2">${c.m.map((m,i)=>`<button class="opt flex justify-between" onclick="openDr('${c.id}',${i})"><span>Module ${i+1}: ${esc(m[0])}</span><span>${S.done[K(c,i)]?'✅':credit(c,i)?'◐':'○'}</span></button>`).join('')}</div></div></div>`}).join('')}</div>`},
+matrix(){return head('Skill Matrix 💎','Verified badge = 70%+ in the course that teaches it.')+C.map(c=>`<div class="glass p-5 mb-4"><div class="font-bold mb-3"><i class="${c.ic} mr-2"></i>${esc(c.n)}</div><div class="grid sm:grid-cols-3 gap-4">${c.sk.map(s=>{const p=pct(c),ok=p>=70;return`<div><div class="flex justify-between text-sm mb-1"><span>${s}</span><span class="mut">${p}%</span></div>${bar(p,ok?'#22c55e':'')}<p class="text-[11px] mt-1 ${ok?'text-green-400 font-bold':'mut'}">${ok?'✔ Verified':'🔒 Locked'}</p></div>`}).join('')}</div></div>`).join('')},
+careers(){const sk=skills();return head('Career Paths & Jobs 🎯','Readiness = 80% skills + 20% projects.')+`<div class="grid md:grid-cols-2 gap-5">${R.map(r=>{const v=ready(r),miss=Object.keys(r[3]).filter(s=>!sk[s]||sk[s].p<70);return`<div class="glass p-5 ${r[0]===S.role?'ring-2 ring-violet-500':''}"><div class="flex items-center gap-4 mb-4">${meter(v,70,8)}<div><div class="font-bold"><i class="fas ${r[2]} mr-2 text-violet-400"></i>${esc(r[1])}</div><div class="text-xs" style="color:${col(v)}">${msg(v)}</div></div></div><div class="space-y-2">${Object.keys(r[3]).map(s=>{const x=Math.min((sk[s]?sk[s].p:0)/70*100,100);return`<div><div class="flex justify-between text-xs mb-1"><span>${s}</span><span class="mut">${Math.round(x)}%</span></div>${bar(Math.round(x),col(x))}</div>`}).join('')}</div><p class="text-xs mut mt-3">${miss.length?'Still needed: '+miss.join(', '):'All required skills verified.'}</p><button class="btn sec w-full mt-3" onclick="setRole('${r[0]}')">${r[0]===S.role?'Current target':'Set as target'}</button></div>`}).join('')}</div>`},
+prep(){const L=IQ.map((q,i)=>[q,i]).filter(([q])=>(ui.rf==='all'||q[1].split(',').includes(ui.rf))&&(ui.tf==='All'||q[0]===ui.tf));
+ const card=([q,i],big)=>`<div class="glass p-4 ${big?'ring-2 ring-violet-500':''}"><div class="text-[11px] mut mb-1">${q[0]}</div><div class="font-semibold">${esc(q[2])}</div><button class="text-sm text-violet-400 mt-2" onclick="ui.show.has(${i})?ui.show.delete(${i}):ui.show.add(${i});render()">${ui.show.has(i)?'Hide':'Reveal'} model answer</button>${ui.show.has(i)?`<p class="text-sm mt-2 p-3 rounded-lg trk">${esc(q[3])}</p>`:''}</div>`;
+ const rc=[['all','All roles'],...R.map(r=>[r[0],r[1]])];
+ return head('Interview & Trend Prep 🎤','Role chuno, trends dekho, phir mock interview practice karo.')+`<div class="glass p-5 mb-5"><div class="font-bold mb-1">Trending hiring skills</div><p class="text-[11px] mut mb-3">Directional themes from AI job posts — check current listings in your target market.</p><div class="grid sm:grid-cols-2 gap-3">${TR.map(t=>`<div class="p-3 rounded-xl trk"><div class="font-bold text-sm text-violet-300">${t[0]}</div><div class="text-xs mut mt-1">${t[1]}</div></div>`).join('')}</div></div>
+ <div class="flex flex-wrap gap-2 mb-2">${rc.map(x=>`<button class="chip ${ui.rf===x[0]?'on':''}" onclick="ui.rf='${x[0]}';ui.sim=null;render()">${x[1]}</button>`).join('')}</div>
+ <div class="flex flex-wrap gap-2 mb-4">${['All','Coding','LLM / System Design','Behavioral (STAR)'].map(x=>`<button class="chip ${ui.tf===x?'on':''}" onclick="ui.tf='${x}';ui.sim=null;render()">${x}</button>`).join('')}<button class="btn !py-1 ml-auto" onclick="sim()">🎲 Mock interview: random question</button></div>
+ ${ui.sim!=null&&IQ[ui.sim]?`<div class="mb-4">${card([IQ[ui.sim],ui.sim],1)}</div>`:''}<div class="space-y-3">${L.map(x=>card(x)).join('')||'<p class="mut">No questions match these filters.</p>'}</div>`},
+projects(){const Lb={none:'Not started',prog:'In progress',done:'Completed'};return head('Guided Projects 🛠️','Projects complete karo — readiness aur portfolio dono barhte hain.')+`<div class="grid md:grid-cols-2 gap-5">${P.map(p=>{const st=S.proj[p[0]]||'none';return`<div class="glass p-5"><h3 class="font-bold mb-3">${esc(p[1])}</h3><ol class="list-decimal pl-5 text-sm space-y-1 mb-4">${p[2].map(s=>`<li>${esc(s)}</li>`).join('')}</ol><div class="flex gap-2 flex-wrap">${['none','prog','done'].map(k=>`<button class="chip ${st===k?'on':''}" onclick="S.proj['${p[0]}']='${k}';save();render()">${Lb[k]}</button>`).join('')}</div></div>`}).join('')}</div>`},
+port(){const sk=unlocked(),dn=C.filter(c=>pct(c)===100),pj=P.filter(p=>S.proj[p[0]]==='done');
+ return head('Portfolio Generator 🪪','Verified skills, projects aur certificates — LinkedIn ke liye ready.')+`<div class="glass p-5 mb-4 flex items-center gap-4"><div class="w-14 h-14 shrink-0 rounded-full pf grid place-items-center text-xl font-bold">${esc((S.name[0]||'?').toUpperCase())}</div><div class="flex-1"><input value="${esc(S.name)}" onchange="S.name=this.value.trim()||'Your Name';save();render()" aria-label="Your name"><div class="text-sm mut mt-1">${esc(role(S.role)[1])} · ${ready(role(S.role))}% job ready</div></div></div>
+ <div class="grid md:grid-cols-3 gap-4"><div class="glass p-5"><div class="font-bold mb-3">Verified skills</div>${sk.length?sk.map(s=>`<span class="inline-block m-1 px-3 py-1 rounded-full text-sm bg-green-500/15 text-green-400">${s}</span>`).join(''):'<p class="text-sm mut">Abhi koi skill verified nahi.</p>'}</div>
+ <div class="glass p-5"><div class="font-bold mb-3">Projects</div>${pj.length?pj.map(p=>`<div class="text-sm py-1">✅ ${esc(p[1])}</div>`).join(''):'<p class="text-sm mut">Koi project complete nahi.</p>'}</div>
+ <div class="glass p-5"><div class="font-bold mb-3">Certificates</div>${dn.length?dn.map(c=>`<div class="text-sm py-1">🏅 ${esc(c.n)}</div>`).join(''):'<p class="text-sm mut">100% course par certificate milega.</p>'}</div></div>
+ <button class="btn mt-5" onclick="copyLI()"><i class="fab fa-linkedin mr-1"></i>Copy LinkedIn About</button>`}
 };
 
-/* ============ ACTIONS ============ */
-function render(){
- document.documentElement.classList.toggle('light',state.user.theme==='light');
- const sc={};document.querySelectorAll('.chk').forEach(e=>sc[e.dataset.id]=e.scrollTop);
- $('nav').innerHTML=NAV.map(([k,l,i])=>`<a class="${page===k?'on':''}" tabindex="0" onclick="go('${k}')" onkeydown="if(event.key==='Enter')go('${k}')" ${page===k?'aria-current="page"':''}><i class="fas ${i} w-5 text-center"></i><span>${l}</span></a>`).join('');
- $('roleSel').innerHTML=ROLES.map(r=>`<option value="${r[0]}" ${r[0]===state.user.role?'selected':''}>${esc(r[1])}</option>`).join('');
- $('topMeter').innerHTML=meter(state.readiness[state.user.role].total,52,6);
+/* ---------- actions ---------- */
+function render(){const ds=$('dbody')?$('dbody').scrollTop:0;
+ $('nav').innerHTML=NAV.map(([k,l,i])=>`<a class="${page===k?'on':''}" tabindex="0" onclick="go('${k}')" onkeydown="if(event.key==='Enter')go('${k}')"><i class="fas ${i} w-5 text-center"></i><span>${l}</span></a>`).join('');
+ $('roleSel').innerHTML=R.map(r=>`<option value="${r[0]}" ${r[0]===S.role?'selected':''}>${esc(r[1])}</option>`).join('');
+ $('topMeter').innerHTML=meter(ready(role(S.role)),52,6);
  $('main').innerHTML=(V[page]||V.dash)();
- document.querySelectorAll('.chk').forEach(e=>e.scrollTop=sc[e.dataset.id]||0)}
-let page=(location.hash||'#dash').slice(1);
-const go=p=>{page=p;location.hash=p;render();scrollTo(0,0)};
-const upd=()=>{recompute();persist();render()};
-function tick(id,i,v){const c=state.courses.find(x=>x.id===id);if(c){c.items[i].d=v;upd()}}
-function delCourse(id){if(confirm('Delete this course?')){state.courses=state.courses.filter(c=>c.id!==id);upd()}}
-function setRole(r){state.user.role=r;upd()}
-function setProj(id,s){state.projects[id]=s;upd()}
-function toggleTheme(){state.user.theme=state.user.theme==='light'?'dark':'light';persist();render()}
+ const d=$('drawer');d.classList.toggle('hidden',!dr);d.innerHTML=drawer();if($('dbody'))$('dbody').scrollTop=ds}
+const go=p=>{page=p;location.hash=p;dr=null;render();scrollTo(0,0)};
+const openDr=(c,m)=>{dr={c,m,t:'vid'};render()},closeDr=()=>{dr=null;render()};
+function setRole(r){S.role=r;save();render()}
+function toggleDone(k){S.done[k]=!S.done[k];save();render()}
+function ans(k,j,v){if(v===''||v==null)return;S.qa[k]=S.qa[k]||[];S.qa[k][j]=v;save();render()}
+function setVid(k){const v=$('vurl').value.trim();if(v&&!embed(v)){alert('Please paste a valid YouTube link.');return}S.vid[k]=v;save();render()}
+function sim(){const L=IQ.map((q,i)=>i).filter(i=>(ui.rf==='all'||IQ[i][1].split(',').includes(ui.rf))&&(ui.tf==='All'||IQ[i][0]===ui.tf));if(L.length){ui.sim=L[Math.floor(Math.random()*L.length)];ui.show.delete(ui.sim);render()}}
+function copyLI(){const r=role(S.role),t=`Aspiring ${r[1]} | ${unlocked().slice(0,8).join(', ')||'Python, SQL, ML, AI'}\nBuilding job-ready skills through structured courses, quizzes and projects — currently ${ready(r)}% ready for ${r[1]} roles.\nProjects: ${P.filter(p=>S.proj[p[0]]==='done').map(p=>p[1]).join('; ')||'in progress'}.\nOpen to internships and junior roles.`;navigator.clipboard?navigator.clipboard.writeText(t).then(()=>alert('Copied!')):prompt('Copy:',t)}
 $('roleSel').onchange=e=>setRole(e.target.value);
-$('fSk').innerHTML='<option value="">No skills</option>'+CAT.map(c=>`<option value="${c[0]}">${esc(c[1])}</option>`).join('');
-const openAdd=()=>{$('modal').classList.remove('hidden');$('fName').focus()},closeAdd=()=>$('modal').classList.add('hidden');
-// PRODUCTION HOOK: replace with a call to your FastAPI route (YouTube Data API key must stay server-side),
-// e.g. const r=await fetch(API_BASE+'/api/playlist?url='+encodeURIComponent(link)); return (await r.json()).titles;
-function fetchPlaylistTitles(link,n){const T=["Introduction & setup","Core concepts","Hands-on practice","Common mistakes","Working with real data","Deep dive","Mini project","Best practices","Debugging tips","Project walkthrough","Interview questions","Wrap-up & next steps"];return Array.from({length:n},(_,i)=>T[i%T.length]+(i>=T.length?' II':''))}
-function addCourse(){const name=$('fName').value.trim();if(!name){$('fName').focus();return}
- const link=$('fLink').value.trim();let n=Math.min(Math.max(parseInt($('fTot').value)||12,1),60);if(/youtube\.com|youtu\.be/.test(link))n=Math.min(Math.max(n,10),15);
- const src=CAT.find(c=>c[0]===$('fSk').value);
- state.courses.push({id:'c'+Date.now(),name,icon:'fas fa-book',skills:src?[...src[3]]:[],custom:true,link,items:fetchPlaylistTitles(link,n).map(t=>({t,d:false}))});
- closeAdd();$('fName').value='';$('fLink').value='';go('courses');upd()}
-function liText(){const R=role(state.user.role),sk=unlocked();return`Aspiring ${R[1]} | ${sk.slice(0,8).join(', ')||'Learning Python, SQL & ML'}\nI'm building job-ready skills through structured learning and hands-on projects, currently ${state.readiness[R[0]].total}% ready for ${R[1]} roles.\nCompleted projects: ${PROJ.filter(p=>state.projects[p[0]]==='done').map(p=>p[1]).join('; ')||'in progress'}.\nOpen to internships and junior roles.`}
-function copyLI(){const t=liText();navigator.clipboard?navigator.clipboard.writeText(t).then(()=>alert('Copied!')):prompt('Copy:',t)}
-function dlPortfolio(){const u=state.user,R=role(u.role),sk=unlocked(),pj=PROJ.filter(p=>state.projects[p[0]]==='done');
- const h=`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(u.name)} – Portfolio</title><style>body{font-family:system-ui,sans-serif;max-width:720px;margin:40px auto;padding:0 20px;color:#14141f;line-height:1.6}h1{margin:0}span{display:inline-block;background:#ede9fe;color:#5b21b6;padding:4px 12px;border-radius:99px;margin:3px;font-size:14px}</style></head><body><h1>${esc(u.name)}</h1><p>${esc(R[1])} · ${state.readiness[R[0]].total}% job ready</p><h2>Verified skills</h2>${sk.map(s=>`<span>${esc(s)}</span>`).join('')||'<p>In progress</p>'}<h2>Projects</h2><ul>${pj.map(p=>`<li>${esc(p[1])}</li>`).join('')||'<li>In progress</li>'}</ul><h2>Certificates</h2><ul>${state.courses.filter(c=>pct(c)===100).map(c=>`<li>${esc(c.name)}</li>`).join('')||'<li>In progress</li>'}</ul></body></html>`;
- dl(new Blob([h],{type:'text/html'}),'portfolio.html')}
-$('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeAdd()});
-addEventListener('keydown',e=>{if(e.key==='Escape')closeAdd()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&dr)closeDr()});
 addEventListener('hashchange',()=>{page=(location.hash||'#dash').slice(1);render()});
-
-/* ============ BOOT ============ */
-(function(){let d=null;try{d=JSON.parse(localStorage.getItem(LS))}catch(e){}
- if(!apply(d))defaults();recompute();render();initBackends()})();
+render();
 </script>
 </body>
 </html>
