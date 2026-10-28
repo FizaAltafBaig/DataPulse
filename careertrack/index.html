@@ -1,56 +1,139 @@
 html<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CareerTrack - Free JobReady Tracker</title><script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>body{font-family:Inter,sans-serif}</style></head>
-<body class="bg-[#0a0a0a] text-white min-h-screen">
-<div class="flex"><div class="w-64 bg-[#111] min-h-screen p-6 hidden md:block border-r border-zinc-800">
-<h1 class="text-xl font-bold">CareerTrack<span class="text-purple-500">.</span></h1><p class="text-xs text-zinc-500">Free for Students • No Fees</p>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerTrack - Free for Students</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#0a0a0f;color:white}
+.glass{background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1)}
+.card-hover:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.4);transition:0.3s}
+.progress-fill{background:linear-gradient(90deg,#8b5cf6,#ec4899)}
+</style>
+</head>
+<body class="min-h-screen">
+<div class="flex">
+<!-- Sidebar -->
+<div class="w-64 glass min-h-screen p-6 fixed hidden md:block">
+<h1 class="text-2xl font-extrabold">CareerTrack<span class="text-violet-400">.</span></h1>
+<p class="text-xs text-gray-400 mt-1">Free for Students • No Fees</p>
 <nav class="mt-8 space-y-2">
-<button onclick="showTab('dashboard')" class="w-full text-left px-4 py-2 rounded-lg bg-purple-600">📊 Dashboard</button>
-<button onclick="showTab('skills')" class="w-full text-left px-4 py-2 rounded-lg hover:bg-zinc-800">🧠 Skills</button>
-<button onclick="showTab('interview')" class="w-full text-left px-4 py-2 rounded-lg hover:bg-zinc-800">💼 Interview Prep</button>
-<button onclick="showTab('jobs')" class="w-full text-left px-4 py-2 rounded-lg hover:bg-zinc-800">🎯 Job Roles</button>
+<button onclick="showTab('dashboard')" id="btn-dashboard" class="w-full text-left px-4 py-3 rounded-xl bg-violet-600 font-semibold"><i class="fas fa-chart-line mr-2"></i>Dashboard</button>
+<button onclick="showTab('skills')" id="btn-skills" class="w-full text-left px-4 py-3 rounded-xl hover:bg-white/10"><i class="fas fa-brain mr-2"></i>Skills</button>
+<button onclick="showTab('interview')" id="btn-interview" class="w-full text-left px-4 py-3 rounded-xl hover:bg-white/10"><i class="fas fa-comments mr-2"></i>Interview Prep</button>
 </nav>
-<div class="mt-8 p-4 bg-zinc-900 rounded-xl border border-zinc-800"><p class="text-xs text-zinc-400">JOB READY SCORE</p>
-<div class="mt-2 relative w-24 h-24 mx-auto"><svg class="w-24 h-24 -rotate-90"><circle cx="48" cy="48" r="40" stroke="#27272a" stroke-width="8" fill="none"/><circle id="readyCircle" cx="48" cy="48" r="40" stroke="#8b5cf6" stroke-width="8" fill="none" stroke-dasharray="251" stroke-dashoffset="120" stroke-linecap="round"/></svg>
-<span id="readyText" class="absolute inset-0 flex items-center justify-center text-2xl font-bold">0%</span></div><p id="readyMsg" class="text-xs text-center mt-2 text-yellow-400"></p></div></div>
-<div class="flex-1 p-4 md:p-8"><div class="flex justify-between items-center mb-6"><div><h2 class="text-2xl font-bold">My Courses</h2><p class="text-xs text-zinc-500">Track YouTube, Udemy, Coursera in one place</p></div>
-<button onclick="openModal()" class="bg-purple-600 px-5 py-2 rounded-full font-semibold hover:bg-purple-700">+ Add Course</button></div>
-<div id="dashboard" class="tab-content"><div id="coursesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div></div>
-<div id="skills" class="tab-content hidden"><h3 class="text-xl font-bold mb-4">Your Unlocked Skills</h3><div id="skillsList" class="space-y-4"></div></div>
-<div id="interview" class="tab-content hidden"><h3 class="text-xl font-bold mb-4">Interview Questions</h3><div id="questionsList" class="space-y-3"></div></div>
-<div id="jobs" class="tab-content hidden"><h3 class="text-xl font-bold mb-4">Career Paths - No Fees, Just Skills</h3><div id="jobsList" class="grid md:grid-cols-2 gap-4"></div></div></div></div>
-<div id="modal" class="fixed inset-0 bg-black/70 hidden items-center justify-center p-4 z-50 flex"><div class="bg-zinc-900 p-6 rounded-2xl w-full max-w-md border border-zinc-800">
-<h3 class="font-bold text-lg mb-4">Add New Course</h3><input id="cName" placeholder="Course Name" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 mb-3">
-<select id="cSource" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 mb-3"><option>YouTube</option><option>Udemy</option><option>Coursera</option><option>Custom</option></select>
-<input id="cTotal" type="number" placeholder="Total Videos" class="w-full p-3 rounded-lg bg-zinc-800 border border-zinc-700 mb-4">
-<div class="flex gap-3"><button onclick="closeModal()" class="flex-1 py-2 rounded-lg bg-zinc-800">Cancel</button><button onclick="addCourse()" class="flex-1 py-2 rounded-lg bg-purple-600">Add</button></div></div></div>
+<div class="mt-8 glass rounded-2xl p-5 text-center">
+<p class="text-xs text-gray-400">JOB READY SCORE</p>
+<div class="mt-3 w-20 h-20 mx-auto rounded-full flex items-center justify-center text-xl font-bold" style="background:conic-gradient(#8b5cf6 var(--p), #222 0);--p:25%" id="scoreRing"><span id="scoreNum" class="bg-[#0a0a0f] w-16 h-16 rounded-full flex items-center justify-center">25%</span></div>
+<p class="text-xs mt-2 text-violet-300" id="scoreMsg">Keep learning!</p>
+</div>
+</div>
+
+<!-- Main -->
+<div class="flex-1 md:ml-64 p-4 md:p-8">
+<!-- Dashboard -->
+<div id="tab-dashboard">
+<div class="flex justify-between items-center mb-6">
+<div><h2 class="text-3xl font-bold">My Courses 🚀</h2><p class="text-gray-400 text-sm">Track YouTube, Udemy, Coursera in one place</p></div>
+<button onclick="localStorage.clear();location.reload()" class="text-xs bg-white/10 px-3 py-2 rounded-lg">Reset</button>
+</div>
+<div id="coursesGrid" class="grid md:grid-cols-2 gap-6"></div>
+</div>
+
+<!-- Skills -->
+<div id="tab-skills" class="hidden">
+<h2 class="text-3xl font-bold mb-6">Skill Tracker 💎</h2>
+<div class="grid md:grid-cols-3 gap-4" id="skillsGrid"></div>
+</div>
+
+<!-- Interview -->
+<div id="tab-interview" class="hidden">
+<h2 class="text-3xl font-bold mb-6">Interview Prep 🎯</h2>
+<div class="glass rounded-2xl p-6">
+<ul class="space-y-3 text-sm">
+<li>✅ What is difference between WHERE and HAVING in SQL?</li>
+<li>✅ Explain Python list vs tuple?</li>
+<li>✅ What is Power BI DAX?</li>
+<li>✅ Overfitting vs Underfitting in ML?</li>
+<li>✅ Tell me about a Data Science project you did?</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
 <script>
-let courses = JSON.parse(localStorage.getItem('ct_courses_clean')) || [
-{name:"Python for Beginners", source:"YouTube", total:15, done:9, videos:Array.from({length:15},(_,i)=>({title:`Video ${i+1}`, checked:i<9}))},
-{name:"SQL Mastery", source:"Udemy", total:20, done:6, videos:Array.from({length:20},(_,i)=>({title:`SQL Lecture ${i+1}`, checked:i<6}))},
-{name:"Power BI", source:"Custom", total:10, done:0, videos:Array.from({length:10},(_,i)=>({title:`Power BI Part ${i+1}`, checked:false}))},
-{name:"Machine Learning", source:"YouTube", total:25, done:4, videos:Array.from({length:25},(_,i)=>({title:`ML Lecture ${i+1}`, checked:i<4}))},
-{name:"Data Science Fundamentals", source:"Coursera", total:18, done:2, videos:Array.from({length:18},(_,i)=>({title:`DS Module ${i+1}`, checked:i<2}))}
+let courses=[
+{id:'py',name:'Python for Beginners',platform:'YouTube',color:'from-yellow-400 to-orange-500',icon:'fab fa-python',videos:['Setup & Hello World','Variables & Data Types','If Else & Loops','Functions','Lists & Dictionaries','File Handling','OOP Basics','Final Project']},
+{id:'sql',name:'SQL Mastery',platform:'Udemy',color:'from-blue-400 to-cyan-500',icon:'fas fa-database',videos:['SELECT & WHERE','JOINs - INNER/LEFT','GROUP BY & HAVING','Subqueries','Window Functions','Indexes & Performance','Real Interview Queries']},
+{id:'pbi',name:'Power BI',platform:'Coursera',color:'from-amber-400 to-yellow-600',icon:'fas fa-chart-bar',videos:['Import Data & Power Query','Data Modeling','DAX Basics - Measures','Visuals & Charts','Dashboard Design','Publishing & Sharing']},
+{id:'ml',name:'Machine Learning',platform:'YouTube',color:'from-pink-500 to-rose-500',icon:'fas fa-robot',videos:['What is ML?','Linear Regression','Decision Trees','Overfitting','Train Test Split','Build First Model']},
+{id:'ds',name:'Data Science Fundamentals',platform:'Coursera',color:'from-violet-500 to-purple-600',icon:'fas fa-brain',videos:['DS Lifecycle','Statistics Basics','Data Cleaning','EDA - Exploratory Analysis','Storytelling with Data','Capstone']},
 ];
-const skillMap={"Python for Beginners":["Python"],"SQL Mastery":["SQL"],"Power BI":["Power BI"],"Machine Learning":["Machine Learning"],"Data Science Fundamentals":["Data Science"]};
-const jobs=[{name:"Data Analyst", needs:{Python:70, SQL:70, "Power BI":60}, loc:"Islamabad / Remote"},
-{name:"Data Scientist", needs:{"Machine Learning":70, Python:80, "Data Science":70}, loc:"Remote / Islamabad"},
-{name:"Python Developer", needs:{Python:80}, loc:"Remote"},
-{name:"ML Engineer", needs:{"Machine Learning":80, Python:85, "Data Science":65}, loc:"Remote / Lahore"}];
-const questionsBank={Python:["What is difference between list and tuple?"],SQL:["Difference WHERE vs HAVING?"],"Power BI":["What is DAX?"],"Machine Learning":["What is overfitting?"],"Data Science":["Explain EDA process"]};
-function save(){localStorage.setItem('ct_courses_clean', JSON.stringify(courses)); render();}
-function showTab(t){document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));document.getElementById(t).classList.remove('hidden');}
-function openModal(){document.getElementById('modal').classList.remove('hidden');}
-function closeModal(){document.getElementById('modal').classList.add('hidden');}
-function addCourse(){const name=document.getElementById('cName').value;const source=document.getElementById('cSource').value;const total=parseInt(document.getElementById('cTotal').value)||10;if(!name)return;courses.push({name, source, total, done:0, videos:Array.from({length:total},(_,i)=>({title:`${name} - Part ${i+1}`, checked:false}))});save();closeModal();}
-function toggleVideo(ci,vi){courses[ci].videos[vi].checked=!courses[ci].videos[vi].checked;courses[ci].done=courses[ci].videos.filter(v=>v.checked).length;save();}
-function render(){const grid=document.getElementById('coursesGrid');grid.innerHTML='';let totalSkills={};
-courses.forEach((c,ci)=>{const pct=Math.round((c.done/c.total)*100);if(pct>=70){(skillMap[c.name]||[c.name]).forEach(s=>totalSkills[s]=Math.max(totalSkills[s]||0,pct));}
-grid.innerHTML+=`<div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-5"><div class="flex justify-between"><span class="text-xs px-2 py-1 bg-zinc-800 rounded-full">${c.source}</span><span class="text-xs text-purple-400">${pct}%</span></div><h4 class="font-bold mt-3">${c.name}</h4><div class="w-full h-2 bg-zinc-800 rounded-full mt-3"><div class="h-2 bg-purple-600 rounded-full" style="width:${pct}%"></div></div><p class="text-xs text-zinc-500 mt-2">${c.done}/${c.total} videos</p><div class="mt-4 space-y-1 max-h-32 overflow-y-auto">${c.videos.map((v,vi)=>`<label class="flex gap-2 text-xs"><input type="checkbox" ${v.checked?'checked':''} onchange="toggleVideo(${ci},${vi})"><span class="${v.checked?'line-through text-zinc-500':''}">${v.title}</span></label>`).join('')}</div></div>`;});
-let avgReady=Object.keys(totalSkills).length>0?Math.round(Object.values(totalSkills).reduce((a,b)=>a+b,0)/Object.values(totalSkills).length):25;
-const circle=document.getElementById('readyCircle');const offset=251-(251*avgReady/100);circle.style.strokeDashoffset=offset;circle.setAttribute('stroke', avgReady<40?'#ef4444':avgReady<70?'#eab308':'#22c55e');document.getElementById('readyText').textContent=avgReady+'%';document.getElementById('readyMsg').textContent=avgReady<40?'Keep learning!':avgReady<70?'Junior roles ready!':'Apply now - Ready!';
-const jobsDiv=document.getElementById('jobsList');jobsDiv.innerHTML='';jobs.forEach(job=>{let score=0,count=0;Object.entries(job.needs).forEach(([need,req])=>{const have=totalSkills[need]||0;score+=Math.min(have,req)/req*100;count++;});const jobPct=Math.round(score/count);jobsDiv.innerHTML+=`<div class="bg-zinc-900 p-5 rounded-xl border border-zinc-800"><div class="flex justify-between"><h4 class="font-bold">${job.name}</h4><span class="text-sm ${jobPct>70?'text-green-400':'text-yellow-400'}">${jobPct}% Ready</span></div><p class="text-xs text-zinc-500 mt-1">${job.loc} • Free Path</p><div class="w-full h-2 bg-zinc-800 rounded-full mt-3"><div class="h-2 ${jobPct>70?'bg-green-500':'bg-yellow-500'} rounded-full" style="width:${jobPct}%"></div></div></div>`;});
-const qDiv=document.getElementById('questionsList');qDiv.innerHTML='';Object.entries(totalSkills).forEach(([skill])=>{(questionsBank[skill]||[]).forEach(q=>{qDiv.innerHTML+=`<div class="bg-zinc-900 p-4 rounded-xl border border-zinc-800"><span class="text-xs px-2 py-1 bg-purple-900/30 text-purple-300 rounded-full">${skill}</span><p class="mt-2 text-sm">${q}</p></div>`;});});}
-render();</script></body></html>
+
+let saved=JSON.parse(localStorage.getItem('ct_v2')||'{}');
+function save(){localStorage.setItem('ct_v2',JSON.stringify(saved))}
+
+function render(){
+let grid=document.getElementById('coursesGrid');
+grid.innerHTML=courses.map(c=>{
+let done=saved[c.id]||[];
+let pct=Math.round((done.length/c.videos.length)*100);
+return `<div class="glass rounded-2xl overflow-hidden card-hover">
+<div class="h-2 bg-gradient-to-r ${c.color}"></div>
+<div class="p-5">
+<div class="flex justify-between items-start mb-3">
+<div><span class="text-[10px] px-2 py-1 rounded-full bg-white/10">${c.platform}</span>
+<h3 class="font-bold mt-2 flex items-center gap-2"><i class="${c.icon}"></i>${c.name}</h3></div>
+<span class="text-xs font-bold text-violet-300">${pct}%</span>
+</div>
+<div class="w-full h-2 bg-white/10 rounded-full mb-3"><div class="h-2 rounded-full progress-fill" style="width:${pct}%"></div></div>
+<div class="space-y-2 max-h-48 overflow-y-auto pr-2">
+${c.videos.map((v,i)=>{
+let checked=done.includes(i)?'checked':'';
+return `<label class="flex items-center gap-2 text-[13px] hover:bg-white/5 p-1.5 rounded-lg cursor-pointer"><input type="checkbox" ${checked} onchange="toggle('${c.id}',${i})" class="rounded"> <span class="${checked?'line-through text-gray-500':''}">${v}</span></label>`
+}).join('')}
+</div>
+</div>
+</div>`
+}).join('');
+updateScore();
+let sg=document.getElementById('skillsGrid');
+sg.innerHTML=courses.map(c=>{
+let done=saved[c.id]||[];let pct=Math.round((done.length/c.videos.length)*100);
+return `<div class="glass rounded-xl p-4"><div class="h-1 bg-gradient-to-r ${c.color} rounded-full mb-3" style="width:${pct}%"></div><h4 class="font-semibold text-sm">${c.name}</h4><p class="text-xs text-gray-400 mt-1">${pct}% Completed</p></div>`
+}).join('');
+}
+
+function toggle(cid,idx){
+if(!saved[cid])saved[cid]=[];
+if(saved[cid].includes(idx))saved[cid]=saved[cid].filter(x=>x!==idx);
+else saved[cid].push(idx);
+save();render();
+}
+
+function updateScore(){
+let total=0,completed=0;
+courses.forEach(c=>{total+=c.videos.length;completed+=(saved[c.id]||[]).length});
+let score=total?Math.round((completed/total)*100):0;
+if(score<25)score=25;
+document.getElementById('scoreNum').innerText=score+'%';
+document.getElementById('scoreRing').style.setProperty('--p',score+'%');
+document.getElementById('scoreMsg').innerText=score<50?'Keep learning!':score<80?'Almost there!':'Job Ready! 🚀';
+}
+
+function showTab(t){
+['dashboard','skills','interview'].forEach(x=>{
+document.getElementById('tab-'+x).classList.add('hidden');
+document.getElementById('btn-'+x).classList.remove('bg-violet-600');
+});
+document.getElementById('tab-'+t).classList.remove('hidden');
+document.getElementById('btn-'+t).classList.add('bg-violet-600');
+}
+render();
+</script>
+</body>
+</html>
