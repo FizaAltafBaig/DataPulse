@@ -1,22 +1,711 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title>DataPulse - Services by Fiza</title>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DataPulse — AI Engineering & Data Strategy Agency</title>
+<meta name="description" content="DataPulse is an AI engineering and data strategy agency by Fiza. We build data pipelines, AI chatbots, ML models and production APIs that drive measurable business growth.">
+<meta name="theme-color" content="#07080c">
+<meta property="og:title" content="DataPulse — AI Engineering That Drives Growth">
+<meta property="og:description" content="Data engineering, AI solutions and API development for ambitious businesses.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307080c'/%3E%3Cpath d='M5 17h5l3-8 5 15 3-7h6' fill='none' stroke='%238b7cff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"DataPulse","description":"AI Engineering & Data Strategy Agency","founder":{"@type":"Person","name":"Fiza"},"address":{"@type":"PostalAddress","addressLocality":"Islamabad","addressCountry":"PK"},"areaServed":"Worldwide","serviceType":["Data Engineering","AI Solutions","API Development"]}
+</script>
 <style>
-body{font-family:Arial;padding:40px;background:#f9f9f9;text-align:center}
-.card{background:white;padding:40px;border-radius:12px;max-width:600px;margin:auto;box-shadow:0 2px 10px #ddd}
-.btn{display:inline-block;padding:12px 20px;background:#000;color:#fff;border-radius:8px;text-decoration:none;margin:10px}
+:root{
+  --bg:#07080c; --bg-2:#0c0e14; --surface:#10131b; --surface-2:#151925;
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.14);
+  --text:#eef0f6; --muted:#9aa1b4; --dim:#6b7289;
+  --accent:#8b7cff; --accent-2:#36d6c3; --accent-3:#ff7ab6;
+  --grad:linear-gradient(120deg,#8b7cff 0%,#36d6c3 55%,#7ce0ff 100%);
+  --radius:16px; --max:1180px;
+  --shadow:0 20px 60px -20px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button,input,textarea,select{font:inherit;color:inherit}
+::selection{background:rgba(139,124,255,.35)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#000;padding:8px 14px;border-radius:8px;z-index:100}
+.skip:focus{left:8px}
+
+/* NAV */
+header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(7,8,12,.72);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:18px}
+.logo-mark{width:30px;height:30px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line-2);display:grid;place-items:center}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{padding:8px 14px;border-radius:8px;color:var(--muted);font-size:14px;font-weight:500;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.menu-btn{display:none;background:none;border:1px solid var(--line-2);border-radius:10px;width:40px;height:40px;cursor:pointer}
+.menu-btn span{display:block;width:18px;height:1.5px;background:var(--text);margin:4px auto;transition:.3s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:10px;font-weight:600;font-size:14.5px;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;white-space:nowrap}
+.btn-primary{background:var(--text);color:#07080c}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 30px -10px rgba(139,124,255,.7)}
+.btn-ghost{background:rgba(255,255,255,.03);border-color:var(--line-2);color:var(--text)}
+.btn-ghost:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.24)}
+.btn-lg{padding:14px 24px;font-size:15.5px;border-radius:12px}
+.btn svg{width:16px;height:16px;transition:transform .2s}
+.btn:hover svg{transform:translateX(3px)}
+
+/* HERO */
+.hero{position:relative;padding:168px 0 110px;overflow:hidden;isolation:isolate}
+.hero-grid{position:absolute;inset:0;z-index:-2;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 30%,transparent 75%);opacity:.55}
+.glow{position:absolute;z-index:-1;border-radius:50%;filter:blur(90px);opacity:.5;pointer-events:none}
+.glow-1{width:560px;height:560px;background:#5b47ff;top:-180px;left:50%;transform:translateX(-70%)}
+.glow-2{width:420px;height:420px;background:#13b5a2;top:-60px;left:55%;opacity:.32}
+.hero-inner{text-align:center;max-width:900px;margin:0 auto}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border:1px solid var(--line-2);border-radius:999px;background:rgba(255,255,255,.03);font-size:13px;color:var(--muted);margin-bottom:28px}
+.pill b{background:rgba(139,124,255,.16);color:#c3baff;font-weight:600;padding:3px 10px;border-radius:999px;font-size:12px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 4px rgba(54,214,195,.16);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(54,214,195,0)}}
+h1{font-size:clamp(40px,7vw,80px);line-height:1.02;letter-spacing:-.045em;font-weight:700}
+.hero p.lead{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:640px;margin:26px auto 38px}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.trust-row{margin-top:64px;display:flex;justify-content:center;gap:12px 36px;flex-wrap:wrap;color:var(--dim);font-size:13px}
+.trust-row span{display:flex;align-items:center;gap:8px}
+.trust-row svg{width:16px;height:16px;color:var(--accent-2)}
+
+/* TERMINAL */
+.console{margin:72px auto 0;max-width:880px;border:1px solid var(--line-2);border-radius:18px;background:linear-gradient(180deg,rgba(21,25,37,.9),rgba(12,14,20,.95));box-shadow:var(--shadow),0 0 0 1px rgba(139,124,255,.06) inset;overflow:hidden;text-align:left}
+.console-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.console-bar i{width:11px;height:11px;border-radius:50%;background:#2a2f3d}
+.console-bar small{margin-left:10px;color:var(--dim);font-size:12px}
+.console-body{display:grid;grid-template-columns:1.25fr 1fr}
+.code{padding:22px 24px;font-size:13px;line-height:1.85;color:#b9bfd0;border-right:1px solid var(--line);overflow:hidden}
+.code .k{color:#c3baff}.code .s{color:#7fe3d4}.code .c{color:var(--dim)}.code .f{color:#7ce0ff}
+.metrics{padding:22px;display:grid;gap:12px;align-content:start}
+.metric{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.02)}
+.metric small{color:var(--dim);font-size:11.5px;text-transform:uppercase;letter-spacing:.08em}
+.metric strong{display:block;font-size:22px;letter-spacing:-.02em;margin-top:2px}
+.bars{display:flex;align-items:flex-end;gap:5px;height:48px;margin-top:8px}
+.bars i{flex:1;border-radius:3px 3px 0 0;background:var(--grad);opacity:.85;transform-origin:bottom;animation:grow 1.2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes grow{from{transform:scaleY(0)}}
+
+/* SECTIONS */
+section{position:relative}
+.section{padding:120px 0}
+.eyebrow{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+h2{font-size:clamp(32px,4.6vw,52px);line-height:1.08;letter-spacing:-.035em;font-weight:700}
+.section-head{max-width:680px;margin-bottom:60px}
+.section-head p{color:var(--muted);font-size:18px;margin-top:18px}
+.center{text-align:center;margin-left:auto;margin-right:auto}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line-2),transparent)}
+
+/* SERVICES */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:30px;transition:border-color .3s,transform .3s;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),rgba(139,124,255,.12),transparent 45%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.card:hover::before{opacity:1}
+.icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);border:1px solid var(--line-2);margin-bottom:22px}
+.icon svg{width:22px;height:22px}
+.card h3{font-size:21px;letter-spacing:-.02em;margin-bottom:10px}
+.card > p{color:var(--muted);font-size:15px;margin-bottom:22px}
+.checks{list-style:none;display:grid;gap:10px;font-size:14.5px;color:#c9cede}
+.checks li{display:flex;gap:10px;align-items:flex-start}
+.checks li::before{content:"";flex:none;width:16px;height:16px;margin-top:3px;border-radius:50%;background:rgba(54,214,195,.14) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%2336d6c3' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px;padding-top:22px;border-top:1px solid var(--line)}
+.tag{font-family:"JetBrains Mono",monospace;font-size:11.5px;padding:4px 9px;border-radius:6px;border:1px solid var(--line);color:var(--muted);background:rgba(255,255,255,.02)}
+
+/* PROCESS */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--bg-2)}
+.step{padding:30px 26px;border-right:1px solid var(--line)}
+.step:last-child{border-right:0}
+.step .num{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--accent)}
+.step h4{font-size:17px;margin:14px 0 8px;letter-spacing:-.01em}
+.step p{color:var(--muted);font-size:14.5px}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;border-radius:22px;border:1px solid var(--line-2);background:radial-gradient(120% 80% at 30% 10%,rgba(139,124,255,.35),transparent 55%),radial-gradient(90% 70% at 90% 100%,rgba(54,214,195,.25),transparent 55%),var(--surface);overflow:hidden;display:grid;place-items:center}
+.portrait .initial{font-size:150px;font-weight:700;letter-spacing:-.06em;line-height:1;opacity:.95}
+.portrait .badge{position:absolute;left:18px;right:18px;bottom:18px;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:14px;background:rgba(7,8,12,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line-2);font-size:13.5px}
+.portrait .badge small{color:var(--muted);display:block;font-size:12px}
+.status{display:flex;align-items:center;gap:8px;color:var(--accent-2);font-weight:600;font-size:12.5px}
+.about-copy p{color:var(--muted);font-size:17px;margin-top:18px}
+.about-copy p strong{color:var(--text);font-weight:600}
+.timeline{margin-top:34px;display:grid;gap:0;border-left:1px solid var(--line-2);padding-left:24px}
+.tl{position:relative;padding:0 0 20px}
+.tl::before{content:"";position:absolute;left:-29px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl b{font-size:15px}
+.tl span{display:block;color:var(--dim);font-size:13.5px}
+.socials{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+
+/* PROJECTS */
+.projects{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+.feature{grid-row:span 2;display:flex;flex-direction:column;padding:0}
+.feature .shot{aspect-ratio:16/10;border-bottom:1px solid var(--line);background:linear-gradient(160deg,#151a2a,#0b0d13);position:relative;overflow:hidden;padding:26px}
+.mock{height:100%;border-radius:12px;border:1px solid var(--line-2);background:#0c0f17;padding:16px;display:grid;grid-template-rows:auto 1fr;gap:14px;box-shadow:var(--shadow)}
+.mock-top{display:flex;gap:8px;align-items:center}
+.mock-top i{height:8px;border-radius:4px;background:#232839}
+.mock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mock-grid div{border-radius:8px;background:#141927;border:1px solid var(--line);position:relative;overflow:hidden}
+.mock-grid div::after{content:"";position:absolute;left:12%;right:12%;bottom:16%;height:34%;border-radius:4px;background:var(--grad);opacity:.25}
+.mock-grid .wide{grid-column:span 2}
+.feature .body{padding:30px}
+.label{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#c3baff;background:rgba(139,124,255,.12);border:1px solid rgba(139,124,255,.25);padding:4px 10px;border-radius:999px;margin-bottom:14px}
+.link-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;margin-top:20px;color:var(--text)}
+.link-arrow svg{width:16px;height:16px;transition:transform .2s}
+.link-arrow:hover svg{transform:translate(3px,-3px)}
+.mini h3{font-size:19px}
+
+/* ENGAGEMENT */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.plan{display:flex;flex-direction:column}
+.plan .tagline{color:var(--dim);font-size:13px;font-family:"JetBrains Mono",monospace;margin-bottom:12px}
+.plan .when{font-size:14px;color:var(--muted);margin:4px 0 22px}
+.plan .checks{margin-bottom:28px;flex:1}
+.plan.popular{border-color:rgba(139,124,255,.45);background:linear-gradient(180deg,rgba(139,124,255,.08),var(--surface) 40%)}
+.plan .corner{position:absolute;top:18px;right:18px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--grad);color:#07080c}
+
+/* FAQ */
+.faq{max-width:820px;margin:0 auto;display:grid;gap:10px}
+details{border:1px solid var(--line);border-radius:14px;background:var(--surface);transition:border-color .2s}
+details[open]{border-color:var(--line-2)}
+summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:600;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:22px;font-weight:400;color:var(--muted);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 24px 22px;color:var(--muted);font-size:15.5px}
+
+/* CONTACT */
+.contact{border:1px solid var(--line-2);border-radius:24px;background:radial-gradient(80% 120% at 0% 0%,rgba(139,124,255,.16),transparent 50%),radial-gradient(70% 100% at 100% 100%,rgba(54,214,195,.10),transparent 50%),var(--bg-2);padding:56px;display:grid;grid-template-columns:1fr 1.15fr;gap:56px}
+.contact-info p{color:var(--muted);font-size:17px;margin:18px 0 30px}
+.contact-list{display:grid;gap:12px}
+.contact-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);transition:border-color .2s,background .2s}
+.contact-item:hover{border-color:var(--line-2);background:rgba(255,255,255,.04)}
+.contact-item svg{width:20px;height:20px;color:var(--accent);flex:none}
+.contact-item small{display:block;color:var(--dim);font-size:12px}
+.contact-item span{font-size:14.5px;font-weight:500;word-break:break-word}
+form{display:grid;gap:16px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:7px}
+.field label{font-size:13px;color:var(--muted);font-weight:500}
+.field input,.field textarea,.field select{width:100%;background:rgba(7,8,12,.6);border:1px solid var(--line-2);border-radius:10px;padding:12px 14px;font-size:15px;transition:border-color .2s,box-shadow .2s}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%239aa1b4' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:38px}
+.field select option{background:#10131b}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(139,124,255,.15)}
+.form-note{font-size:13px;color:var(--dim)}
+.form-status{font-size:14px;min-height:20px}
+.form-status.ok{color:var(--accent-2)}.form-status.err{color:var(--accent-3)}
+.hp{position:absolute;left:-9999px}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:56px 0 40px;margin-top:40px}
+.foot{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.foot p{color:var(--dim);font-size:14px;max-width:320px;margin-top:14px}
+.foot-cols{display:flex;gap:64px;flex-wrap:wrap}
+.foot-cols h5{font-size:13px;color:var(--text);margin-bottom:14px;font-weight:600}
+.foot-cols ul{list-style:none;display:grid;gap:9px}
+.foot-cols a{color:var(--muted);font-size:14px;transition:color .2s}
+.foot-cols a:hover{color:var(--text)}
+.copyright{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--dim);font-size:13px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* RESPONSIVE */
+@media (max-width:980px){
+  .services,.plans{grid-template-columns:1fr}
+  .process{grid-template-columns:1fr 1fr}
+  .step:nth-child(2){border-right:0}
+  .step:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .about,.contact{grid-template-columns:1fr}
+  .about{gap:44px}
+  .portrait{max-width:420px}
+  .projects{grid-template-columns:1fr}
+  .feature{grid-row:auto}
+  .contact{padding:36px 26px;gap:40px}
+}
+@media (max-width:820px){
+  .nav-links,.nav-cta .btn-ghost{display:none}
+  .menu-btn{display:block}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(7,8,12,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:12px 16px 20px}
+  .nav-links.open a{padding:14px 12px;font-size:16px}
+  .console-body{grid-template-columns:1fr}
+  .code{border-right:0;border-bottom:1px solid var(--line);font-size:12px}
+  .metrics{grid-template-columns:1fr 1fr}
+  .metrics .metric:last-child{grid-column:span 2}
+}
+@media (max-width:560px){
+  .wrap{padding:0 16px}
+  .hero{padding:130px 0 80px}
+  .section{padding:84px 0}
+  .process{grid-template-columns:1fr}
+  .step{border-right:0;border-bottom:1px solid var(--line)}
+  .step:last-child{border-bottom:0}
+  .row{grid-template-columns:1fr}
+  .card{padding:24px}
+  .nav-cta .btn-primary{padding:9px 14px;font-size:13.5px}
+  .hero-actions .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
-<div class="card">
-<h1>DataPulse</h1>
-<p>Professional Services by Fiza</p>
-<hr>
-<p>We provide Data Services & Career Solutions to help you earn and grow.</p>
-<p><a class="btn" href="careertrack/">View My Project: CareerTrack</a></p>
-<p><a class="btn" href="mailto:fiza@example.com">Contact for Services</a></p>
-</div>
+<a class="skip" href="#main">Skip to content</a>
+
+<header id="top-bar">
+  <nav class="wrap nav" aria-label="Main">
+    <a href="#" class="logo" aria-label="DataPulse home">
+      <span class="logo-mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#8b7cff"/><stop offset="1" stop-color="#36d6c3"/></linearGradient></defs><path d="M3 17h6l3.5-9 6 17 3.5-8H29" fill="none" stroke="url(#lg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      DataPulse
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#engage">Engagements</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#projects" class="btn btn-ghost">See work</a>
+      <a href="#contact" class="btn btn-primary">Book a call</a>
+      <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="glow glow-1" aria-hidden="true"></div>
+  <div class="glow glow-2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="pill reveal"><b>Now booking</b><span class="dot" aria-hidden="true"></span> New client projects for this quarter</div>
+      <h1 class="reveal d1">AI Engineering<br>That <span class="grad-text">Drives Growth</span></h1>
+      <p class="lead reveal d2">DataPulse designs and ships production-grade data pipelines, AI assistants and APIs — so your business makes faster decisions, automates the busywork, and turns data into revenue.</p>
+      <div class="hero-actions reveal d3">
+        <a href="#contact" class="btn btn-primary btn-lg">Start your project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a href="#services" class="btn btn-ghost btn-lg">Explore services</a>
+      </div>
+      <div class="trust-row reveal d3">
+        <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3.5 8.2l3 3 6-6"/></svg>Fixed-scope proposals</span>
+        <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3.5 8.2l3 3 6-6"/></svg>Weekly progress updates</span>
+        <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3.5 8.2l3 3 6-6"/></svg>You own 100% of the code</span>
+        <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3.5 8.2l3 3 6-6"/></svg>NDA on request</span>
+      </div>
+    </div>
+
+    <div class="console reveal" aria-hidden="true">
+      <div class="console-bar"><i></i><i></i><i></i><small class="mono">datapulse / pipeline.py</small></div>
+      <div class="console-body">
+        <pre class="code mono"><span class="c"># From raw data to business decisions</span>
+<span class="k">from</span> datapulse <span class="k">import</span> Pipeline, Assistant
+
+pipe = Pipeline(source=<span class="s">"sales_db"</span>)
+pipe.<span class="f">clean</span>().<span class="f">enrich</span>().<span class="f">forecast</span>(days=<span class="s">30</span>)
+
+bot = Assistant(knowledge=pipe.docs)
+bot.<span class="f">deploy</span>(channel=<span class="s">"whatsapp"</span>)
+
+<span class="c"># ✓ deployed · api live · monitoring on</span></pre>
+        <div class="metrics">
+          <div class="metric"><small>Pipeline status</small><strong style="color:var(--accent-2)">● Healthy</strong></div>
+          <div class="metric"><small>Forecast · next 30 days</small>
+            <div class="bars"><i style="height:35%"></i><i style="height:48%;animation-delay:.05s"></i><i style="height:42%;animation-delay:.1s"></i><i style="height:60%;animation-delay:.15s"></i><i style="height:56%;animation-delay:.2s"></i><i style="height:72%;animation-delay:.25s"></i><i style="height:80%;animation-delay:.3s"></i><i style="height:94%;animation-delay:.35s"></i></div>
+          </div>
+          <div class="metric"><small>API</small><strong class="mono" style="font-size:15px">POST /v1/predict · 200 OK</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">// Services</span>
+      <h2>Three ways we turn data into <span class="grad-text">growth</span></h2>
+      <p>Focused, end-to-end engineering. No bloated retainers, no black boxes — just systems that work and keep working.</p>
+    </div>
+    <div class="services">
+      <article class="card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8b7cff" stroke-width="1.7" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v6c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-6M4.5 11.5v6c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-6"/></svg></div>
+        <h3>Data Engineering</h3>
+        <p>Reliable pipelines and clean data foundations so every report, dashboard and model runs on numbers you can trust.</p>
+        <ul class="checks">
+          <li>ETL / ELT pipelines & automation</li>
+          <li>Data cleaning, modelling & warehousing</li>
+          <li>Interactive dashboards & KPI reporting</li>
+          <li>Web scraping & data collection</li>
+        </ul>
+        <div class="stack"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Pandas</span><span class="tag">Airflow</span><span class="tag">Power BI</span></div>
+      </article>
+      <article class="card reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#36d6c3" stroke-width="1.7" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3z"/><path d="M18.5 15l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1z"/></svg></div>
+        <h3>AI Solutions</h3>
+        <p>Custom chatbots, ML and deep-learning models built around your business — trained on your data, measured on your goals.</p>
+        <ul class="checks">
+          <li>AI chatbots & assistants (RAG, LLMs)</li>
+          <li>Predictive models & forecasting</li>
+          <li>NLP, classification & computer vision</li>
+          <li>Workflow automation with AI agents</li>
+        </ul>
+        <div class="stack"><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">scikit-learn</span><span class="tag">LLM APIs</span></div>
+      </article>
+      <article class="card reveal d2">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#7ce0ff" stroke-width="1.7" aria-hidden="true"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6M13.5 4l-3 16"/></svg></div>
+        <h3>API Solutions</h3>
+        <p>Fast, secure, documented APIs that put your models and data to work inside your apps, websites and tools.</p>
+        <ul class="checks">
+          <li>REST APIs for ML model serving</li>
+          <li>Third-party & LLM integrations</li>
+          <li>Auth, rate limiting & monitoring</li>
+          <li>Cloud deployment & documentation</li>
+        </ul>
+        <div class="stack"><span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Docker</span><span class="tag">Cloud</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">// Process</span>
+      <h2>Clear steps. No surprises.</h2>
+      <p>You always know what's being built, why, and when it ships.</p>
+    </div>
+    <div class="process reveal">
+      <div class="step"><span class="num">01</span><h4>Discovery call</h4><p>A free 30-minute call to understand your goals, data and constraints.</p></div>
+      <div class="step"><span class="num">02</span><h4>Proposal & scope</h4><p>A written plan with deliverables, timeline and a fixed price before any work starts.</p></div>
+      <div class="step"><span class="num">03</span><h4>Build & iterate</h4><p>Weekly demos and updates so you can steer the work as it takes shape.</p></div>
+      <div class="step"><span class="num">04</span><h4>Launch & support</h4><p>Deployment, documentation, handover, and support after launch.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="wrap about">
+    <div class="portrait reveal" role="img" aria-label="Fiza, founder of DataPulse">
+      <!-- Replace with your photo: <img src="fiza.jpg" alt="Fiza" style="width:100%;height:100%;object-fit:cover"> -->
+      <span class="initial grad-text">F</span>
+      <div class="badge">
+        <div><strong>Fiza</strong><small>Founder & AI Engineer</small></div>
+        <span class="status"><span class="dot" aria-hidden="true"></span>Available</span>
+      </div>
+    </div>
+    <div class="about-copy reveal d1">
+      <span class="eyebrow">// About the founder</span>
+      <h2>Business mind.<br><span class="grad-text">Engineer's hands.</span></h2>
+      <p>Hi, I'm <strong>Fiza</strong> — founder of DataPulse, based in Islamabad and working with clients worldwide. I started in business with a <strong>BBA</strong>, then went deep into <strong>Python, data science, machine learning and deep learning</strong>.</p>
+      <p>That combination is the point: I don't just build models — I build them around <strong>revenue, cost and customer outcomes</strong>. Every project starts with the business question and ends with something your team actually uses.</p>
+      <div class="timeline">
+        <div class="tl"><b>BBA — Business Administration</b><span>Strategy, finance & operations foundation · 2022</span></div>
+        <div class="tl"><b>Python, Data Science & ML</b><span>Analytics, modelling and automation</span></div>
+        <div class="tl"><b>Deep Learning & LLM Engineering</b><span>Neural networks, chatbots and AI products</span></div>
+        <div class="tl" style="padding-bottom:0"><b>Founded DataPulse</b><span>AI engineering & data strategy for growing businesses</span></div>
+      </div>
+      <div class="socials" style="margin-top:30px">
+        <!-- Replace # with your real profile URLs -->
+        <a href="#" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+        <a href="#contact" class="btn btn-primary">Work with me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">// Projects</span>
+      <h2>Built, shipped, <span class="grad-text">live</span></h2>
+      <p>Real products built end-to-end — from idea and data to a working, deployed experience.</p>
+    </div>
+    <div class="projects">
+      <a href="/careertrack/" class="card feature reveal">
+        <div class="shot" aria-hidden="true">
+          <div class="mock">
+            <div class="mock-top"><i style="width:22%"></i><i style="width:12%;margin-left:auto"></i><i style="width:12%"></i></div>
+            <div class="mock-grid"><div class="wide"></div><div></div><div></div><div class="wide"></div></div>
+          </div>
+        </div>
+        <div class="body">
+          <span class="label">● Live product</span>
+          <h3>CareerTrack</h3>
+          <p style="color:var(--muted);font-size:15.5px;margin-top:8px">A career-tracking platform designed and built by DataPulse — product thinking, data design, and a polished front end delivered as one complete web app.</p>
+          <div class="stack" style="border-top:0;padding-top:0;margin-top:18px"><span class="tag">Product design</span><span class="tag">Web app</span><span class="tag">Data</span></div>
+          <span class="link-arrow">View CareerTrack <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M6 5h5v5"/></svg></span>
+        </div>
+      </a>
+      <div class="card mini reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#36d6c3" stroke-width="1.7" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 10h8M8 13h5"/></svg></div>
+        <span class="label">Available to build</span>
+        <h3>AI chatbot for your business</h3>
+        <p style="color:var(--muted);font-size:15px;margin-top:8px">A trained assistant for your website or WhatsApp that answers customers 24/7 from your own documents.</p>
+        <a href="#contact" class="link-arrow">Request a demo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M6 5h5v5"/></svg></a>
+      </div>
+      <div class="card mini reveal d2">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8b7cff" stroke-width="1.7" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <span class="label">Available to build</span>
+        <h3>Sales & KPI dashboard</h3>
+        <p style="color:var(--muted);font-size:15px;margin-top:8px">Automated pipeline and live dashboard that turn messy spreadsheets into decisions — refreshed daily.</p>
+        <a href="#contact" class="link-arrow">Discuss your data <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 11L11 5M6 5h5v5"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ENGAGEMENT -->
+<section id="engage" class="section">
+  <div class="wrap">
+    <div class="section-head center reveal" style="text-align:center">
+      <span class="eyebrow">// Engagements</span>
+      <h2>Pick how we work together</h2>
+      <p>Every engagement comes with a written scope and fixed quote — tailored to your project after a free discovery call.</p>
+    </div>
+    <div class="plans">
+      <div class="card plan reveal">
+        <span class="tagline">01 · SPRINT</span>
+        <h3>Quick Win</h3>
+        <p class="when">Best for a single, well-defined problem.</p>
+        <ul class="checks">
+          <li>One dashboard, model, or automation</li>
+          <li>Delivered in 1–2 weeks</li>
+          <li>Source code & handover doc</li>
+          <li>14 days of post-launch support</li>
+        </ul>
+        <a href="#contact" data-plan="Quick Win Sprint" class="btn btn-ghost plan-btn">Get a quote</a>
+      </div>
+      <div class="card plan popular reveal d1">
+        <span class="corner">Most chosen</span>
+        <span class="tagline">02 · BUILD</span>
+        <h3>Build & Launch</h3>
+        <p class="when">Best for a complete AI product or system.</p>
+        <ul class="checks">
+          <li>End-to-end chatbot, ML system or API</li>
+          <li>Weekly demos & milestone billing</li>
+          <li>Deployment, monitoring & docs</li>
+          <li>30 days of post-launch support</li>
+        </ul>
+        <a href="#contact" data-plan="Build & Launch" class="btn btn-primary plan-btn">Get a quote</a>
+      </div>
+      <div class="card plan reveal d2">
+        <span class="tagline">03 · PARTNER</span>
+        <h3>Monthly Retainer</h3>
+        <p class="when">Best for ongoing data & AI needs.</p>
+        <ul class="checks">
+          <li>Reserved monthly engineering hours</li>
+          <li>Priority turnaround</li>
+          <li>Improvements, reports & maintenance</li>
+          <li>Cancel any month</li>
+        </ul>
+        <a href="#contact" data-plan="Monthly Retainer" class="btn btn-ghost plan-btn">Get a quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="section-head center reveal" style="text-align:center">
+      <span class="eyebrow">// FAQ</span>
+      <h2>Questions clients ask</h2>
+    </div>
+    <div class="faq reveal">
+      <details><summary>Do you work with international clients?</summary><p>Yes. DataPulse is based in Islamabad and works remotely with clients worldwide. Calls are scheduled to fit your time zone, and updates are shared in writing every week.</p></details>
+      <details><summary>How is pricing decided?</summary><p>After a free discovery call, you receive a written proposal with a fixed price, scope and timeline. Larger projects are billed by milestone, so you only pay as work is delivered.</p></details>
+      <details><summary>Who owns the code and the models?</summary><p>You do. On final payment, all source code, trained models and documentation are handed over to you in full.</p></details>
+      <details><summary>Is my data kept confidential?</summary><p>Yes. Your data is used only for your project, never shared, and an NDA can be signed before you share anything sensitive.</p></details>
+      <details><summary>What if I don't know exactly what I need?</summary><p>That's what the discovery call is for. Tell me the business problem — slow reporting, too many support messages, unclear sales trends — and I'll recommend the simplest solution that solves it.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section" style="padding-top:20px">
+  <div class="wrap">
+    <div class="contact reveal">
+      <div class="contact-info">
+        <span class="eyebrow">// Contact</span>
+        <h2>Let's build something that <span class="grad-text">pays for itself.</span></h2>
+        <p>Tell me about your project. You'll get a reply within 24 hours with next steps and a time for a free discovery call.</p>
+        <div class="contact-list">
+          <!-- Replace these with your real details -->
+          <a class="contact-item" href="mailto:hello@datapulse.ai" id="email-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <div><small>Email</small><span>hello@datapulse.ai</span></div>
+          </a>
+          <a class="contact-item" href="https://wa.me/920000000000" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7L4 20z"/><path d="M9 9.5c.3 2 2.2 4 4.5 4.6l1-1.1 1.8.8c-.2 1-1 1.7-2 1.7-3.3 0-6.5-3.2-6.5-6.5 0-1 .7-1.8 1.7-2l.8 1.8-1.3.7z"/></svg>
+            <div><small>WhatsApp</small><span>+92 300 0000000</span></div>
+          </a>
+          <a class="contact-item" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+            <div><small>LinkedIn</small><span>Connect with Fiza</span></div>
+          </a>
+        </div>
+      </div>
+
+      <!--
+        FORM SETUP: Create a free form at https://formspree.io, then replace YOUR_FORM_ID below.
+        Until then, submissions fall back to opening the visitor's email app.
+      -->
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="row">
+          <div class="field"><label for="name">Your name *</label><input id="name" name="name" required autocomplete="name" placeholder="Jane Doe"></div>
+          <div class="field"><label for="email">Work email *</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="jane@company.com"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" placeholder="Company name"></div>
+          <div class="field"><label for="service">Service</label>
+            <select id="service" name="service">
+              <option>AI Solutions</option><option>Data Engineering</option><option>API Solutions</option><option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="budget">Budget range (USD)</label>
+          <select id="budget" name="budget">
+            <option>Under $500</option><option>$500 – $1,500</option><option>$1,500 – $5,000</option><option>$5,000+</option><option>Let's discuss</option>
+          </select>
+        </div>
+        <div class="field"><label for="message">Project details *</label><textarea id="message" name="message" required placeholder="What problem are you trying to solve? Any deadline?"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">Send project request <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form-note">Your details are only used to reply to your enquiry.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#" class="logo"><span class="logo-mark"><svg width="18" height="18" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 17h6l3.5-9 6 17 3.5-8H29" fill="none" stroke="url(#lg)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>DataPulse</a>
+        <p>AI Engineering & Data Strategy Agency by Fiza. Islamabad, Pakistan — serving clients worldwide.</p>
+      </div>
+      <div class="foot-cols">
+        <div><h5>Services</h5><ul><li><a href="#services">Data Engineering</a></li><li><a href="#services">AI Solutions</a></li><li><a href="#services">API Solutions</a></li></ul></div>
+        <div><h5>Company</h5><ul><li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="/careertrack/">CareerTrack</a></li></ul></div>
+        <div><h5>Get in touch</h5><ul><li><a href="#contact">Book a call</a></li><li><a href="mailto:hello@datapulse.ai">Email</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+      </div>
+    </div>
+    <div class="copyright"><span>© <span id="year"></span> DataPulse. All rights reserved.</span><a href="#main">Back to top ↑</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Header on scroll
+  var bar = document.getElementById('top-bar');
+  var onScroll = function(){ bar.classList.toggle('scrolled', window.scrollY > 10); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Mobile menu
+  var btn = document.getElementById('menu-btn'), links = document.getElementById('nav-links');
+  btn.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){
+    links.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+  });});
+
+  // Reveal on scroll
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
+
+  // Card spotlight
+  document.querySelectorAll('.card').forEach(function(c){
+    c.addEventListener('pointermove', function(e){
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // Plan buttons prefill message
+  var msg = document.getElementById('message');
+  document.querySelectorAll('.plan-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(!msg.value) msg.value = 'Hi Fiza, I\'m interested in the "' + b.dataset.plan + '" engagement. ';
+    });
+  });
+
+  // Contact form
+  var form = document.getElementById('contact-form'), status = document.getElementById('form-status'), submit = document.getElementById('submit-btn');
+  var CONTACT_EMAIL = 'hello@datapulse.ai';
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    status.className = 'form-status'; status.textContent = '';
+    var name = form.name.value.trim(), email = form.email.value.trim(), message = form.message.value.trim();
+    if(!name || !message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      status.className = 'form-status err'; status.textContent = 'Please add your name, a valid email and project details.'; return;
+    }
+    if(form._gotcha.value) return;
+    var data = new FormData(form);
+    var configured = form.action.indexOf('YOUR_FORM_ID') === -1;
+    if(!configured){
+      var body = 'Name: '+name+'\nEmail: '+email+'\nCompany: '+form.company.value+'\nService: '+form.service.value+'\nBudget: '+form.budget.value+'\n\n'+message;
+      window.location.href = 'mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent('New project enquiry — '+name)+'&body='+encodeURIComponent(body);
+      status.className = 'form-status ok'; status.textContent = 'Opening your email app to send your request…';
+      return;
+    }
+    submit.disabled = true; submit.style.opacity = .7;
+    fetch(form.action, {method:'POST', body:data, headers:{'Accept':'application/json'}})
+      .then(function(r){
+        if(r.ok){ form.reset(); status.className='form-status ok'; status.textContent='Thank you! Your request was sent — expect a reply within 24 hours.'; }
+        else { throw new Error(); }
+      })
+      .catch(function(){ status.className='form-status err'; status.textContent='Something went wrong. Please email '+CONTACT_EMAIL+' directly.'; })
+      .finally(function(){ submit.disabled = false; submit.style.opacity = 1; });
+  });
+})();
+</script>
 </body>
 </html>
