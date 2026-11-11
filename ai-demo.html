@@ -1,428 +1,661 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataPulse - AI Insights Generator</title>
-    <!-- Tailwind CSS CDN --><!-- SEO, AEO & GEO Schema Metadata -->
-    <meta name="description" content="Explore the live AI Insights Generator demo by DataPulse. Experience automated data pipelines, custom LLM workflows, and production AI engineering.">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "TechArticle",
-      "name": "DataPulse AI Insights Generator & Demo",
-      "url": "https://fizaaltafbaig.github.io/DataPulse/ai-demo.html",
-      "author": {
-        "@type": "Person",
-        "name": "Fizza Altaf Baig"
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataPulse | AI Engineering & Data Strategy</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind + Lucide -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: { ink: { 900: '#020617', 800: '#0F172A' } },
+          keyframes: {
+            float:   { '0%,100%': { transform: 'translate(0,0) scale(1)' }, '33%': { transform: 'translate(30px,-40px) scale(1.08)' }, '66%': { transform: 'translate(-25px,20px) scale(0.95)' } },
+            shimmer: { '0%': { backgroundPosition: '0% 50%' }, '100%': { backgroundPosition: '200% 50%' } },
+            rise:    { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+            ping2:   { '75%,100%': { transform: 'scale(2.4)', opacity: 0 } },
+            scan:    { '0%': { transform: 'translateY(-100%)' }, '100%': { transform: 'translateY(400%)' } },
+            spin3:   { to: { transform: 'rotate(360deg)' } },
+          },
+          animation: {
+            float: 'float 14s ease-in-out infinite',
+            'float-slow': 'float 20s ease-in-out infinite reverse',
+            shimmer: 'shimmer 6s linear infinite',
+            rise: 'rise .9s cubic-bezier(.2,.8,.2,1) both',
+            ping2: 'ping2 1.8s cubic-bezier(0,0,.2,1) infinite',
+            scan: 'scan 4s linear infinite',
+            spin3: 'spin3 6s linear infinite',
+          },
+        },
       },
-      "publisher": {
-        "@type": "Organization",
-        "name": "DataPulse",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://fizaaltafbaig.github.io/DataPulse/"
-        }
-      },
-      "description": "Interactive AI application demo showcasing production-grade machine learning models and automated data processing pipelines."
+    };
+  </script>
+
+  <style>
+    body { background: #020617; }
+    /* Animated grid backdrop */
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(59,130,246,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,.07) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 75%);
     }
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#090d16',
-                        cardBg: 'rgba(15, 23, 42, 0.75)',
-                        accentCyan: '#06b6d4',
-                        accentBlue: '#3b82f6',
-                        accentPurple: '#8b5cf6',
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #090d16;
-            color: #f8fafc;
-            overflow-x: hidden;
-        }
-        /* Custom Glassmorphism */
-        .glass-card {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-input {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .glass-input:focus {
-            border-color: #06b6d4;
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
-        }
-        /* Background Canvas */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-        }
-        /* Glow effects */
-        .glow-cyan {
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
-        }
-        .glow-purple {
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
-        }
-    </style>
+    /* Shimmering gradient text */
+    .text-shimmer {
+      background: linear-gradient(90deg, #3B82F6, #06B6D4, #a5f3fc, #06B6D4, #3B82F6);
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    /* Spotlight card: glow follows cursor */
+    .spot-card { --x: 50%; --y: 50%; }
+    .spot-card::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: radial-gradient(420px circle at var(--x) var(--y), rgba(6,182,212,.14), transparent 45%);
+      opacity: 0; transition: opacity .4s;
+    }
+    .spot-card::after { /* glowing border that follows cursor */
+      content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; padding: 1px;
+      background: radial-gradient(300px circle at var(--x) var(--y), rgba(59,130,246,.9), rgba(6,182,212,.4) 30%, transparent 60%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0; transition: opacity .4s;
+    }
+    .spot-card:hover::before, .spot-card:hover::after { opacity: 1; }
+    /* Rotating conic border for the primary CTA */
+    .cta-ring::before {
+      content: ""; position: absolute; inset: -2px; border-radius: inherit; z-index: -1;
+      background: conic-gradient(from 0deg, #3B82F6, #06B6D4, transparent 40%, #3B82F6);
+      animation: spin3 3s linear infinite; filter: blur(6px); opacity: .8;
+    }
+    @keyframes spin3 { to { transform: rotate(360deg); } }
+    /* Glass panel */
+    .glass {
+      background: linear-gradient(160deg, rgba(30,41,59,.55), rgba(15,23,42,.35));
+      border: 1px solid rgba(148,163,184,.12);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 30px 80px -40px rgba(2,6,23,.9);
+    }
+    .seg-btn[aria-pressed="true"] { background: rgba(59,130,246,.18); color: #fff; box-shadow: inset 0 0 0 1px rgba(59,130,246,.5); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col relative selection:bg-cyan-500 selection:text-white">
 
-    <!-- Interactive Particle/Grid Background -->
-    <canvas id="bg-canvas"></canvas>
+<body class="font-sans text-slate-300 antialiased overflow-x-hidden">
 
-    <!-- Top Navigation -->
-    <header class="relative z-10 w-full border-b border-slate-800/80 bg-slate-950/50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 flex items-center justify-center glow-cyan">
-                    <i class="fa-solid fa-bolt text-white text-lg"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">DataPulse</span>
-                    <span class="block text-xs text-slate-400 uppercase tracking-widest font-semibold">AI Engineering</span>
-                </div>
-            </div>
-            <div class="flex items-center space-x-4">
-                <a href="https://fizaaltafbaig.github.io/DataPulse/" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-2">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
-                </a>
-            </div>
-        </div>
-    </header>
+<!-- ================= HERO ================= -->
+<section id="hero" class="relative min-h-screen flex items-center pt-28 pb-20 px-6 overflow-hidden isolate">
+  <!-- Backdrop layers -->
+  <div class="absolute inset-0 grid-bg -z-10"></div>
+  <div class="absolute -top-40 -left-32 w-[36rem] h-[36rem] rounded-full bg-blue-600/25 blur-[120px] animate-float -z-10"></div>
+  <div class="absolute top-1/3 -right-40 w-[32rem] h-[32rem] rounded-full bg-cyan-500/20 blur-[120px] animate-float-slow -z-10"></div>
+  <div class="absolute bottom-0 left-1/3 w-[24rem] h-[24rem] rounded-full bg-indigo-600/15 blur-[100px] animate-float -z-10" style="animation-delay:-6s"></div>
 
-    <!-- Main Content Container -->
-    <main class="relative z-10 flex-1 max-w-7xl w-full mx-auto px-6 py-12 flex flex-col gap-10">
-        
-        <!-- Hero Section Intro -->
-        <div class="text-center max-w-3xl mx-auto space-y-4">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                Interactive Portfolio Demo
-            </div>
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-                AI-Powered <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Insights Generator</span>
-            </h1>
-            <p class="text-slate-400 text-base md:text-lg">
-                Paste raw tabular metrics or dataset logs below. Our mock ML pipeline will compute statistical KPIs and synthesize executive AI summaries instantly.
-            </p>
-        </div>
+  <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-[1.1fr_.9fr] gap-16 items-center">
 
-        <!-- App Grid Workspace -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            <!-- Left Panel: Input & Preset Selector -->
-            <div class="lg:col-span-5 glass-card rounded-2xl p-6 md:p-8 space-y-6 shadow-2xl">
-                <div class="flex items-center justify-between">
-                    <h2 class="text-lg font-semibold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-database text-cyan-400"></i> Dataset Input
-                    </h2>
-                    <!-- Preset Loader Dropdown -->
-                    <select id="preset-select" class="text-xs bg-slate-900 border border-slate-700 text-slate-300 rounded-lg px-3 py-1.5 focus:outline-none focus:border-cyan-400 transition-colors">
-                        <option value="">Load Preset Dataset...</option>
-                        <option value="saas">SaaS Monthly Revenue</option>
-                        <option value="ecommerce">E-Commerce User Acquisition</option>
-                        <option value="cloud">Cloud API Latency Logs</option>
-                    </select>
-                </div>
+    <!-- Left: copy -->
+    <div>
+      <!-- Pulse badge -->
+      <a href="#contact" class="group inline-flex items-center gap-3 pl-2 pr-4 py-1.5 rounded-full border border-cyan-400/20 bg-cyan-400/5 backdrop-blur-md hover:border-cyan-400/50 transition-all animate-rise">
+        <span class="relative flex h-2.5 w-2.5 ml-1">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-emerald-400 animate-ping2"></span>
+          <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+        </span>
+        <span class="text-xs font-medium text-slate-300 tracking-wide">Now booking Q1 2027 projects</span>
+        <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-cyan-400 group-hover:translate-x-1 transition-transform"></i>
+      </a>
 
-                <div class="space-y-2">
-                    <label for="raw-data-input" class="block text-xs font-medium text-slate-400 uppercase tracking-wider">Raw Metrics (CSV / Tabular Format)</label>
-                    <textarea id="raw-data-input" rows="8" class="w-full glass-input rounded-xl p-4 text-sm font-mono text-slate-200 placeholder-slate-600 focus:outline-none transition-all resize-none" placeholder="Month, Revenue ($), Active Users&#10;Jan, 45000, 1200&#10;Feb, 52000, 1450&#10;Mar, 48000, 1380&#10;Apr, 61000, 1720"></textarea>
-                </div>
+      <h1 class="mt-8 font-display font-bold text-white text-5xl sm:text-6xl xl:text-7xl leading-[1.02] tracking-tight animate-rise" style="animation-delay:.1s">
+        Powering Businesses with
+        <span class="text-shimmer animate-shimmer block mt-2">Real-Time Data &amp; ML Intelligence</span>
+      </h1>
 
-                <div class="flex items-center justify-between pt-2">
-                    <button id="load-sample-btn" class="text-xs text-slate-400 hover:text-cyan-400 underline transition-colors">
-                        Load Sample Template
-                    </button>
-                    <button id="generate-btn" class="relative group overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 font-semibold text-white shadow-lg glow-cyan transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
-                        <span class="relative z-10 flex items-center gap-2">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Insights
-                        </span>
-                        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    </button>
-                </div>
-            </div>
+      <p class="mt-7 text-lg text-slate-400 max-w-xl leading-relaxed animate-rise" style="animation-delay:.2s">
+        DataPulse builds production-grade data pipelines, custom AI assistants, and FastAPI backends that turn raw business data into automated decisions.
+      </p>
 
-            <!-- Right Panel: Output Results Dashboard -->
-            <div id="output-dashboard" class="lg:col-span-7 glass-card rounded-2xl p-6 md:p-8 space-y-6 shadow-2xl relative min-h-[460px] flex flex-col justify-between">
-                
-                <!-- Initial Empty / Placeholder State -->
-                <div id="empty-state" class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center space-y-4">
-                    <div class="w-16 h-16 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-center text-slate-600 text-2xl">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                    <div class="space-y-1">
-                        <h3 class="text-slate-300 font-semibold text-lg">No Analysis Generated Yet</h3>
-                        <p class="text-slate-500 text-sm max-w-sm">Enter your metrics on the left or select a preset dataset to trigger the DataPulse AI pipeline.</p>
-                    </div>
-                </div>
+      <!-- Tech pills -->
+      <div class="mt-7 flex flex-wrap gap-2 animate-rise" style="animation-delay:.3s">
+        <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-800/60 border border-slate-700/60 text-blue-300 hover:border-blue-400/60 hover:-translate-y-0.5 transition-all">Python</span>
+        <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-800/60 border border-slate-700/60 text-cyan-300 hover:border-cyan-400/60 hover:-translate-y-0.5 transition-all">FastAPI</span>
+        <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-800/60 border border-slate-700/60 text-blue-300 hover:border-blue-400/60 hover:-translate-y-0.5 transition-all">Machine Learning</span>
+        <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-800/60 border border-slate-700/60 text-cyan-300 hover:border-cyan-400/60 hover:-translate-y-0.5 transition-all">Scikit-Learn</span>
+        <span class="px-3 py-1 rounded-lg text-xs font-mono bg-slate-800/60 border border-slate-700/60 text-blue-300 hover:border-blue-400/60 hover:-translate-y-0.5 transition-all">Pydantic</span>
+      </div>
 
-                <!-- Loading State Spinner -->
-                <div id="loading-state" class="absolute inset-0 bg-slate-950/80 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-8 text-center space-y-4 hidden z-20">
-                    <div class="w-12 h-12 rounded-full border-4 border-cyan-500/20 border-t-cyan-400 animate-spin"></div>
-                    <div class="space-y-1">
-                        <p class="text-cyan-400 font-medium text-sm animate-pulse">Running ML Statistical Pipeline...</p>
-                        <p class="text-slate-500 text-xs">Synthesizing executive summaries and growth projections.</p>
-                    </div>
-                </div>
+      <!-- CTAs -->
+      <div class="mt-10 flex flex-wrap items-center gap-4 animate-rise" style="animation-delay:.4s">
+        <a href="#contact" class="cta-ring relative z-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:scale-[1.03] active:scale-[.98] transition-transform">
+          Book Strategy Call
+          <i data-lucide="calendar-check" class="w-4 h-4"></i>
+        </a>
+        <a href="#sandbox" class="group inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-slate-200 border border-slate-700 bg-slate-900/50 backdrop-blur-md hover:border-cyan-400/60 hover:text-white hover:shadow-[0_0_30px_-8px_rgba(6,182,212,.6)] transition-all">
+          <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i>
+          Try the API Sandbox
+        </a>
+      </div>
 
-                <!-- Active Results Content (Hidden by default) -->
-                <div id="results-content" class="space-y-6 hidden">
-                    
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                        <h2 class="text-lg font-semibold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-square-poll-vertical text-purple-400"></i> Executive Analytics Dashboard
-                        </h2>
-                        <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
-                            <i class="fa-solid fa-circle-check"></i> Analysis Complete
-                        </span>
-                    </div>
+      <!-- Stats -->
+      <dl class="mt-14 grid grid-cols-3 max-w-lg divide-x divide-slate-800 animate-rise" style="animation-delay:.5s">
+        <div class="pr-6"><dt class="text-xs text-slate-500 uppercase tracking-wider">Models shipped</dt><dd class="mt-1 font-display text-3xl font-bold text-white"><span data-count="24">0</span>+</dd></div>
+        <div class="px-6"><dt class="text-xs text-slate-500 uppercase tracking-wider">API uptime</dt><dd class="mt-1 font-display text-3xl font-bold text-white"><span data-count="99.9" data-decimals="1">0</span>%</dd></div>
+        <div class="pl-6"><dt class="text-xs text-slate-500 uppercase tracking-wider">Avg. latency</dt><dd class="mt-1 font-display text-3xl font-bold text-white"><span data-count="42">0</span>ms</dd></div>
+      </dl>
+    </div>
 
-                    <!-- Computed Metrics KPI Grid -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-4 space-y-1">
-                            <span class="text-xs text-slate-400 font-medium">Total Volume / Sum</span>
-                            <div id="kpi-total" class="text-2xl font-bold text-white font-mono">-</div>
-                        </div>
-                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-4 space-y-1">
-                            <span class="text-xs text-slate-400 font-medium">Average Metric</span>
-                            <div id="kpi-avg" class="text-2xl font-bold text-cyan-400 font-mono">-</div>
-                        </div>
-                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-4 space-y-1">
-                            <span class="text-xs text-slate-400 font-medium">Est. Growth Trend</span>
-                            <div id="kpi-growth" class="text-2xl font-bold text-emerald-400 font-mono">-</div>
-                        </div>
-                    </div>
+    <!-- Right: floating live-console card -->
+    <div class="relative animate-rise" style="animation-delay:.35s">
+      <div class="absolute -inset-6 bg-gradient-to-tr from-blue-600/30 to-cyan-400/20 blur-3xl rounded-[2rem] -z-10"></div>
 
-                    <!-- AI Executive Summary Box -->
-                    <div class="space-y-3 bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-cyan-500/20 rounded-xl p-5 glow-cyan">
-                        <div class="flex items-center gap-2 text-cyan-400 text-sm font-semibold">
-                            <i class="fa-solid fa-robot"></i> AI-Generated Executive Summary
-                        </div>
-                        <p id="ai-summary-text" class="text-slate-300 text-sm leading-relaxed"></p>
-                    </div>
+      <div id="tilt" class="relative rounded-3xl border border-slate-700/60 bg-slate-900/70 backdrop-blur-xl shadow-2xl overflow-hidden transition-transform duration-300 ease-out will-change-transform">
+        <!-- Scan line -->
+        <div class="absolute inset-x-0 h-24 bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent animate-scan pointer-events-none"></div>
 
-                    <!-- Action Buttons -->
-                    <div class="flex items-center justify-end gap-3 pt-2">
-                        <button id="copy-report-btn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition-colors flex items-center gap-2">
-                            <i class="fa-regular fa-copy"></i> Copy Report
-                        </button>
-                    </div>
-
-                </div>
-
-            </div>
-
+        <!-- Window bar -->
+        <div class="flex items-center justify-between px-5 py-3.5 border-b border-slate-800">
+          <div class="flex gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-slate-700"></span><span class="w-3 h-3 rounded-full bg-slate-700"></span><span class="w-3 h-3 rounded-full bg-slate-700"></span>
+          </div>
+          <span class="font-mono text-xs text-slate-500">POST /predict-churn</span>
+          <span class="flex items-center gap-1.5 text-[11px] font-medium text-emerald-400">
+            <span class="relative flex h-2 w-2"><span class="absolute h-full w-full rounded-full bg-emerald-400 animate-ping2"></span><span class="relative h-2 w-2 rounded-full bg-emerald-400"></span></span>
+            LIVE
+          </span>
         </div>
 
-    </main>
+        <!-- Response -->
+        <pre class="px-6 py-5 font-mono text-[13px] leading-6 text-slate-400 overflow-x-auto"><span class="text-slate-600">// 200 OK · 38ms</span>
+{
+  <span class="text-cyan-300">"customer_id"</span>: <span class="text-amber-300">"C-10482"</span>,
+  <span class="text-cyan-300">"churn_probability"</span>: <span class="text-emerald-300" id="prob">0.87</span>,
+  <span class="text-cyan-300">"risk_level"</span>: <span class="text-rose-300">"high"</span>,
+  <span class="text-cyan-300">"top_drivers"</span>: [
+    <span class="text-amber-300">"support_tickets_30d"</span>,
+    <span class="text-amber-300">"plan_downgrade"</span>
+  ],
+  <span class="text-cyan-300">"model"</span>: <span class="text-amber-300">"xgb-v3.2"</span>
+}</pre>
 
-    <!-- Footer -->
-    <footer class="relative z-10 border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-        <p>&copy; 2026 DataPulse AI Engineering. All rights reserved. Built with precision for B2B scale.</p>
-    </footer>
+        <!-- Mini live metrics -->
+        <div class="grid grid-cols-2 border-t border-slate-800">
+          <div class="p-5 border-r border-slate-800">
+            <p class="text-[11px] uppercase tracking-wider text-slate-500">Pipeline throughput</p>
+            <p class="mt-1 font-display text-xl font-semibold text-white"><span id="tps">12,480</span> <span class="text-xs text-slate-500 font-sans">rows/s</span></p>
+            <div class="mt-3 flex items-end gap-1 h-8" id="bars"></div>
+          </div>
+          <div class="p-5">
+            <p class="text-[11px] uppercase tracking-wider text-slate-500">Model accuracy</p>
+            <p class="mt-1 font-display text-xl font-semibold text-white">94.2%</p>
+            <div class="mt-4 h-1.5 rounded-full bg-slate-800 overflow-hidden">
+              <div class="h-full w-[94%] rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 animate-shimmer" style="background-size:200% 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <!-- JavaScript Application Logic -->
-    <script>
-        // Preset Datasets
-        const presets = {
-            saas: "Month, Revenue ($), Active Users\nJan, 48000, 1250\nFeb, 53200, 1420\nMar, 51000, 1390\nApr, 64500, 1680\nMay, 71000, 1950",
-            ecommerce: "Week, Orders, Gross Value ($)\nWeek 1, 340, 18500\nWeek 2, 410, 23400\nWeek 3, 390, 21900\nWeek 4, 520, 29800",
-            cloud: "Endpoint, Requests, Avg Latency (ms)\n/api/v1/auth, 142000, 32\n/api/v1/query, 89000, 78\n/api/v1/sync, 24000, 145\n/api/v1/export, 6500, 310"
-        };
+      <!-- Floating chips -->
+      <div class="absolute -left-6 top-16 hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-700/60 bg-slate-900/80 backdrop-blur-md shadow-xl animate-float" style="animation-duration:9s">
+        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+        <span class="text-xs text-slate-300">Pydantic validated</span>
+      </div>
+      <div class="absolute -right-4 -bottom-5 hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-700/60 bg-slate-900/80 backdrop-blur-md shadow-xl animate-float-slow" style="animation-duration:11s">
+        <i data-lucide="zap" class="w-4 h-4 text-cyan-400"></i>
+        <span class="text-xs text-slate-300">Deployed in 3 weeks</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // DOM Elements
-        const rawInput = document.getElementById('raw-data-input');
-        const presetSelect = document.getElementById('preset-select');
-        const loadSampleBtn = document.getElementById('load-sample-btn');
-        const generateBtn = document.getElementById('generate-btn');
-        const emptyState = document.getElementById('empty-state');
-        const loadingState = document.getElementById('loading-state');
-        const resultsContent = document.getElementById('results-content');
-        const kpiTotal = document.getElementById('kpi-total');
-        const kpiAvg = document.getElementById('kpi-avg');
-        const kpiGrowth = document.getElementById('kpi-growth');
-        const aiSummaryText = document.getElementById('ai-summary-text');
-        const copyReportBtn = document.getElementById('copy-report-btn');
+<!-- ================= FEATURE CARDS ================= -->
+<section id="services" class="relative py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="max-w-2xl">
+      <p class="font-mono text-xs text-cyan-400 tracking-widest uppercase">// Core services</p>
+      <h2 class="mt-3 font-display text-4xl md:text-5xl font-bold text-white tracking-tight">
+        Engineering that ships, <span class="text-shimmer animate-shimmer">not slideware.</span>
+      </h2>
+    </div>
 
-        // Load Preset
-        presetSelect.addEventListener('change', (e) => {
-            const val = e.target.value;
-            if (presets[val]) {
-                rawInput.value = presets[val];
-            }
-        });
+    <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
 
-        // Load Sample Template
-        loadSampleBtn.addEventListener('click', () => {
-            rawInput.value = presets.saas;
-            presetSelect.value = 'saas';
-        });
+      <!-- Card -->
+      <article class="spot-card group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,.45)] transition-all duration-500">
+        <div class="flex items-center justify-between">
+          <div class="relative w-12 h-12 grid place-items-center rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-400/10 border border-blue-400/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+            <i data-lucide="workflow" class="w-6 h-6 text-blue-400"></i>
+          </div>
+          <span class="flex items-center gap-1.5 text-[10px] font-mono text-emerald-400/80"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>ACTIVE</span>
+        </div>
+        <h3 class="mt-6 font-display text-xl font-semibold text-white">Data Pipelines</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed">Real-time and batch pipelines that collect, clean, and unify data across your stack.</p>
+        <a href="#contact" class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-cyan-400 opacity-70 group-hover:opacity-100">Learn more <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i></a>
+      </article>
 
-        // Generate Button Handler
-        generateBtn.addEventListener('click', () => {
-            const text = rawInput.value.trim();
-            if (!text) {
-                alert('Please enter or select sample tabular metrics first.');
-                return;
-            }
+      <article class="spot-card group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-20px_rgba(6,182,212,.45)] transition-all duration-500">
+        <div class="flex items-center justify-between">
+          <div class="w-12 h-12 grid place-items-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-400/10 border border-cyan-400/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+            <i data-lucide="bot" class="w-6 h-6 text-cyan-400"></i>
+          </div>
+          <span class="flex items-center gap-1.5 text-[10px] font-mono text-emerald-400/80"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>ACTIVE</span>
+        </div>
+        <h3 class="mt-6 font-display text-xl font-semibold text-white">Custom AI Assistants</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed">Assistants trained on your data that answer, book, and automate inside your tools.</p>
+        <a href="#contact" class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-cyan-400 opacity-70 group-hover:opacity-100">Learn more <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i></a>
+      </article>
 
-            // Show Loading State
-            emptyState.classList.add('hidden');
-            resultsContent.classList.add('hidden');
-            loadingState.classList.remove('hidden');
+      <article class="spot-card group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-20px_rgba(59,130,246,.45)] transition-all duration-500">
+        <div class="flex items-center justify-between">
+          <div class="w-12 h-12 grid place-items-center rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-400/10 border border-blue-400/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+            <i data-lucide="server-cog" class="w-6 h-6 text-blue-400"></i>
+          </div>
+          <span class="flex items-center gap-1.5 text-[10px] font-mono text-emerald-400/80"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>ACTIVE</span>
+        </div>
+        <h3 class="mt-6 font-display text-xl font-semibold text-white">FastAPI Backends</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed">Secure, typed, high-performance APIs with Pydantic validation and auto docs.</p>
+        <a href="#contact" class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-cyan-400 opacity-70 group-hover:opacity-100">Learn more <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i></a>
+      </article>
 
-            setTimeout(() => {
-                // Parse CSV and Calculate Analytics
-                const lines = text.split('\n').filter(l => l.trim() !== '');
-                let numbers = [];
-                
-                // Extract numeric values from columns (ignoring the header)
-                for (let i = 1; i < lines.length; i++) {
-                    const parts = lines[i].split(',').map(p => p.trim());
-                    parts.forEach(p => {
-                        const num = parseFloat(p);
-                        if (!isNaN(num)) numbers.push(num);
-                    });
-                }
+      <article class="spot-card group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-7 hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-20px_rgba(6,182,212,.45)] transition-all duration-500">
+        <div class="flex items-center justify-between">
+          <div class="w-12 h-12 grid place-items-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-400/10 border border-cyan-400/20 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+            <i data-lucide="brain-circuit" class="w-6 h-6 text-cyan-400"></i>
+          </div>
+          <span class="flex items-center gap-1.5 text-[10px] font-mono text-emerald-400/80"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>ACTIVE</span>
+        </div>
+        <h3 class="mt-6 font-display text-xl font-semibold text-white">ML Prediction Models</h3>
+        <p class="mt-2 text-sm text-slate-400 leading-relaxed">Churn, fraud, and risk models deployed to production with monitoring built in.</p>
+        <a href="#contact" class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-cyan-400 opacity-70 group-hover:opacity-100">Learn more <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i></a>
+      </article>
 
-                if (numbers.length === 0) {
-                    // Fallback random mock calculation if format is custom text
-                    numbers = [1250, 4800, 3100, 5400, 6200];
-                }
+    </div>
+  </div>
+</section>
 
-                const sum = numbers.reduce((a, b) => a + b, 0);
-                const avg = sum / numbers.length;
-                const firstVal = numbers[0];
-                const lastVal = numbers[numbers.length - 1];
-                const growthRate = firstVal > 0 ? (((lastVal - firstVal) / firstVal) * 100).toFixed(1) : '+14.2';
+<!-- ================= LIVE PERFORMANCE DASHBOARD ================= -->
+<section id="dashboard" class="relative py-24 px-6 overflow-hidden isolate">
+  <div class="absolute top-20 left-1/4 w-[40rem] h-[24rem] rounded-full bg-blue-600/10 blur-[140px] -z-10 animate-float-slow"></div>
+  <div class="absolute bottom-0 right-10 w-[28rem] h-[20rem] rounded-full bg-cyan-500/10 blur-[120px] -z-10 animate-float"></div>
 
-                // Update KPI DOM
-                kpiTotal.textContent = sum > 10000 ? sum.toLocaleString() : sum.toFixed(1);
-                kpiAvg.textContent = avg > 1000 ? avg.toLocaleString(undefined, {maximumFractionDigits: 1}) : avg.toFixed(1);
-                kpiGrowth.textContent = (growthRate >= 0 ? '+' : '') + growthRate + '%';
+  <div class="max-w-7xl mx-auto">
+    <!-- Header + controls -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div>
+        <p class="font-mono text-xs text-cyan-400 tracking-widest uppercase">// Live performance</p>
+        <h2 class="mt-3 font-display text-4xl md:text-5xl font-bold text-white tracking-tight">
+          Production metrics, <span class="text-shimmer animate-shimmer">streaming.</span>
+        </h2>
+        <p class="mt-3 text-slate-400 max-w-xl">A real-time view of the kind of model APIs we deploy, covering latency, throughput, and reliability across endpoints.</p>
+      </div>
 
-                // Generate AI Summary Narrative
-                aiSummaryText.innerHTML = `Based on the ingested dataset of <strong>${numbers.length} metrics</strong> across your pipeline, DataPulse AI has identified strong upward momentum. The primary metric demonstrates a net trajectory of <strong>${growthRate}%</strong>. We recommend scaling automated ETL ingestion on high-performing nodes and establishing proactive monitoring on latency peaks to maintain enterprise SLA compliance.`;
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="inline-flex items-center gap-2 px-3 py-2 rounded-xl glass text-xs text-slate-300">
+          <span class="relative flex h-2 w-2"><span class="absolute h-full w-full rounded-full bg-emerald-400 animate-ping2"></span><span class="relative h-2 w-2 rounded-full bg-emerald-400"></span></span>
+          <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i>All systems operational
+        </span>
+        <div class="inline-flex p-1 rounded-xl glass" role="group" aria-label="Time range">
+          <button class="seg-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition" data-range="live" aria-pressed="true">Live</button>
+          <button class="seg-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition" data-range="5m" aria-pressed="false">5m</button>
+          <button class="seg-btn px-3 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition" data-range="1h" aria-pressed="false">1h</button>
+        </div>
+        <button id="pauseBtn" class="inline-flex items-center gap-2 px-3 py-2 rounded-xl glass text-xs font-medium text-slate-300 hover:text-white hover:border-cyan-400/50 transition" aria-pressed="false">
+          <i data-lucide="pause" class="w-3.5 h-3.5"></i><span>Pause</span>
+        </button>
+      </div>
+    </div>
 
-                // Hide Loading and Show Results
-                loadingState.classList.add('hidden');
-                resultsContent.classList.remove('hidden');
-            }, 1200);
-        });
+    <!-- KPI tiles -->
+    <div class="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass rounded-2xl p-5 hover:-translate-y-1 transition-transform duration-500">
+        <div class="flex items-center justify-between text-xs text-slate-400"><span>p50 latency</span><i data-lucide="timer" class="w-4 h-4 text-cyan-400"></i></div>
+        <p class="mt-2 font-display text-3xl font-bold text-white"><span id="kpi-p50">—</span><span class="text-sm font-sans text-slate-500 ml-1">ms</span></p>
+        <p class="mt-1 text-xs text-slate-500"><span id="kpi-p50-d" class="text-slate-300">—</span> vs. prev. minute</p>
+      </div>
+      <div class="glass rounded-2xl p-5 hover:-translate-y-1 transition-transform duration-500">
+        <div class="flex items-center justify-between text-xs text-slate-400"><span>p95 latency</span><i data-lucide="gauge" class="w-4 h-4 text-indigo-400"></i></div>
+        <p class="mt-2 font-display text-3xl font-bold text-white"><span id="kpi-p95">—</span><span class="text-sm font-sans text-slate-500 ml-1">ms</span></p>
+        <p class="mt-1 text-xs text-slate-500">SLO target <span class="text-slate-300">&lt; 120 ms</span></p>
+      </div>
+      <div class="glass rounded-2xl p-5 hover:-translate-y-1 transition-transform duration-500">
+        <div class="flex items-center justify-between text-xs text-slate-400"><span>Throughput</span><i data-lucide="activity" class="w-4 h-4 text-blue-400"></i></div>
+        <p class="mt-2 font-display text-3xl font-bold text-white"><span id="kpi-rps">—</span><span class="text-sm font-sans text-slate-500 ml-1">req/s</span></p>
+        <p class="mt-1 text-xs text-slate-500">Across <span class="text-slate-300">4 endpoints</span></p>
+      </div>
+      <div class="glass rounded-2xl p-5 hover:-translate-y-1 transition-transform duration-500">
+        <div class="flex items-center justify-between text-xs text-slate-400"><span>Error rate</span><i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i></div>
+        <p class="mt-2 font-display text-3xl font-bold text-white"><span id="kpi-err">—</span><span class="text-sm font-sans text-slate-500 ml-1">%</span></p>
+        <p class="mt-1 text-xs text-emerald-400/90 flex items-center gap-1"><i data-lucide="check" class="w-3 h-3"></i>Healthy</p>
+      </div>
+    </div>
 
-        // Copy Report functionality using document.execCommand fallback for iframe safety
-        copyReportBtn.addEventListener('click', () => {
-            const reportText = `DataPulse AI Analytics Report:\nTotal: ${kpiTotal.textContent}\nAverage: ${kpiAvg.textContent}\nGrowth: ${kpiGrowth.textContent}\nSummary: ${aiSummaryText.innerText}`;
-            
-            const textArea = document.createElement('textarea');
-            textArea.value = reportText;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                copyReportBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i> Copied!';
-                setTimeout(() => {
-                    copyReportBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Report';
-                }, 2000);
-            } catch (err) {
-                console.error('Failed to copy text', err);
-            }
-            document.body.removeChild(textArea);
-        });
+    <!-- Charts -->
+    <div class="mt-4 grid lg:grid-cols-3 gap-4">
+      <!-- Latency area chart -->
+      <div class="glass rounded-3xl p-6 lg:col-span-2 relative overflow-hidden">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h3 class="font-display text-lg font-semibold text-white">API response latency</h3>
+            <p class="text-xs text-slate-500">Milliseconds · <span id="rangeLabel">last 60 seconds</span></p>
+          </div>
+          <div class="flex items-center gap-4 text-xs text-slate-300" aria-label="Legend">
+            <span class="flex items-center gap-2"><span class="w-3 h-[3px] rounded-full" style="background:#0EA5C6;box-shadow:0 0 8px #0EA5C6"></span>p50</span>
+            <span class="flex items-center gap-2"><span class="w-3 h-[3px] rounded-full" style="background:#6366F1;box-shadow:0 0 8px #6366F1"></span>p95</span>
+            <span class="flex items-center gap-2"><span class="w-3 border-t border-dashed border-slate-500"></span>SLO 120 ms</span>
+          </div>
+        </div>
+        <div class="relative mt-5 h-72">
+          <canvas id="latencyChart" role="img" aria-label="Area chart of p50 and p95 API latency over time, updating live"></canvas>
+        </div>
+      </div>
 
-        // Background Particle Mesh Animation
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
+      <!-- Endpoint throughput -->
+      <div class="glass rounded-3xl p-6 flex flex-col">
+        <h3 class="font-display text-lg font-semibold text-white">Throughput by endpoint</h3>
+        <p class="text-xs text-slate-500">Requests per second · live</p>
+        <div class="relative mt-5 h-48">
+          <canvas id="endpointChart" role="img" aria-label="Bar chart of requests per second for each API endpoint"></canvas>
+        </div>
+        <ul class="mt-5 space-y-2.5 text-xs font-mono" id="endpointStatus"></ul>
+      </div>
+    </div>
 
-        function resizeCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
+    <p class="mt-4 text-[11px] text-slate-600 font-mono">* Simulated demo telemetry for illustration.</p>
+  </div>
+</section>
 
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+<script>
+  lucide.createIcons();
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.6;
-                this.vy = (Math.random() - 0.5) * 0.6;
-                this.radius = Math.random() * 1.5 + 0.8;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(6, 182, 212, 0.45)';
-                ctx.fill();
-            }
-        }
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        for (let i = 0; i < 55; i++) {
-            particles.push(new Particle());
-        }
+  // Spotlight: glow follows the cursor on each card
+  document.querySelectorAll('.spot-card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--x', `${e.clientX - r.left}px`);
+      card.style.setProperty('--y', `${e.clientY - r.top}px`);
+    });
+  });
 
-        function animateBg() {
-            ctx.clearRect(0, 0, width, height);
-            
-            // Draw connecting lines if close
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
+  // 3D tilt on the hero console card
+  const tilt = document.getElementById('tilt');
+  if (tilt && !reduce && window.matchMedia('(pointer:fine)').matches) {
+    tilt.addEventListener('pointermove', e => {
+      const r = tilt.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      tilt.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+    });
+    tilt.addEventListener('pointerleave', () => tilt.style.transform = '');
+  }
 
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 130) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 * (1 - dist / 130)})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animateBg);
-        }
+  // Count-up stats
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+    if (reduce) { el.textContent = target.toFixed(dec); return; }
+    const start = performance.now(), dur = 1600;
+    const tick = now => {
+      const p = Math.min((now - start) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toFixed(dec);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
 
-        animateBg();
-    </script>
+  // Live throughput bars + numbers
+  const bars = document.getElementById('bars');
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement('span');
+    b.className = 'flex-1 rounded-sm bg-gradient-to-t from-blue-600 to-cyan-400 transition-all duration-700';
+    b.style.height = `${30 + Math.random() * 70}%`;
+    b.style.opacity = .35 + i / 30;
+    bars.appendChild(b);
+  }
+  if (!reduce) {
+    setInterval(() => {
+      [...bars.children].forEach(b => b.style.height = `${25 + Math.random() * 75}%`);
+      document.getElementById('tps').textContent = (11800 + Math.floor(Math.random() * 1400)).toLocaleString();
+      document.getElementById('prob').textContent = (0.82 + Math.random() * 0.1).toFixed(2);
+    }, 1400);
+  }
+
+  /* ================= Live performance dashboard (Chart.js) ================= */
+  (function () {
+    if (!window.Chart) return;
+    const C = { p50: '#0EA5C6', p95: '#6366F1', bar: '#3B82F6', grid: 'rgba(148,163,184,.08)', tick: '#64748B' };
+    Chart.defaults.font.family = 'Inter, sans-serif';
+    Chart.defaults.color = C.tick;
+
+    // Neon glow: draw each line with a colored shadow
+    const glow = {
+      id: 'glow',
+      beforeDatasetDraw(chart, args) {
+        const ds = chart.data.datasets[args.index];
+        if (!ds.glow) return;
+        chart.ctx.save();
+        chart.ctx.shadowColor = ds.borderColor;
+        chart.ctx.shadowBlur = 16;
+      },
+      afterDatasetDraw(chart, args) {
+        if (chart.data.datasets[args.index].glow) chart.ctx.restore();
+      },
+    };
+    // Crosshair: vertical guide on hover
+    const crosshair = {
+      id: 'crosshair',
+      afterDatasetsDraw(chart) {
+        const a = chart.tooltip?.getActiveElements?.();
+        if (!a || !a.length) return;
+        const x = a[0].element.x, { top, bottom } = chart.chartArea, ctx = chart.ctx;
+        ctx.save();
+        ctx.strokeStyle = 'rgba(148,163,184,.35)'; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+        ctx.beginPath(); ctx.moveTo(x, top); ctx.lineTo(x, bottom); ctx.stroke();
+        ctx.restore();
+      },
+    };
+    // SLO threshold line
+    const slo = {
+      id: 'slo',
+      afterDatasetsDraw(chart) {
+        const y = chart.scales.y.getPixelForValue(120), { left, right } = chart.chartArea, ctx = chart.ctx;
+        ctx.save();
+        ctx.strokeStyle = 'rgba(148,163,184,.45)'; ctx.setLineDash([5, 5]); ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(right, y); ctx.stroke();
+        ctx.restore();
+      },
+    };
+
+    const fill = (hex, a1) => (ctx) => {
+      const { chart } = ctx, area = chart.chartArea;
+      if (!area) return 'transparent';
+      const g = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+      g.addColorStop(0, hex + a1); g.addColorStop(1, hex + '00');
+      return g;
+    };
+
+    const RANGES = {
+      live: { points: 60, step: 1,  label: 'last 60 seconds', fmt: s => `-${s}s` },
+      '5m': { points: 60, step: 5,  label: 'last 5 minutes',  fmt: s => `-${Math.round(s / 60 * 10) / 10}m` },
+      '1h': { points: 60, step: 60, label: 'last hour',       fmt: s => `-${Math.round(s / 60)}m` },
+    };
+    let range = 'live', paused = false, t = 0;
+
+    // Smooth, plausible latency signal
+    const sample = () => {
+      t += 1;
+      const base = 38 + 6 * Math.sin(t / 9) + 3 * Math.sin(t / 3.3) + Math.random() * 4;
+      const spike = Math.random() < 0.05 ? 25 + Math.random() * 25 : 0;
+      const p50 = +(base + spike * 0.35).toFixed(1);
+      const p95 = +(p50 * (1.75 + Math.random() * 0.25) + spike).toFixed(1);
+      return { p50, p95 };
+    };
+    const buildLabels = r => Array.from({ length: r.points }, (_, i) => {
+      const s = (r.points - 1 - i) * r.step;
+      return s === 0 ? 'now' : r.fmt(s);
+    });
+
+    const latency = new Chart(document.getElementById('latencyChart'), {
+      type: 'line',
+      data: {
+        labels: [],
+        datasets: [
+          { label: 'p95', data: [], borderColor: C.p95, backgroundColor: fill(C.p95, '40'), fill: true, glow: true },
+          { label: 'p50', data: [], borderColor: C.p50, backgroundColor: fill(C.p50, '55'), fill: true, glow: true },
+        ],
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        animation: { duration: reduce ? 0 : 500, easing: 'easeOutQuart' },
+        interaction: { mode: 'index', intersect: false },
+        elements: {
+          line: { borderWidth: 2, tension: 0.4, cubicInterpolationMode: 'monotone' },
+          point: { radius: 0, hoverRadius: 5, hitRadius: 12, hoverBorderWidth: 2, hoverBorderColor: '#020617' },
+        },
+        scales: {
+          x: { grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 7, maxRotation: 0, font: { size: 11 } } },
+          y: { suggestedMin: 0, suggestedMax: 160, grid: { color: C.grid }, border: { display: false },
+               ticks: { stepSize: 40, font: { size: 11 }, callback: v => v + ' ms' } },
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(2,6,23,.92)', borderColor: 'rgba(59,130,246,.35)', borderWidth: 1,
+            padding: 12, cornerRadius: 10, titleColor: '#E2E8F0', bodyColor: '#CBD5E1',
+            titleFont: { family: 'JetBrains Mono', size: 11 }, bodyFont: { family: 'Inter', size: 12 },
+            usePointStyle: true, boxWidth: 8, boxHeight: 8, itemSort: (a, b) => a.datasetIndex - b.datasetIndex,
+            callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y} ms` },
+          },
+        },
+      },
+      plugins: [glow, crosshair, slo],
+    });
+
+    const endpoints = [
+      { name: '/predict-churn', rps: 410, ok: true },
+      { name: '/predict-fraud', rps: 620, ok: true },
+      { name: '/heart-risk',    rps: 180, ok: true },
+      { name: '/auto-ml-train', rps: 24,  ok: true },
+    ];
+    const endpointChart = new Chart(document.getElementById('endpointChart'), {
+      type: 'bar',
+      data: {
+        labels: endpoints.map(e => e.name),
+        datasets: [{ label: 'req/s', data: endpoints.map(e => e.rps), glow: true, borderColor: C.bar,
+          backgroundColor: ctx => {
+            const area = ctx.chart.chartArea; if (!area) return C.bar;
+            const g = ctx.chart.ctx.createLinearGradient(area.left, 0, area.right, 0);
+            g.addColorStop(0, '#3B82F633'); g.addColorStop(1, '#3B82F6');
+            return g;
+          },
+          borderWidth: 0, borderRadius: 4, borderSkipped: 'start', barThickness: 14 }],
+      },
+      options: {
+        indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+        animation: { duration: reduce ? 0 : 600 },
+        scales: {
+          x: { grid: { color: C.grid }, border: { display: false }, ticks: { font: { size: 10 }, maxTicksLimit: 5 } },
+          y: { grid: { display: false }, border: { display: false }, ticks: { color: '#CBD5E1', font: { family: 'JetBrains Mono', size: 11 } } },
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { backgroundColor: 'rgba(2,6,23,.92)', borderColor: 'rgba(59,130,246,.35)', borderWidth: 1, padding: 10, cornerRadius: 10,
+                     callbacks: { label: c => ` ${c.parsed.x.toLocaleString()} req/s` } },
+        },
+      },
+      plugins: [glow],
+    });
+
+    // Endpoint status list
+    const statusList = document.getElementById('endpointStatus');
+    const renderStatus = () => {
+      statusList.innerHTML = endpoints.map(e => `
+        <li class="flex items-center justify-between">
+          <span class="flex items-center gap-2 text-slate-300">
+            <span class="relative flex h-2 w-2"><span class="absolute h-full w-full rounded-full bg-emerald-400 opacity-60 animate-ping2"></span><span class="relative h-2 w-2 rounded-full bg-emerald-400"></span></span>${e.name}
+          </span>
+          <span class="text-emerald-400/90">200 OK</span>
+        </li>`).join('');
+    };
+    renderStatus();
+
+    // Fill / refill the window for the selected range
+    const seed = () => {
+      const r = RANGES[range];
+      latency.data.labels = buildLabels(r);
+      const pts = Array.from({ length: r.points }, sample);
+      latency.data.datasets[0].data = pts.map(p => p.p95);
+      latency.data.datasets[1].data = pts.map(p => p.p50);
+      document.getElementById('rangeLabel').textContent = r.label;
+      latency.update('none');
+      updateKpis();
+    };
+
+    let prevP50 = null;
+    const updateKpis = () => {
+      const p50s = latency.data.datasets[1].data, p95s = latency.data.datasets[0].data;
+      const last = p50s.at(-1), lastP95 = p95s.at(-1);
+      document.getElementById('kpi-p50').textContent = last.toFixed(0);
+      document.getElementById('kpi-p95').textContent = lastP95.toFixed(0);
+      const rps = endpoints.reduce((s, e) => s + e.rps, 0);
+      document.getElementById('kpi-rps').textContent = rps.toLocaleString();
+      document.getElementById('kpi-err').textContent = (0.02 + Math.random() * 0.05).toFixed(2);
+      const avg = p50s.slice(-60).reduce((a, b) => a + b, 0) / Math.min(60, p50s.length);
+      const d = ((last - avg) / avg) * 100;
+      const el = document.getElementById('kpi-p50-d');
+      el.textContent = `${d > 0 ? '▲' : '▼'} ${Math.abs(d).toFixed(1)}%`;
+      el.className = d > 0 ? 'text-amber-300' : 'text-emerald-400';
+      prevP50 = last;
+    };
+
+    const tick = () => {
+      if (paused) return;
+      const p = sample();
+      latency.data.datasets[0].data.push(p.p95); latency.data.datasets[0].data.shift();
+      latency.data.datasets[1].data.push(p.p50); latency.data.datasets[1].data.shift();
+      latency.update();
+      endpoints.forEach(e => { e.rps = Math.max(5, Math.round(e.rps * (0.93 + Math.random() * 0.14))); });
+      endpointChart.data.datasets[0].data = endpoints.map(e => e.rps);
+      endpointChart.update();
+      updateKpis();
+    };
+
+    // Controls
+    document.querySelectorAll('.seg-btn').forEach(btn => btn.addEventListener('click', () => {
+      document.querySelectorAll('.seg-btn').forEach(b => b.setAttribute('aria-pressed', b === btn));
+      range = btn.dataset.range;
+      seed();
+    }));
+    const pauseBtn = document.getElementById('pauseBtn');
+    pauseBtn.addEventListener('click', () => {
+      paused = !paused;
+      pauseBtn.setAttribute('aria-pressed', paused);
+      pauseBtn.innerHTML = `<i data-lucide="${paused ? 'play' : 'pause'}" class="w-3.5 h-3.5"></i><span>${paused ? 'Resume' : 'Pause'}</span>`;
+      lucide.createIcons();
+    });
+
+    seed();
+    if (!reduce) setInterval(tick, 1200);
+    else paused = true;
+  })();
+</script>
 </body>
 </html>
-```
