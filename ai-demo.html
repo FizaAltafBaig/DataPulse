@@ -1,0 +1,407 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataPulse - AI Insights Generator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#090d16',
+                        cardBg: 'rgba(15, 23, 42, 0.75)',
+                        accentCyan: '#06b6d4',
+                        accentBlue: '#3b82f6',
+                        accentPurple: '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #090d16;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        /* Custom Glassmorphism */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-input {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-input:focus {
+            border-color: #06b6d4;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+        }
+        /* Background Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+        /* Glow effects */
+        .glow-cyan {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.35);
+        }
+        .glow-purple {
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative selection:bg-cyan-500 selection:text-white">
+
+    <!-- Interactive Particle/Grid Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Top Navigation -->
+    <header class="relative z-10 w-full border-b border-slate-800/80 bg-slate-950/50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 flex items-center justify-center glow-cyan">
+                    <i class="fa-solid fa-bolt text-white text-lg"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">DataPulse</span>
+                    <span class="block text-xs text-slate-400 uppercase tracking-widest font-semibold">AI Engineering</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://fizaaltafbaig.github.io/DataPulse/" class="text-sm font-medium text-slate-300 hover:text-cyan-400 transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 flex-1 max-w-7xl w-full mx-auto px-6 py-12 flex flex-col gap-10">
+        
+        <!-- Hero Section Intro -->
+        <div class="text-center max-w-3xl mx-auto space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                Interactive Portfolio Demo
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+                AI-Powered <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Insights Generator</span>
+            </h1>
+            <p class="text-slate-400 text-base md:text-lg">
+                Paste raw tabular metrics or dataset logs below. Our mock ML pipeline will compute statistical KPIs and synthesize executive AI summaries instantly.
+            </p>
+        </div>
+
+        <!-- App Grid Workspace -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Panel: Input & Preset Selector -->
+            <div class="lg:col-span-5 glass-card rounded-2xl p-6 md:p-8 space-y-6 shadow-2xl">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-database text-cyan-400"></i> Dataset Input
+                    </h2>
+                    <!-- Preset Loader Dropdown -->
+                    <select id="preset-select" class="text-xs bg-slate-900 border border-slate-700 text-slate-300 rounded-lg px-3 py-1.5 focus:outline-none focus:border-cyan-400 transition-colors">
+                        <option value="">Load Preset Dataset...</option>
+                        <option value="saas">SaaS Monthly Revenue</option>
+                        <option value="ecommerce">E-Commerce User Acquisition</option>
+                        <option value="cloud">Cloud API Latency Logs</option>
+                    </select>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="raw-data-input" class="block text-xs font-medium text-slate-400 uppercase tracking-wider">Raw Metrics (CSV / Tabular Format)</label>
+                    <textarea id="raw-data-input" rows="8" class="w-full glass-input rounded-xl p-4 text-sm font-mono text-slate-200 placeholder-slate-600 focus:outline-none transition-all resize-none" placeholder="Month, Revenue ($), Active Users&#10;Jan, 45000, 1200&#10;Feb, 52000, 1450&#10;Mar, 48000, 1380&#10;Apr, 61000, 1720"></textarea>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <button id="load-sample-btn" class="text-xs text-slate-400 hover:text-cyan-400 underline transition-colors">
+                        Load Sample Template
+                    </button>
+                    <button id="generate-btn" class="relative group overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-3 font-semibold text-white shadow-lg glow-cyan transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+                        <span class="relative z-10 flex items-center gap-2">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Insights
+                        </span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel: Output Results Dashboard -->
+            <div id="output-dashboard" class="lg:col-span-7 glass-card rounded-2xl p-6 md:p-8 space-y-6 shadow-2xl relative min-h-[460px] flex flex-col justify-between">
+                
+                <!-- Initial Empty / Placeholder State -->
+                <div id="empty-state" class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center space-y-4">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-center text-slate-600 text-2xl">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div class="space-y-1">
+                        <h3 class="text-slate-300 font-semibold text-lg">No Analysis Generated Yet</h3>
+                        <p class="text-slate-500 text-sm max-w-sm">Enter your metrics on the left or select a preset dataset to trigger the DataPulse AI pipeline.</p>
+                    </div>
+                </div>
+
+                <!-- Loading State Spinner -->
+                <div id="loading-state" class="absolute inset-0 bg-slate-950/80 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-8 text-center space-y-4 hidden z-20">
+                    <div class="w-12 h-12 rounded-full border-4 border-cyan-500/20 border-t-cyan-400 animate-spin"></div>
+                    <div class="space-y-1">
+                        <p class="text-cyan-400 font-medium text-sm animate-pulse">Running ML Statistical Pipeline...</p>
+                        <p class="text-slate-500 text-xs">Synthesizing executive summaries and growth projections.</p>
+                    </div>
+                </div>
+
+                <!-- Active Results Content (Hidden by default) -->
+                <div id="results-content" class="space-y-6 hidden">
+                    
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-square-poll-vertical text-purple-400"></i> Executive Analytics Dashboard
+                        </h2>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
+                            <i class="fa-solid fa-circle-check"></i> Analysis Complete
+                        </span>
+                    </div>
+
+                    <!-- Computed Metrics KPI Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-4 space-y-1">
+                            <span class="text-xs text-slate-400 font-medium">Total Volume / Sum</span>
+                            <div id="kpi-total" class="text-2xl font-bold text-white font-mono">-</div>
+                        </div>
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-4 space-y-1">
+                            <span class="text-xs text-slate-400 font-medium">Average Metric</span>
+                            <div id="kpi-avg" class="text-2xl font-bold text-cyan-400 font-mono">-</div>
+                        </div>
+                        <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-4 space-y-1">
+                            <span class="text-xs text-slate-400 font-medium">Est. Growth Trend</span>
+                            <div id="kpi-growth" class="text-2xl font-bold text-emerald-400 font-mono">-</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Executive Summary Box -->
+                    <div class="space-y-3 bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-cyan-500/20 rounded-xl p-5 glow-cyan">
+                        <div class="flex items-center gap-2 text-cyan-400 text-sm font-semibold">
+                            <i class="fa-solid fa-robot"></i> AI-Generated Executive Summary
+                        </div>
+                        <p id="ai-summary-text" class="text-slate-300 text-sm leading-relaxed"></p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex items-center justify-end gap-3 pt-2">
+                        <button id="copy-report-btn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition-colors flex items-center gap-2">
+                            <i class="fa-regular fa-copy"></i> Copy Report
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
+        <p>&copy; 2026 DataPulse AI Engineering. All rights reserved. Built with precision for B2B scale.</p>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Preset Datasets
+        const presets = {
+            saas: "Month, Revenue ($), Active Users\nJan, 48000, 1250\nFeb, 53200, 1420\nMar, 51000, 1390\nApr, 64500, 1680\nMay, 71000, 1950",
+            ecommerce: "Week, Orders, Gross Value ($)\nWeek 1, 340, 18500\nWeek 2, 410, 23400\nWeek 3, 390, 21900\nWeek 4, 520, 29800",
+            cloud: "Endpoint, Requests, Avg Latency (ms)\n/api/v1/auth, 142000, 32\n/api/v1/query, 89000, 78\n/api/v1/sync, 24000, 145\n/api/v1/export, 6500, 310"
+        };
+
+        // DOM Elements
+        const rawInput = document.getElementById('raw-data-input');
+        const presetSelect = document.getElementById('preset-select');
+        const loadSampleBtn = document.getElementById('load-sample-btn');
+        const generateBtn = document.getElementById('generate-btn');
+        const emptyState = document.getElementById('empty-state');
+        const loadingState = document.getElementById('loading-state');
+        const resultsContent = document.getElementById('results-content');
+        const kpiTotal = document.getElementById('kpi-total');
+        const kpiAvg = document.getElementById('kpi-avg');
+        const kpiGrowth = document.getElementById('kpi-growth');
+        const aiSummaryText = document.getElementById('ai-summary-text');
+        const copyReportBtn = document.getElementById('copy-report-btn');
+
+        // Load Preset
+        presetSelect.addEventListener('change', (e) => {
+            const val = e.target.value;
+            if (presets[val]) {
+                rawInput.value = presets[val];
+            }
+        });
+
+        // Load Sample Template
+        loadSampleBtn.addEventListener('click', () => {
+            rawInput.value = presets.saas;
+            presetSelect.value = 'saas';
+        });
+
+        // Generate Button Handler
+        generateBtn.addEventListener('click', () => {
+            const text = rawInput.value.trim();
+            if (!text) {
+                alert('Please enter or select sample tabular metrics first.');
+                return;
+            }
+
+            // Show Loading State
+            emptyState.classList.add('hidden');
+            resultsContent.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+
+            setTimeout(() => {
+                // Parse CSV and Calculate Analytics
+                const lines = text.split('\n').filter(l => l.trim() !== '');
+                let numbers = [];
+                
+                // Extract numeric values from columns (ignoring the header)
+                for (let i = 1; i < lines.length; i++) {
+                    const parts = lines[i].split(',').map(p => p.trim());
+                    parts.forEach(p => {
+                        const num = parseFloat(p);
+                        if (!isNaN(num)) numbers.push(num);
+                    });
+                }
+
+                if (numbers.length === 0) {
+                    // Fallback random mock calculation if format is custom text
+                    numbers = [1250, 4800, 3100, 5400, 6200];
+                }
+
+                const sum = numbers.reduce((a, b) => a + b, 0);
+                const avg = sum / numbers.length;
+                const firstVal = numbers[0];
+                const lastVal = numbers[numbers.length - 1];
+                const growthRate = firstVal > 0 ? (((lastVal - firstVal) / firstVal) * 100).toFixed(1) : '+14.2';
+
+                // Update KPI DOM
+                kpiTotal.textContent = sum > 10000 ? sum.toLocaleString() : sum.toFixed(1);
+                kpiAvg.textContent = avg > 1000 ? avg.toLocaleString(undefined, {maximumFractionDigits: 1}) : avg.toFixed(1);
+                kpiGrowth.textContent = (growthRate >= 0 ? '+' : '') + growthRate + '%';
+
+                // Generate AI Summary Narrative
+                aiSummaryText.innerHTML = `Based on the ingested dataset of <strong>${numbers.length} metrics</strong> across your pipeline, DataPulse AI has identified strong upward momentum. The primary metric demonstrates a net trajectory of <strong>${growthRate}%</strong>. We recommend scaling automated ETL ingestion on high-performing nodes and establishing proactive monitoring on latency peaks to maintain enterprise SLA compliance.`;
+
+                // Hide Loading and Show Results
+                loadingState.classList.add('hidden');
+                resultsContent.classList.remove('hidden');
+            }, 1200);
+        });
+
+        // Copy Report functionality using document.execCommand fallback for iframe safety
+        copyReportBtn.addEventListener('click', () => {
+            const reportText = `DataPulse AI Analytics Report:\nTotal: ${kpiTotal.textContent}\nAverage: ${kpiAvg.textContent}\nGrowth: ${kpiGrowth.textContent}\nSummary: ${aiSummaryText.innerText}`;
+            
+            const textArea = document.createElement('textarea');
+            textArea.value = reportText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                copyReportBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i> Copied!';
+                setTimeout(() => {
+                    copyReportBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Report';
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text', err);
+            }
+            document.body.removeChild(textArea);
+        });
+
+        // Background Particle Mesh Animation
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.radius = Math.random() * 1.5 + 0.8;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(6, 182, 212, 0.45)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 55; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateBg() {
+            ctx.clearRect(0, 0, width, height);
+            
+            // Draw connecting lines if close
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 130) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 * (1 - dist / 130)})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateBg);
+        }
+
+        animateBg();
+    </script>
+</body>
+</html>
+```
